@@ -7,6 +7,7 @@ import Header from './Header'
 import { Main } from '../styles/components'
 import Recommend from './Recommend'
 import useMountedState from '../hooks/useMountedState'
+import NProgress from './NProgress'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { value } = useDarkMode(false)
@@ -18,6 +19,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <ThemeProvider theme={theme}>
       <ResetStyle />
       <GlobalStyle />
+      <NProgress />
       <Header />
       <Main>
         {children}

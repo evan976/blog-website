@@ -122,6 +122,7 @@ export const ArticleContainer = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 10px;
+  border-radius: 2px;
   background: ${props => props.theme.bg.secondary};
 
   .list-header {

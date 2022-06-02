@@ -85,14 +85,28 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen";
-    color: ${props => (props.theme.text.primary)};
-    background: ${props => (props.theme.bg.primary)};
+    color: ${(props) => props.theme.text.primary};
+    background: ${(props) => props.theme.bg.primary};
     width: 100%;
     height: 100vh;
     overflow-x: hidden;
   }
 
+  #nprogress {
+    pointer-events: none;
+  }
+
+  #nprogress .bar {
+    background: ${(props) => props.theme.text.link};
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+  }
+
   .icon {
     cursor: pointer;
   }
-`
+`;

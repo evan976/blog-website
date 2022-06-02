@@ -14,14 +14,14 @@ const ArticleItem: React.FC<ArticleItemProps> = () => {
         <div className='meta-container'>
           <div className='date'>一天前</div>
           <div className='tag-list'>
-            <Link href='/' className='tag'>前端</Link>
-            <Link href='/' className='tag'>架构</Link>
+            <Link href='/' className='tag' passHref>前端</Link>
+            <Link href='/' className='tag' passHref>架构</Link>
           </div>
         </div>
         <div className='content-wrapper'>
           <div className='content-main'>
             <div className='title'>
-              <Link href='/' className='title-link'>
+              <Link href='/' className='title-link' passHref>
                 作为一名前端工程师，我浪费了时间学习了这些技术
               </Link>
             </div>

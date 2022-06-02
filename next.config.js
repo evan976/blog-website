@@ -6,9 +6,7 @@ const nextConfig = {
   },
   // fix warning: prop classname did not match
   compiler: {
-    styledComponents: {
-      displayName: true,
-    }
+    styledComponents: true
   }
 }
 

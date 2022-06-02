@@ -8,13 +8,13 @@ const ArticleList: React.FC = () => {
     <ArticleContainer>
       <header className='list-header'>
         <li className='nav-item active'>
-          <Link href='/'>前端</Link>
+          <Link href='/' passHref>前端</Link>
         </li>
         <li className='nav-item'>
-          <Link href='/'>前端</Link>
+          <Link href='/' passHref>前端</Link>
         </li>
         <li className='nav-item'>
-          <Link href='/'>前端</Link>
+          <Link href='/' passHref>前端</Link>
         </li>
       </header>
       <div className='list-content'>

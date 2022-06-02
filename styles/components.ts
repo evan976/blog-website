@@ -15,7 +15,6 @@ export const RecommendContainer = styled.div`
   flex-direction: column;
   width: 30%;
   margin-left: 10px;
-  background: ${props => props.theme.bg.secondary};
 `
 
 export const SwiperContainer = styled.div`
@@ -306,5 +305,138 @@ export const LoadImageContainer = styled.div`
     border-radius: 2px;
     background: ${props => props.theme.bg.inset};
     animation: 1.5s linear 0s infinite normal none running breathe;
+  }
+`
+
+export const CardContainer = styled.div`
+  background: ${props => props.theme.bg.secondary};
+  border-radius: 2px;
+  margin-bottom: 10px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    font-size: ${props => props.theme.fontSizes[1]};
+    border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
+
+    h2 {
+      margin-left: 5px;
+    }
+  }
+
+  .content {
+    padding: 12px 20px;
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      line-height: 26px;
+
+      .index {
+        width: 32px;
+        height: 16px;
+        border-radius: 1px;
+        background-color: ${props => props.theme.hover.primary};
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: ${props => props.theme.fontSizes[0]};
+      }
+
+      a {
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-left: 5px;
+        color: ${props => props.theme.text.tertiary};
+        font-size: ${props => props.theme.fontSizes[1]};
+
+        &:hover {
+          color: ${props => props.theme.text.link};
+        }
+      }
+    }
+  }
+`
+
+export const FooterContainer = styled.footer`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .link {
+    a {
+      display: inline-block;
+      margin: 0 4px;
+      color: ${props => props.theme.text.tertiary};
+    }
+  }
+
+  p {
+    font-size: ${props => props.theme.fontSizes[0]};
+    line-height: 16px;
+    color: ${props => props.theme.text.tertiary};
+    a {
+      transition: color 0.3s;
+      color: ${props => props.theme.text.tertiary};
+      &:hover {
+        color: ${props => props.theme.text.link};
+      }
+    }
+  }
+`
+
+export const SearchContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 262px;
+  height: 32px;
+  border: 1px solid hsla(0, 0%, 59.2%, .2);
+  border-radius: 2px;
+  transition: all 0.3s;
+  margin-left: 200px;
+
+  .search-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    label {
+      width: 32px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: ${props => props.theme.text.tertiary};
+
+      &::placeholder {
+        color: ${props => props.theme.text.placeholder};
+      }
+    }
+  }
+
+  &:focus-within {
+    width: 362px;
+    border-color: ${props => props.theme.hover.primary};
+  }
+
+  &:focus-within .search-form label {
+    color: ${props => props.theme.hover.primary};
   }
 `

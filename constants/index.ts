@@ -11,13 +11,13 @@ export const ROUTE_LINKS: Readonly<RouteLink[]> = [
     icon: 'home'
   },
   {
+    path: '/comment',
+    label: '留言',
+    icon: 'comment'
+  },
+  {
     path: '/about',
     label: '关于',
     icon: 'info'
-  },
-  {
-    path: '/projects',
-    label: '项目',
-    icon: 'project'
   }
 ]

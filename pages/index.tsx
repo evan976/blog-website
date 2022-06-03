@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { useTheme } from 'styled-components'
 import ArticleList from '../components/Article/ArticleList'
+import Recommend from '../components/Recommend'
 import Swiper from '../components/Swiper'
 import { HomeContainer } from '../styles/home'
 
@@ -27,10 +28,13 @@ const Home: NextPage = () => {
 
   return (
     <HomeContainer>
-      <div className='swiper-container'>
-        <Swiper swipers={swiper} />
+      <div className='home-left'>
+        <div className='swiper-container'>
+          <Swiper swipers={swiper} />
+        </div>
+        <ArticleList />
       </div>
-      <ArticleList />
+      <Recommend />
     </HomeContainer>
   )
 }

@@ -9,7 +9,7 @@ const NProgress: React.FC = () => {
   const start = () => {
     timer.current = setTimeout(() => {
       NP.start()
-    }, 100)
+    }, 50)
   }
 
   const done = () => {

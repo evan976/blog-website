@@ -35,8 +35,8 @@ const Header: React.FC<HeaderProps> = () => {
         <div className='action'>
           {
             darkMode.value
-              ? <DarkMode onClick={darkMode.toggle} />
-              : <LightMode onClick={darkMode.toggle} />
+              ? <LightMode onClick={darkMode.toggle} />
+              : <DarkMode onClick={darkMode.toggle} />
           }
         </div>
       </div>

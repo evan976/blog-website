@@ -2,8 +2,11 @@ import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 70%;
+  .home-left {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+  }
 
   .swiper-container {
     width: 100%;

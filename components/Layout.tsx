@@ -27,7 +27,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Header />
         <Main>
           {children}
-          <Recommend />
+          {/* <Recommend /> */}
         </Main>
       </HelmetProvider>
     </ThemeProvider>

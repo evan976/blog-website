@@ -3,9 +3,10 @@ import styled from 'styled-components'
 export const HomeContainer = styled.div`
   display: flex;
   .home-left {
-    width: 70%;
+    width: 840px;
     display: flex;
     flex-direction: column;
+    flex: 1;
   }
 
   .swiper-container {

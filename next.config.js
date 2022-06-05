@@ -7,6 +7,9 @@ const nextConfig = {
   // fix warning: prop classname did not match
   compiler: {
     styledComponents: true
+  },
+  env: {
+    API_URL: process.env.API_URL,
   }
 }
 

@@ -4,7 +4,7 @@ import { FooterContainer } from '../styles/components'
 import { GithubOutlined } from './Icons/GithubOutlined'
 import { RssOutlined } from './Icons/RssOutlined'
 
-const Footer: React.FC = () => {
+const Footer: React.FC<{ setting: ISetting }> = ({ setting }) => {
   return (
     <FooterContainer>
       <div className='link'>
@@ -18,9 +18,9 @@ const Footer: React.FC = () => {
       <p>Designed by wujihua</p>
       <p>Copyright © 2022. All Rights Reserved.</p>
       <p>
-        <Link href="https://beian.miit.gov.cn/" target='_blank' rel='noreferrer'>
-          滇ICP备20006236号-2
-        </Link>
+        <a href="https://beian.miit.gov.cn/" target='_blank' rel='noreferrer'>
+          {setting.copyright}
+        </a>
       </p>
     </FooterContainer>
   )

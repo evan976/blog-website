@@ -13,7 +13,7 @@ export const Main = styled.main`
 export const RecommendContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 350px;
   margin-left: 10px;
 `
 
@@ -230,7 +230,6 @@ export const ArticleContainer = styled.div`
           .summary {
             color: #86909c;
             font-size: ${props => props.theme.fontSizes[1]};
-            /* color: ${props => props.theme.text.tertiary}; */
             line-height: 22px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -285,13 +284,14 @@ export const LoadImageContainer = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: -1;
     transition: 1.2s opacity, 0.3s transform;
-    z-index: 1;
     border-radius: 2px;
     will-change: transform, opacity;
     &.active {
       opacity: 1;
       position: relative;
+      z-index: 99;
     }
   }
 
@@ -302,9 +302,10 @@ export const LoadImageContainer = styled.div`
     overflow: hidden;
     top: 0;
     left: 0;
+    z-index: 2;
     border-radius: 2px;
     background: ${props => props.theme.bg.inset};
-    animation: 1.5s linear 0s infinite normal none running breathe;
+    animation: 3s linear 0s infinite normal none running breathe;
   }
 `
 
@@ -335,15 +336,27 @@ export const CardContainer = styled.div`
       line-height: 26px;
 
       .index {
-        width: 32px;
+        width: 16px;
         height: 16px;
         border-radius: 1px;
-        background-color: ${props => props.theme.hover.primary};
+        background-color: ${props => props.theme.bg.input};
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: ${props => props.theme.fontSizes[0]};
+
+        &.first {
+          background-color: #ff461f;
+        }
+
+        &.second {
+          background-color: #ff9f1f;
+        }
+
+        &.third {
+          background-color: #0eb83a;
+        }
       }
 
       a {
@@ -354,6 +367,7 @@ export const CardContainer = styled.div`
         margin-left: 5px;
         color: ${props => props.theme.text.tertiary};
         font-size: ${props => props.theme.fontSizes[1]};
+        transition: color 0.3s;
 
         &:hover {
           color: ${props => props.theme.text.link};

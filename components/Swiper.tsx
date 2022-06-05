@@ -26,11 +26,11 @@ const Swiper: React.FC<SwiperProps> = ({
     clearInterval(timer.current)
     timer.current = setInterval(() => {
       index.value++
-      if (index.value >= swipers.length) {
+      if (index.value >= swipers?.length) {
         index.value = 0
       }
     }, duration)
-  }, [duration, index, swipers.length])
+  }, [duration, index, swipers?.length])
 
   const stop = () => {
     if (timer.current) {
@@ -39,7 +39,7 @@ const Swiper: React.FC<SwiperProps> = ({
   }
 
   const start = () => {
-    if (swipers.length > 1 && autoplay) {
+    if (swipers?.length > 1 && autoplay) {
       autoplayFn()
     }
   }
@@ -47,21 +47,21 @@ const Swiper: React.FC<SwiperProps> = ({
   const toggle = (step: number) => {
     index.value += step
 
-    if (index.value >= swipers.length) {
+    if (index.value >= swipers?.length) {
       index.value = 0
       return
     }
     if (index.value < 0) {
-      index.value = swipers.length - 1
+      index.value = swipers?.length - 1
     }
   }
 
   React.useEffect(() => {
-    if (swipers.length > 1 && autoplay) {
+    if (swipers?.length > 1 && autoplay) {
       index.value = 0
       autoplayFn()
     }
-  }, [swipers.length, autoplay, index, autoplayFn])
+  }, [swipers?.length, autoplay, index, autoplayFn])
 
   React.useEffect(() => {
     return () => {

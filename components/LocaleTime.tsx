@@ -42,7 +42,7 @@ const getTimeago = (date: string | number | Date) => {
 const LocaleTime: React.FC<LocaleTimeProps> = ({
   date,
   form = true,
-  format = 'yyyy-MM-dd HH:mm:ss',
+  format = 'yyyy年MM月dd日 HH:mm',
   ...rest
 }) => {
 

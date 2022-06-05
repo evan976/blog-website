@@ -184,7 +184,7 @@ export const ArticleContainer = styled.div`
         .date {
           position: relative;
           padding-right: 10px;
-          color: #86909c;
+          color: ${props => props.theme.text.placeholder};
           border-right: 1px solid hsla(0, 0%, 59.2%, .2);
         }
         
@@ -196,7 +196,7 @@ export const ArticleContainer = styled.div`
             position: relative;
             flex-shrink: 0;
             padding: 0 8px;
-            color: #86909c;
+            color: ${props => props.theme.text.placeholder};
             transition: color 0.3s;
 
             &:hover {
@@ -220,7 +220,6 @@ export const ArticleContainer = styled.div`
             margin-bottom: 8px;
 
             a {
-              font-weight: 700;
               line-height: 24px;
               color: ${props => props.theme.text.primary};
               font-size: ${props => props.theme.fontSizes[2]};
@@ -228,7 +227,7 @@ export const ArticleContainer = styled.div`
           }
 
           .summary {
-            color: #86909c;
+            color: ${props => props.theme.text.quarternary};
             font-size: ${props => props.theme.fontSizes[1]};
             line-height: 22px;
             overflow: hidden;
@@ -242,12 +241,12 @@ export const ArticleContainer = styled.div`
           .action-list {
             display: flex;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: ${props => props.theme.fontSizes[1]};
 
             .item {
-              padding-right: 16px;
-              color: #86909c;
+              padding-right: 32px;
+              color: ${props => props.theme.text.placeholder};
               display: flex;
               align-items: center;
 

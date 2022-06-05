@@ -16,10 +16,10 @@ const Header: React.FC<HeaderProps> = () => {
 
   const darkMode = useDarkMode(false)
 
-  React.useEffect(() => {
-    const isSystemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    isSystemDarkMode ? darkMode.enable() : darkMode.disable()
-  }, [])
+  // React.useEffect(() => {
+  //   const isSystemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  //   isSystemDarkMode ? darkMode.enable() : darkMode.disable()
+  // }, [])
 
   return (
     <Container>

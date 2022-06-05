@@ -119,3 +119,25 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 `;
+
+export const MarkdownStyle = createGlobalStyle`
+  .md-dark {
+    --md-bk-color: ${(props) => props.theme.bg.secondary};
+  }
+
+  .smart-blue-theme h1 {
+    position: relative;
+    text-align: left;
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .md-dark .smart-blue-theme code {
+    background-color: ${(props) => props.theme.bg.input};
+  }
+
+  .md-dark .smart-blue-theme pre code {
+    color: #999;
+    background-color: ${(props) => props.theme.bg.primary};
+  }
+`

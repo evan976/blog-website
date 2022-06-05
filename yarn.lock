@@ -325,6 +325,11 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
+"@types/marked@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-4.0.3.tgz#2098f4a77adaba9ce881c9e0b6baf29116e5acc4"
+  integrity sha512-HnMWQkLJEf/PnxZIfbm0yGJRRZYYMhb++O9M36UCTA9z53uPvVoSlAwJr3XOpDEryb7Hwl1qAx/MV6YIW1RXxg==
+
 "@types/node@17.0.38":
   version "17.0.38"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.38.tgz#f8bb07c371ccb1903f3752872c89f44006132947"
@@ -1519,6 +1524,13 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+md-editor-rt@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/md-editor-rt/-/md-editor-rt-2.0.1.tgz#68c1ea1723e16dd13f7763f83d516bcc7483ad1c"
+  integrity sha512-PNHEy9S4zAWYT3Hhj+7AwA2JGCpvHQtSZDMK5msJwjlPRF8tCgZ/EVqCwpC6W/L5KerMOXTgo/U+QpvQrWYAPw==
+  dependencies:
+    "@types/marked" "^4.0.3"
 
 merge2@^1.3.0, merge2@^1.4.1:
   version "1.4.1"

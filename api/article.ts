@@ -11,6 +11,16 @@ class ArticleService {
       }
     })
   }
+
+  findById(id: string) {
+    return request<string, IArticle>({
+      url: `/posts/${id}`,
+      method: 'GET',
+      interceptors: {
+        responseInterceptor: (res) => res
+      }
+    })
+  }
 }
 
 export default new ArticleService()

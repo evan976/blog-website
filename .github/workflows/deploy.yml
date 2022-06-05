@@ -33,12 +33,12 @@ jobs:
 
       - name: Server Reload
         uses: appleboy/ssh-action@master
-        with: 
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.ACCESS_TOKEN }}
-        script: |
-          cd /usr/local/src/next-website
-          yarn
-          yarn build
-          pm2 reload client
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.ACCESS_TOKEN }}
+          script: |
+            cd /usr/local/src/next-website
+            yarn
+            yarn build
+            pm2 reload client

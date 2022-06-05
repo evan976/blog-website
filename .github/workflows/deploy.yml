@@ -11,10 +11,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup yarn
-        uses: actions/setup-node@v3
-
       - name: Install & Build
+        uses: actions/setup-node@v3
         run: |
           yarn install
           yarn build

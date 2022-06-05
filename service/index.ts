@@ -11,10 +11,8 @@ export interface Response<T> {
   data: T
 }
 
-console.log(process.env.API_URL)
-
 const request = new Request({
-  baseURL: process.env.API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 1000 * 60 * 5,
   interceptors: {
     requestInterceptor: (config) => config,

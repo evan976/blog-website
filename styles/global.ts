@@ -131,6 +131,10 @@ export const MarkdownStyle = createGlobalStyle`
     --md-bk-color: ${(props) => props.theme.bg.secondary};
   }
 
+  .smart-blue-theme {
+    background-image: none;
+  }
+
   .smart-blue-theme h1 {
     position: relative;
     text-align: left;

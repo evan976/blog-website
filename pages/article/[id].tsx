@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { NextPage } from 'next'
 import MdEditor from 'md-editor-rt'
-import * as mainApi from '../../api'
+import useDarkMode from 'use-dark-mode'
 import { ArticleContainer } from '../../styles/article'
+import * as mainApi from '../../api'
 import { Helmet } from 'react-helmet-async'
 import { GlobalContext } from '../../context/globalContext'
 import LocaleTime from '../../components/LocaleTime'
-import useDarkMode from 'use-dark-mode'
 import LoadingImage from '../../components/LoadingImage'
 import 'md-editor-rt/lib/style.css'
 
@@ -14,10 +14,27 @@ interface ArticleProps {
   article: IArticle
 }
 
+const editorId = 'editor'
+
 const Article: NextPage<ArticleProps> = ({ article }) => {
 
   const { setting } = React.useContext(GlobalContext)
   const { value } = useDarkMode(false)
+
+  const [state, setState] = React.useState({
+    text: article.content,
+    scrollElement: null,
+  })
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setState({
+        ...state,
+        // @ts-ignore
+        scrollElement: window.document.documentElement as HTMLElement,
+      })
+    }
+  }, [])
 
   return (
     <ArticleContainer>
@@ -48,7 +65,8 @@ const Article: NextPage<ArticleProps> = ({ article }) => {
           )}
           <div className='article-content'>
             <MdEditor
-              modelValue={article.content!}
+              editorId={editorId}
+              modelValue={state.text!}
               theme={value ? 'dark' : 'light'}
               previewTheme='smart-blue'
               previewOnly
@@ -56,7 +74,12 @@ const Article: NextPage<ArticleProps> = ({ article }) => {
           </div>
         </article>
       </div>
-      <div className='article-toc'></div>
+      <div className='article-toc'>
+        <MdEditor.MdCatalog
+          editorId={editorId}
+          scrollElement={state.scrollElement!}
+        />
+      </div>
     </ArticleContainer>
   )
 }

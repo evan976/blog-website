@@ -11,6 +11,12 @@ export const Container = styled.div`
   opacity: .9;
   width: 100%;
 
+  @media screen and (max-width: 768px) {
+    opacity: 1;
+  }
+
+
+
   .header-wrapper {
     max-width: 1200px;
     height: 100%;
@@ -121,14 +127,67 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     opacity: 0;
-    z-index: 99;
+    z-index: 99998;
     transform: translateX(100%);
     transition: opacity .3s linear;
     cursor: pointer;
     &.is-active {
       transform: translateX(0);
       overflow: hidden;
-      opacity: 0.8;
+      opacity: .8;
+    }
+  }
+
+  .mobile-search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: ${props => props.theme.bg.secondary};
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    z-index: 99999;
+    /* opacity: 0; */
+    transform: translateY(-100%);
+    transition: all .3s;
+
+    &.is-show {
+      /* opacity: 1; */
+      transform: translateY(0);
+    }
+
+    .search-form {
+      width: 100%;
+      height: 32px;
+
+      .search-input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: ${props => props.theme.text.tertiary};
+        padding: 0 10px;
+        font-size: ${props => props.theme.fontSizes[1]};
+      }
+    }
+
+    .close-action {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      .icon-close {
+        width: 1.25em;
+        height: 1.25em;
+        color: ${props => props.theme.text.tertiary};
+      }
     }
   }
 `

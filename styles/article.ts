@@ -52,6 +52,9 @@ export const ArticleContainer = styled.div`
     flex-direction: column;
     width: 350px;
     margin-left: 10px;
+    padding: 20px;
+    background-color: ${props => props.theme.bg.secondary};
+    align-self: flex-start;
   }
 
   @media screen and (max-width: 768px) {

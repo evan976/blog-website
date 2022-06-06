@@ -11,6 +11,7 @@ import logo from '../public/static/code.svg'
 import MobileMenu from './MobileMenu'
 import Search from './Search'
 import Menu from './Menu'
+import MobileSearch from './MobileSearch'
 
 interface HeaderProps {
 }
@@ -20,6 +21,7 @@ const Header: React.FC<HeaderProps> = () => {
   const darkMode = useDarkMode(false)
 
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false)
+  const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
   return (
     <Container>
@@ -51,7 +53,10 @@ const Header: React.FC<HeaderProps> = () => {
           }
         </div>
         <div className='search-action'>
-          <SearchOutlined className='icon-search' />
+          <SearchOutlined
+            className='icon-search'
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+          />
         </div>
       </div>
       <div className={classNames('mobile-nav', {
@@ -65,6 +70,11 @@ const Header: React.FC<HeaderProps> = () => {
         })}
         onClick={() => setIsMenuOpen(false)}
       ></div>
+      <div className={classNames('mobile-search', {
+        'is-show': isSearchOpen
+      })}>
+        <MobileSearch open={isSearchOpen} close={setIsSearchOpen} />
+      </div>
     </Container>
   )
 }

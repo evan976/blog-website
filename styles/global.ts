@@ -119,6 +119,15 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @keyframes placeHolderShimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 350px 50px;
+    }
+  }
+
   @media screen and (min-width: 768px) {
     .footer {
       display: none;

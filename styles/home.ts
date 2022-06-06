@@ -14,4 +14,10 @@ export const HomeContainer = styled.div`
     height: 200px;
     background-color: ${props => props.theme.bg.primary};
   }
+
+  @media screen and (max-width: 768px) {
+    .home-left {
+      width: 100%;
+    }
+  }
 `

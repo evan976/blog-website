@@ -8,6 +8,11 @@ export const Main = styled.main`
   margin: 0 auto;
   background-color: ${props => props.theme.bg.primary};
   padding: 10px 0;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 12px 10px;
+  }
 `
 
 export const RecommendContainer = styled.div`
@@ -15,6 +20,10 @@ export const RecommendContainer = styled.div`
   flex-direction: column;
   width: 350px;
   margin-left: 10px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
 
 export const SwiperContainer = styled.div`
@@ -80,6 +89,15 @@ export const SwiperContainer = styled.div`
         width: 36px;
       }
     }
+
+    @media screen and (max-width: 768px) {
+      span {
+        width: 15px;
+        &.active {
+          width: 30px;
+        }
+      }
+    }
   }
 
   .swiper-btn {
@@ -125,9 +143,12 @@ export const ArticleContainer = styled.div`
   background: ${props => props.theme.bg.secondary};
 
   .list-header {
-    padding: 1.3rem 1rem;
+    padding: 20px 16px;
     border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
 
     .nav-item {
       padding: 0 1.2rem;
@@ -156,6 +177,12 @@ export const ArticleContainer = styled.div`
       }
 
 
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .list-header {
+      padding: 10px;
     }
   }
 
@@ -263,6 +290,10 @@ export const ArticleContainer = styled.div`
           height: 80px;
           margin-left: 24px;
           background-color: ${props => props.theme.bg.secondary};
+
+          @media screen and (max-width: 768px) {
+            margin-left: 0;
+          }
         }
       }
     }
@@ -443,6 +474,10 @@ export const FooterContainer = styled.footer`
   align-items: center;
   justify-content: space-between;
 
+  @media screen and (max-width: 768px) {
+    padding: 0 10px 10px 10px;
+  }
+
   .link {
     a {
       display: inline-block;
@@ -461,6 +496,9 @@ export const FooterContainer = styled.footer`
       &:hover {
         color: ${props => props.theme.text.link};
       }
+    }
+    @media screen and (max-width: 768px) {
+      line-height: 20px;
     }
   }
 `
@@ -512,5 +550,72 @@ export const SearchContainer = styled.div`
 
   &:focus-within .search-form label {
     color: ${props => props.theme.hover.primary};
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`
+
+export const MobileMenuContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${props => props.theme.bg.primary};
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+
+    img {
+      border-radius: 50%;
+      background-color: #ffffff;
+    }
+
+    span {
+      margin-top: 16px;
+      font-size: ${props => props.theme.fontSizes[3]};
+    }
+  }
+
+  .dark-action {
+    text-align: center;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+
+    .item {
+      width: 100%;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      a {
+        color: ${props => props.theme.text.tertiary};
+      }
+
+      &.active {
+        background: ${props => props.theme.hover.primary};
+        a {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .text {
+      height: 100%;
+      line-height: 48px;
+    }
   }
 `

@@ -11,6 +11,7 @@ import useGlobalData from '../hooks/useGlobalData'
 import NProgress from './NProgress'
 import Header from './Header'
 import Seo from './Seo'
+import Footer from './Footer'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { value } = useDarkMode(true)
@@ -42,9 +43,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <NProgress />
           <Seo />
           <Header />
-          <Main>
-            {children}
-          </Main>
+          <Main>{children}</Main>
+          <div className='footer'>
+            <Footer setting={setting} />
+          </div>
         </HelmetProvider>
       </ThemeProvider>
     </GlobalContext.Provider>

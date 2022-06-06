@@ -118,6 +118,12 @@ export const GlobalStyle = createGlobalStyle`
         opacity: 1;
     }
   }
+
+  @media screen and (min-width: 768px) {
+    .footer {
+      display: none;
+    }
+  }
 `;
 
 export const MarkdownStyle = createGlobalStyle`
@@ -130,6 +136,10 @@ export const MarkdownStyle = createGlobalStyle`
     text-align: left;
     font-size: 22px;
     margin: 0;
+  }
+
+  .md-dark .smart-blue-theme {
+    background-image: none;
   }
 
   .md-dark .smart-blue-theme code {

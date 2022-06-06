@@ -53,4 +53,19 @@ export const ArticleContainer = styled.div`
     width: 350px;
     margin-left: 10px;
   }
+
+  @media screen and (max-width: 768px) {
+    .article-detail {
+      width: 100%;
+      padding: 10px;
+    }
+
+    .article-toc {
+      display: none;
+    }
+
+    .article-content {
+      width: 100%;
+    }
+  }
 `

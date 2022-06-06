@@ -1,11 +1,14 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import * as React from 'react'
+import Image from 'next/image'
+import classNames from 'classnames'
 import useDarkMode from 'use-dark-mode'
 import { Container } from '../styles/header'
 import { DarkMode } from './Icons/DarkMode'
 import { LightMode } from './Icons/LightMode'
+import { MenuOutlined } from './Icons/MenuOutlined'
+import { SearchOutlined } from './Icons/SearchOutlined'
 import logo from '../public/static/code.svg'
+import MobileMenu from './MobileMenu'
 import Search from './Search'
 import Menu from './Menu'
 
@@ -16,14 +19,17 @@ const Header: React.FC<HeaderProps> = () => {
 
   const darkMode = useDarkMode(false)
 
-  // React.useEffect(() => {
-  //   const isSystemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  //   isSystemDarkMode ? darkMode.enable() : darkMode.disable()
-  // }, [])
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false)
 
   return (
     <Container>
       <div className='header-wrapper'>
+        <div className='menu-action'>
+          <MenuOutlined
+            className='icon-menu'
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          />
+        </div>
         <div className='logo'>
           <a href="/">
             <Image
@@ -44,7 +50,21 @@ const Header: React.FC<HeaderProps> = () => {
               : <DarkMode onClick={darkMode.toggle} />
           }
         </div>
+        <div className='search-action'>
+          <SearchOutlined className='icon-search' />
+        </div>
       </div>
+      <div className={classNames('mobile-nav', {
+        'is-open': isMenuOpen
+      })}>
+        <MobileMenu setOpen={setIsMenuOpen} />
+      </div>
+      <div
+        className={classNames('mask', {
+          'is-active': isMenuOpen
+        })}
+        onClick={() => setIsMenuOpen(false)}
+      ></div>
     </Container>
   )
 }

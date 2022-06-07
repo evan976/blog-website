@@ -32,7 +32,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
           TARGET: /usr/local/src/next-website
-          EXCLUDE: /node_modules/
+          EXCLUDE: /node_modules/ /.git/ /.next/ /.yarn/ /.cache/ /.vscode/ /.DS_Store/
 
       - name: Server Reload
         uses: appleboy/ssh-action@master

@@ -43,7 +43,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <NProgress />
           <Seo />
           <Header />
-          <Main>{children}</Main>
+          {/* <Main></Main> */}
+          {children}
           <div className='footer'>
             <Footer setting={setting} />
           </div>

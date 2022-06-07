@@ -67,6 +67,12 @@ interface IComment extends BaseInterface {
   userAgent?: string
   status?: number
   weight?: number
+  replyUserName?: string
+  replyUserEmail?: string
+  address?: string
+  ip?: string
+  browser?: string
+  os?: string
 }
 
 interface ISwiper extends BaseInterface {

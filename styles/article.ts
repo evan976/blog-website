@@ -44,6 +44,11 @@ export const ArticleContainer = styled.div`
           border-radius: 2px;
         }
       }
+
+      .article-content {
+        height: auto;
+        overflow-y: auto;
+      }
     }
   }
 
@@ -55,6 +60,13 @@ export const ArticleContainer = styled.div`
     padding: 20px;
     background-color: ${props => props.theme.bg.secondary};
     align-self: flex-start;
+    position: sticky;
+    top: 74px;
+
+    .affix {
+      max-height: 100vh;
+
+    }
   }
 
   @media screen and (max-width: 768px) {

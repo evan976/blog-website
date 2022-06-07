@@ -14,27 +14,12 @@ interface ArticleProps {
   article: IArticle
 }
 
-const editorId = 'editor'
+const editorId = 'MARKDOWN_EDITOR'
 
 const Article: NextPage<ArticleProps> = ({ article }) => {
 
   const { setting } = React.useContext(GlobalContext)
   const { value } = useDarkMode(false)
-
-  const [state, setState] = React.useState({
-    text: article.content,
-    scrollElement: null,
-  })
-
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setState({
-        ...state,
-        // @ts-ignore
-        scrollElement: window.document.documentElement as HTMLElement,
-      })
-    }
-  }, [])
 
   return (
     <ArticleContainer>
@@ -66,7 +51,7 @@ const Article: NextPage<ArticleProps> = ({ article }) => {
           <div className='article-content'>
             <MdEditor
               editorId={editorId}
-              modelValue={state.text!}
+              modelValue={article.content!}
               theme={value ? 'dark' : 'light'}
               previewTheme='smart-blue'
               previewOnly
@@ -75,10 +60,9 @@ const Article: NextPage<ArticleProps> = ({ article }) => {
         </article>
       </div>
       <div className='article-toc'>
-        <MdEditor.MdCatalog
-          editorId={editorId}
-          scrollElement={state.scrollElement!}
-        />
+        <div className='affix'>
+          <MdEditor.MdCatalog editorId={editorId} />
+        </div>
       </div>
     </ArticleContainer>
   )

@@ -68,6 +68,12 @@ caption, th {
 textarea {
   resize: none;
 }
+
+input::-webkit-placeholder,
+textarea::-webkit-placeholder {
+  color: ${props => props.theme.text.placeholder};
+}
+
 a {
   text-decoration: none;
   cursor: pointer;

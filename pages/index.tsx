@@ -8,7 +8,7 @@ import Swiper from '../components/Swiper'
 import { GlobalContext } from '../context/globalContext'
 import { HomeContainer } from '../styles/home'
 import * as mainApi from '../api'
-import useAsyncLoading from '../hooks/useAsyncLoading'
+import { Main } from '../styles/components'
 
 interface HomeProps {
   total: number
@@ -44,26 +44,28 @@ const Home: NextPage<HomeProps> = ({
   }, [])
 
   return (
-    <HomeContainer>
-      <div className='home-left'>
-        <div className='swiper-container'>
-          <Swiper swipers={swipers} />
+    <Main>
+      <HomeContainer>
+        <div className='home-left'>
+          <div className='swiper-container'>
+            <Swiper swipers={swipers} />
+          </div>
+          <InfiniteScroll
+            pageStart={1}
+            loadMore={getArticles}
+            hasMore={page * pageSize < total}
+            loader={
+              <div className={'loading'} key={0}>
+                loading ...
+              </div>
+            }
+          >
+            <ArticleList categories={categories} articles={articles} />
+          </InfiniteScroll>
         </div>
-        <InfiniteScroll
-          pageStart={1}
-          loadMore={getArticles}
-          hasMore={page * pageSize < total}
-          loader={
-            <div className={'loading'} key={0}>
-              loading ...
-            </div>
-          }
-        >
-          <ArticleList categories={categories} articles={articles} />
-        </InfiniteScroll>
-      </div>
-      <Recommend />
-    </HomeContainer>
+        <Recommend />
+      </HomeContainer>
+    </Main>
   )
 }
 

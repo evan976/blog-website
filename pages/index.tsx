@@ -8,6 +8,7 @@ import Swiper from '../components/Swiper'
 import { GlobalContext } from '../context/globalContext'
 import { HomeContainer } from '../styles/home'
 import * as mainApi from '../api'
+import useAsyncLoading from '../hooks/useAsyncLoading'
 
 interface HomeProps {
   total: number
@@ -67,6 +68,7 @@ const Home: NextPage<HomeProps> = ({
 }
 
 Home.getInitialProps = async () => {
+
   const [articles, swipers] = await Promise.all([
     mainApi.articleService.findAll({ page: 1, pageSize }),
     mainApi.swiperService.findAll({ page: 1, pageSize: 3 })

@@ -72,3 +72,26 @@ export const ArticleContainer = styled.div`
     }
   }
 `
+
+export const ArticleSkeletonContainer = styled.div`
+  .module {
+    border-radius: 2px;
+
+    .content-skeleton {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .main {
+        flex: 1;
+
+        .meta {
+          width: 30%;
+          height: 16px;
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+`

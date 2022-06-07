@@ -162,11 +162,11 @@ export const ArticleContainer = styled.div`
         border-right: none;
       }
 
-      &.active > a {
+      &.active > span {
         color: ${props => props.theme.text.link};
       }
 
-      a {
+      span {
         font-size: ${props => props.theme.fontSizes[1]};
         color: ${props => props.theme.text.tertiary};
         transition: all 0.3s;
@@ -672,4 +672,17 @@ export const MobileSearchContainer = styled.div`
       color: ${props => props.theme.text.tertiary};
     }
   }
+`
+
+export const EmptyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 156px;
+  background: ${props => props.theme.bg.secondary};
+  width: 100%;
+  color: ${props => props.theme.text.tertiary};
+  font-size: ${props => props.theme.fontSizes[1]};
 `

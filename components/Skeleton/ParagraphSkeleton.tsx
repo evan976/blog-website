@@ -31,10 +31,10 @@ const ParagraphSkeleton: React.FC<ParagraphSkeletonProps> = ({
       height: lineHeight,
       marginBottom: index === lines - 1 ? '0' : `calc(${lineHeight} * 0.75)`
     }
-    const position = index % 3
+    const position = index % 5
     if (position) {
       const margin = 15 * position
-      style.width = `${100 - margin}%`
+      style.width = `${10 + margin}%`
       style.marginLeft = align ? '0' : '6%'
     }
     return style

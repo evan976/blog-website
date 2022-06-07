@@ -21,6 +21,26 @@ class ArticleService {
       }
     })
   }
+
+  findByCategoryId(id: string) {
+    return request<string, PaginateResult<IArticle>>({
+      url: `/posts/category/${id}`,
+      method: 'GET',
+      interceptors: {
+        responseInterceptor: (res) => res
+      }
+    })
+  }
+
+  findByTagId(id: string) {
+    return request<string, PaginateResult<IArticle>>({
+      url: `/posts/tag/${id}`,
+      method: 'GET',
+      interceptors: {
+        responseInterceptor: (res) => res
+      }
+    })
+  }
 }
 
 export default new ArticleService()

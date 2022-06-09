@@ -12,9 +12,21 @@ interface CommentProps {
   comments: IComment[]
 }
 
-const Comment: NextPage<CommentProps> = ({ comments, total }) => {
+const Comment: NextPage<CommentProps> = ({
+  comments: defaultComments = [],
+  total
+}) => {
 
-  console.log('comments', comments)
+  const [comments, setComments] = React.useState<IComment[]>(defaultComments)
+
+  const refreshComments = React.useCallback(() => {
+    mainApi.commentService.findAll({
+      page: 1,
+      pageSize
+    }).then((res) => {
+      setComments(res.data.data as IComment[])
+    })
+  }, [])
 
   return (
     <CommentContainer>
@@ -24,7 +36,7 @@ const Comment: NextPage<CommentProps> = ({ comments, total }) => {
       </div>
       <div className='main-comtent'>
         <div className='add-comment'>
-          <CreateComment />
+          <CreateComment refreshComments={refreshComments} />
         </div>
         <div className='comment-list'>
           <CommentList comments={comments} />

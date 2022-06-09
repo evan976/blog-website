@@ -145,9 +145,10 @@ export const CreateCommentWrap = styled.div`
         justify-content: center;
         transition: all .3s;
 
-        /* &:hover {
-          background-color: ${props => props.theme.hover.secondary};
-        } */
+        &.disabled {
+          background-color: ${props => props.theme.bg.primary};
+          cursor: not-allowed;
+        }
 
         span {
           margin-right: 5px;
@@ -203,10 +204,6 @@ export const CommentItemWrap = styled.div`
           font-size: ${props => props.theme.fontSizes[0]};
           color: ${props => props.theme.text.primary};
 
-          /* .nickname {
-            font-size: ${props => props.theme.fontSizes[0]};
-            color: ${props => props.theme.text.primary};
-          } */
           .info-item {
             margin-right: 10px;
           }
@@ -223,6 +220,10 @@ export const CommentItemWrap = styled.div`
           align-items: center;
           font-size: ${props => props.theme.fontSizes[0]};
           color: ${props => props.theme.text.tertiary};
+
+          .action-country {
+            margin-left: 10px;
+          }
 
 
           .reply-action {

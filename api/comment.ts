@@ -11,6 +11,17 @@ class CommentService {
       }
     })
   }
+
+  create(data: IComment) {
+    return request<IComment, IComment>({
+      url: '/comments',
+      method: 'POST',
+      data,
+      interceptors: {
+        responseInterceptor: (res) => res
+      }
+    })
+  }
 }
 
 export default new CommentService()

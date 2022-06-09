@@ -12,9 +12,9 @@ const CommentList: React.FC<{ comments: IComment[] }> = ({ comments }) => {
     <div>
       {
         comments.length > 0 ? (
-          comments.filter(comment => !comment.parentId)?.map((comment) => (
+          comments.filter(comment => !comment.parentId)?.map((comment, index) => (
             <CommentItem
-              key={comment.id}
+              key={index}
               comment={comment}
               replyComments={replyList}
             />

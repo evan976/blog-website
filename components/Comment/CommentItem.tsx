@@ -2,6 +2,7 @@ import * as React from 'react'
 import { CommentItemWrap } from '../../styles/comment'
 import LocaleTime from '../LocaleTime'
 import { ReplyOutlined } from '../Icons/ReplyOutlined'
+import { filterBrowser } from '../../utils'
 
 const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = ({
   comment,
@@ -25,14 +26,11 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                   <div className='info-item nickname'>
                     {comment.name}
                   </div>
-                  <div className="info-item country">
-                    {comment.address}
-                  </div>
                   <div className='info-item system'>
                     {comment.os}
                   </div>
                   <div className='info-item browser'>
-                    {comment.browser}
+                    {filterBrowser(comment.browser)}
                   </div>
                 </div>
                 <div className='comment-content'>
@@ -40,6 +38,9 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                 </div>
                 <div className='action'>
                   <LocaleTime date={comment.createdAt!} />
+                  <div className="action-country">
+                  IP 属地 · {comment.address || '未知'}
+                  </div>
                   <div className='reply-action'>
                     <ReplyOutlined />
                     <span>回复</span>
@@ -51,10 +52,10 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
         }
         <div className='reply'>
           {
-            replyComments?.map((replyComment) => (
+            replyComments?.map((replyComment, index) => (
               replyComment.parentId === comment.id &&
               (
-                <div className='reply-content' key={replyComment.id}>
+                <div className='reply-content' key={index}>
                   <div className='avatar'>
                     <img
                       src={replyComment.avatar}
@@ -66,14 +67,11 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                     <div className='info-item nickname'>
                       {replyComment.name} @ {replyComment.replyUserName}
                     </div>
-                    <div className="info-item country">
-                      {replyComment.address}
-                    </div>
                     <div className='info-item system'>
                       {replyComment.os}
                     </div>
                     <div className='info-item browser'>
-                      {replyComment.browser}
+                      {filterBrowser(replyComment.browser)}
                     </div>
                   </div>
                   <div className='comment-content'>
@@ -81,6 +79,9 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                   </div>
                   <div className='action'>
                     <LocaleTime date={replyComment.createdAt!} />
+                    <div className="action-country">
+                      IP 属地 · {replyComment.address || '未知'}
+                    </div>
                     <div className='reply-action'>
                       <ReplyOutlined />
                       <span>回复</span>

@@ -3,11 +3,32 @@ import { CommentItemWrap } from '../../styles/comment'
 import LocaleTime from '../LocaleTime'
 import { ReplyOutlined } from '../Icons/ReplyOutlined'
 import { filterAddress, filterBrowser } from '../../utils'
+import CreateComment from './CreateComment'
+import * as mainApi from '../../api'
+import { CloseOutlined } from '../Icons/CloseOutlined'
 
 const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = ({
   comment,
-  replyComments
+  replyComments: defaultReplyComments = []
 }) => {
+
+  const [id, setId] = React.useState<number>(0)
+  
+  const [replyComments, setReplyComments] = React.useState<IComment[]>(defaultReplyComments)
+
+  const refreshComments = React.useCallback(() => {
+    mainApi.commentService.findAll({
+      page: 1,
+      pageSize: 12
+    }).then((res) => {
+      const comments = res.data?.data
+      const replyList = comments
+        ?.filter(comment => comment.parentId)
+        ?.reverse()
+      setReplyComments(replyList!)
+    }
+    )
+  }, [])
 
   return (
     <CommentItemWrap>
@@ -41,55 +62,94 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                   <div className="action-country">
                     {filterAddress(comment.address)}
                   </div>
-                  <div className='reply-action'>
-                    <ReplyOutlined />
-                    <span>回复</span>
-                  </div>
+                  {
+                    id === comment.id ? (
+                      <div className='reply-action' onClick={() => setId(0)}>
+                        <CloseOutlined />
+                        <span>取消回复</span>
+                      </div>
+                    ) : (
+                      <div className='reply-action' onClick={() => setId(comment.id!)}>
+                        <ReplyOutlined />
+                        <span>回复</span>
+                      </div>
+                    )
+                  }
                 </div>
               </div>
             </div>
           )
         }
+        {id === comment.id && (
+          <div style={{marginTop: 10}}>
+            <CreateComment
+              replyComment={comment}
+              refreshComments={refreshComments}
+              setId={setId}
+            />
+          </div>
+        )}
         <div className='reply'>
           {
             replyComments?.map((replyComment, index) => (
               replyComment.parentId === comment.id &&
               (
-                <div className='reply-content' key={index}>
-                  <div className='avatar'>
-                    <img
-                      src={replyComment.avatar}
-                      alt='avatar'
-                    />
+                <>
+                  <div className='reply-content' key={index}>
+                    <div className='avatar'>
+                      <img
+                        src={replyComment.avatar}
+                        alt='avatar'
+                      />
+                    </div>
+                    <div className='content'>
+                    <div className='base-info'>
+                      <div className='info-item nickname'>
+                        {replyComment.name} @ {replyComment.replyUserName}
+                      </div>
+                      <div className='info-item system'>
+                        {replyComment.os}
+                      </div>
+                      <div className='info-item browser'>
+                        {filterBrowser(replyComment.browser)}
+                      </div>
+                    </div>
+                    <div className='comment-content'>
+                      {replyComment.content}
+                    </div>
+                    <div className='action'>
+                      <LocaleTime date={replyComment.createdAt!} />
+                      <div className="action-country">
+                        {filterAddress(replyComment.address)}
+                      </div>
+                      {
+                        id === replyComment.id ? (
+                          <div className='reply-action' onClick={() => setId(0)}>
+                            <CloseOutlined />
+                            <span>取消回复</span>
+                          </div>
+                        ) : (
+                          <div className='reply-action' onClick={() => setId(replyComment.id!)}>
+                            <ReplyOutlined />
+                            <span>回复</span>
+                          </div>
+                        )
+                      }
+                    </div>
+                    </div>
                   </div>
-                  <div className='content'>
-                  <div className='base-info'>
-                    <div className='info-item nickname'>
-                      {replyComment.name} @ {replyComment.replyUserName}
-                    </div>
-                    <div className='info-item system'>
-                      {replyComment.os}
-                    </div>
-                    <div className='info-item browser'>
-                      {filterBrowser(replyComment.browser)}
-                    </div>
+                  <div style={{marginTop: 10}}>
+                    {id === replyComment.id && (
+                      <CreateComment
+                        replyComment={replyComment}
+                        refreshComments={refreshComments}
+                        setId={setId}
+                      />
+                    )}
                   </div>
-                  <div className='comment-content'>
-                    {replyComment.content}
-                  </div>
-                  <div className='action'>
-                    <LocaleTime date={replyComment.createdAt!} />
-                    <div className="action-country">
-                      {filterAddress(replyComment.address)}
-                    </div>
-                    <div className='reply-action'>
-                      <ReplyOutlined />
-                      <span>回复</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </>
               )
+              
             ))
           }
         </div>

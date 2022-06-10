@@ -138,7 +138,6 @@ export const ArticleContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 10px;
   border-radius: 2px;
   background: ${props => props.theme.bg.secondary};
 
@@ -149,6 +148,19 @@ export const ArticleContainer = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
+
+    &.is-search {
+      justify-content: center;
+    }
+
+    .search-title {
+      color: ${props => props.theme.text.tertiary};
+      font-size: ${props => props.theme.fontSizes[1]};
+
+      span {
+        color: ${props => props.theme.text.link};
+      }
+    }
 
     .nav-item {
       padding: 0 1.2rem;

@@ -12,6 +12,7 @@ export const HomeContainer = styled.div`
   .swiper-container {
     width: 100%;
     height: 200px;
+    margin-bottom: 10px;
     background-color: ${props => props.theme.bg.primary};
   }
 

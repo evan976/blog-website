@@ -5,14 +5,16 @@ import useComment from '../../hooks/useComment'
 import classNames from 'classnames'
 
 interface CreateCommentProps {
-  refreshComments: () => void
+  replyComment?: IComment
+  refreshComments?: () => void
+  setId?: (id: number) => void
 }
 
 const CreateComment: React.FC<CreateCommentProps> = ({
-  refreshComments
+  refreshComments,
+  replyComment,
+  setId
 }) => {
-
-
 
   const {
     nickname,
@@ -24,11 +26,13 @@ const CreateComment: React.FC<CreateCommentProps> = ({
     handleNicknameChange,
     handleSiteChange,
     handleSubmit,
-  } = useComment(refreshComments)
+  } = useComment(refreshComments!, setId)
 
   return (
     <CreateCommentWrap>
-      <form className='comment-form' onSubmit={handleSubmit}>
+      <form className='comment-form' onSubmit={(e) => {
+        handleSubmit(e, replyComment)
+      }}>
         <div className='user-info'>
           <div className='field field-name'>
             <label htmlFor='name'>昵称*</label>

@@ -1,6 +1,8 @@
 import * as React from 'react'
+import { useRouter } from 'next/router'
 
 function useSearch() {
+  const router = useRouter()
   const [keyword, setKeyword] = React.useState<string>('')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -10,7 +12,7 @@ function useSearch() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (keyword) {
-      console.log(keyword)
+      router.push(`/search/${keyword}`)
     }
   }
 

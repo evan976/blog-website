@@ -20,3 +20,12 @@ export const filterBrowser = (browser?: string) => {
   }
   return 'Unknown'
 }
+
+export const filterAddress = (address?: string) => {
+  if (!address) return '未知'
+  const arr = address.split(' ')
+  if (!address.includes('中国')) {
+    return arr[0]
+  }
+  return `${arr[1]} ${arr[2]}`
+}

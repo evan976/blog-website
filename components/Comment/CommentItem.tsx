@@ -2,7 +2,7 @@ import * as React from 'react'
 import { CommentItemWrap } from '../../styles/comment'
 import LocaleTime from '../LocaleTime'
 import { ReplyOutlined } from '../Icons/ReplyOutlined'
-import { filterBrowser } from '../../utils'
+import { filterAddress, filterBrowser } from '../../utils'
 
 const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = ({
   comment,
@@ -39,7 +39,7 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                 <div className='action'>
                   <LocaleTime date={comment.createdAt!} />
                   <div className="action-country">
-                  IP 属地 · {comment.address || '未知'}
+                    {filterAddress(comment.address)}
                   </div>
                   <div className='reply-action'>
                     <ReplyOutlined />
@@ -80,7 +80,7 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                   <div className='action'>
                     <LocaleTime date={replyComment.createdAt!} />
                     <div className="action-country">
-                      IP 属地 · {replyComment.address || '未知'}
+                      {filterAddress(replyComment.address)}
                     </div>
                     <div className='reply-action'>
                       <ReplyOutlined />

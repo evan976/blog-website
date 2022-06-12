@@ -56,6 +56,7 @@ function useComment (refreshComments: () => void, setId?: (id: number) => void) 
       content: comment,
       replyUserName: replyComment?.name,
       replyUserEmail: replyComment?.email,
+      status: 0
     })
       .then(() => {
         setNickname('')

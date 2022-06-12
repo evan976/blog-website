@@ -19,7 +19,8 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
   const refreshComments = React.useCallback(() => {
     mainApi.commentService.findAll({
       page: 1,
-      pageSize: 12
+      pageSize: 12,
+      status: 1
     }).then((res) => {
       const comments = res.data?.data
       const replyList = comments

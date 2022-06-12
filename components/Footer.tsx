@@ -14,11 +14,11 @@ const Footer: React.FC<{ setting: ISetting }> = ({ setting }) => {
           <GithubOutlined />
         </a>
       </div>
-      <p>Designed by wujihua</p>
-      <p>Copyright © 2022. All Rights Reserved.</p>
+      <p>Designed by evanone.site</p>
+      <p>{setting.copyright}</p>
       <p>
-        <a href="https://beian.miit.gov.cn/" target='_blank' rel='noreferrer'>
-          {setting.copyright}
+        <a href={setting.icpUrl} target='_blank' rel='noreferrer'>
+          {setting.icp}
         </a>
       </p>
     </FooterContainer>

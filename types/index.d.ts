@@ -33,11 +33,14 @@ interface ISetting extends BaseInterface {
   title?: string
   subTitle?: string
   summary?: string
+  description?: string
   copyright?: string
-  keywords?: string
+  keywords?: string[]
   logo?: string
   favicon?: string
   siteUrl?: string
+  icp?: string
+  icpUrl?: string
 }
 
 interface IArticle extends BaseInterface {

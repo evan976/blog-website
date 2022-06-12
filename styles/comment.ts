@@ -184,7 +184,6 @@ export const CommentItemWrap = styled.div`
         width: 48px;
         height: 48px;
         border-radius: 2px;
-        /* border: 1px solid hsla(0, 0%, 59.2%, .2); */
         overflow: hidden;
         background: ${props => props.theme.bg.inset};
         margin-right: 10px;
@@ -192,6 +191,13 @@ export const CommentItemWrap = styled.div`
         img {
           width: 100%;
           height: 100%;
+        }
+
+      }
+
+      @media screen and (max-width: 768px) {
+        .avatar {
+          display: none;
         }
       }
 
@@ -202,10 +208,14 @@ export const CommentItemWrap = styled.div`
         .base-info {
           display: flex;
           font-size: ${props => props.theme.fontSizes[0]};
-          color: ${props => props.theme.text.primary};
 
           .info-item {
             margin-right: 10px;
+            color: ${props => props.theme.text.tertiary};
+          }
+
+          .nickname {
+            color: ${props => props.theme.text.primary};
           }
         }
 

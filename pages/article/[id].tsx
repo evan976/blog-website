@@ -26,7 +26,7 @@ const Article: NextPage<ArticleProps> = ({ article }) => {
     <Main>
       <ArticleContainer>
         <Helmet>
-          <title>{article.title + ' | ' + setting.title}</title>
+          <title>{setting.title + ' - ' + article.title}</title>
         </Helmet>
         <div className='article-detail'>
           <article className='article'>

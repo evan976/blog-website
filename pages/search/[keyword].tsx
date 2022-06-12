@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { NextPage } from 'next'
+import { Helmet } from 'react-helmet-async'
 import InfiniteScroll from 'react-infinite-scroller'
 import * as mainApi from '../../api'
 import ArticleList from '../../components/Article/ArticleList'
@@ -9,13 +10,14 @@ import Recommend from '../../components/Recommend'
 import { SearchPageWrap } from '../../styles/search'
 
 interface Props {
+  keyword: string
   total: number
   articles: IArticle[]
 }
 
 const pageSize = 12
 
-const SearchPage: NextPage<Props> = ({ articles: defaultArticles = [], total }) => {
+const SearchPage: NextPage<Props> = ({ articles: defaultArticles = [], total, keyword }) => {
 
   const router = useRouter()
   const [page, setPage] = React.useState<number>(1)
@@ -35,6 +37,9 @@ const SearchPage: NextPage<Props> = ({ articles: defaultArticles = [], total }) 
 
   return (
     <Main>
+      <Helmet>
+        <title>{'搜索结果' + ' - ' + keyword}</title>
+      </Helmet>
       <SearchPageWrap>
         <div className='article-list'>
           <InfiniteScroll
@@ -62,6 +67,7 @@ SearchPage.getInitialProps = async ({ query }) => {
     keyword,
   })
   return {
+    keyword: keyword as string,
     total: result.data.total as number,
     articles: result.data.data as IArticle[],
   }

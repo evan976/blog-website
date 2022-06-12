@@ -41,7 +41,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <GlobalStyle />
           <MarkdownStyle />
           <NProgress />
-          <Seo />
+          <Seo setting={setting} />
           <Header />
           {/* <Main></Main> */}
           {children}

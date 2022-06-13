@@ -142,7 +142,7 @@ export const ArticleContainer = styled.div`
   background: ${props => props.theme.bg.secondary};
 
   .list-header {
-    padding: 20px 16px;
+    padding: 20px 16px 0 16px;
     border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
     display: flex;
     flex-wrap: wrap;
@@ -164,6 +164,7 @@ export const ArticleContainer = styled.div`
 
     .nav-item {
       padding: 0 1.2rem;
+      margin-bottom: 20px;
       border-right: 1px solid hsla(0, 0%, 59.2%, .2);
       cursor: pointer;
       display: flex;
@@ -194,7 +195,11 @@ export const ArticleContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     .list-header {
-      padding: 16px 10px;
+      padding: 16px 10px 0 10px;
+
+      .nav-item {
+        margin-bottom: 16px;
+      }
     }
   }
 

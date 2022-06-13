@@ -17,7 +17,6 @@ export const ArticleContainer = styled.div`
       flex-direction: column;
       flex: 1;
       justify-content: center;
-      align-items: center;
       .article-title {
         margin-bottom: 20px;
         font-size: 28px;
@@ -28,6 +27,7 @@ export const ArticleContainer = styled.div`
       }
 
       .article-meta {
+        text-align: center;
         color: ${props => props.theme.text.tertiary};
         font-size: ${props => props.theme.fontSizes[1]};
       }

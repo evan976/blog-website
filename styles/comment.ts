@@ -146,7 +146,7 @@ export const CreateCommentWrap = styled.div`
         transition: all .3s;
 
         &.disabled {
-          background-color: ${props => props.theme.bg.primary};
+          background-color: #808080;
           cursor: not-allowed;
         }
 

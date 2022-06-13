@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/wujihua118/blog-website/compare/v2.0.0...v2.1.0) (2022-06-13)
+
+
+### Features
+
+* add notification component ([ef004b7](https://github.com/wujihua118/blog-website/commit/ef004b7f60f4391859d9940c96b354920647fe6a))
+
 # 2.0.0 (2022-06-12)
 
 

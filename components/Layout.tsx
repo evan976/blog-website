@@ -4,7 +4,6 @@ import useDarkMode from 'use-dark-mode'
 import { HelmetProvider } from 'react-helmet-async'
 import { lightTheme, darkTheme } from '../theme'
 import { ResetStyle, GlobalStyle, MarkdownStyle } from '../styles/global'
-import { Main } from '../styles/components'
 import useMountedState from '../hooks/useMountedState'
 import { GlobalContext } from '../context/globalContext'
 import useGlobalData from '../hooks/useGlobalData'
@@ -17,22 +16,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { value } = useDarkMode(true)
   const theme = value ? darkTheme : lightTheme
 
-  const {
-    categories,
-    setting,
-    recommendArticles,
-    comments
-  } = useGlobalData()
+  const global = useGlobalData()
 
   const isMounted = useMountedState()
 
   const body = (
     <GlobalContext.Provider
       value={{
-        categories,
-        setting,
-        recommendArticles,
-        comments
+        categories: global.categories,
+        setting: global.setting
       }}
     >
       <ThemeProvider theme={theme}>
@@ -41,12 +33,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <GlobalStyle />
           <MarkdownStyle />
           <NProgress />
-          <Seo setting={setting} />
-          <Header />
-          {/* <Main></Main> */}
+          <Seo setting={global.setting} />
+          <Header setting={global.setting} />
           {children}
           <div className='footer'>
-            <Footer setting={setting} />
+            <Footer setting={global.setting} />
           </div>
         </HelmetProvider>
       </ThemeProvider>

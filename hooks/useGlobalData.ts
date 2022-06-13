@@ -5,26 +5,21 @@ import * as mainApi from '../api'
 export default function useGlobalData() {
   const global = useReactive<GlobalContext>({
     categories: [],
-    setting: {},
-    recommendArticles: [],
-    comments: []
+    setting: {} as ISetting
   })
 
-  const getGlobalData = async ()  => {
-    const [setting, categories, recommendArticles, comments] = await Promise.all([
+
+  const fetchGlobalData = async () => {
+    const [setting, categories] = await Promise.all([
       mainApi.settingService.find(),
-      mainApi.categoryService.findAll({ page: 1, pageSize: 999 }),
-      mainApi.articleService.findAll({ page: 1, pageSize: 10 }),
-      mainApi.commentService.findAll({ page: 1, pageSize: 10, status: 1 })
+      mainApi.categoryService.findAll({  page: 1, pageSize: 100 })
     ])
     global.setting = setting.data
-    global.categories = categories.data?.data as ICategory[]
-    global.recommendArticles = recommendArticles.data?.data as IArticle[]
-    global.comments = comments.data?.data as IComment[]
+    global.categories = categories.data.data
   }
 
   React.useEffect(() => {
-    getGlobalData()
+    fetchGlobalData()
   }, [])
 
   return global

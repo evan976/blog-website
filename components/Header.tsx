@@ -7,16 +7,12 @@ import { DarkMode } from './Icons/DarkMode'
 import { LightMode } from './Icons/LightMode'
 import { MenuOutlined } from './Icons/MenuOutlined'
 import { SearchOutlined } from './Icons/SearchOutlined'
-import logo from '../public/static/code.svg'
 import MobileMenu from './MobileMenu'
 import Search from './Search'
 import Menu from './Menu'
 import MobileSearch from './MobileSearch'
 
-interface HeaderProps {
-}
-
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC<{ setting: ISetting }> = ({ setting }) => {
 
   const darkMode = useDarkMode(false)
 
@@ -34,11 +30,9 @@ const Header: React.FC<HeaderProps> = () => {
         </div>
         <div className='logo'>
           <a href="/">
-            <Image
-              src={logo}
+            <img
+              src={setting.logo}
               alt="logo"
-              width={48}
-              height={48}
             />
           </a>
           <span>BLOG</span>

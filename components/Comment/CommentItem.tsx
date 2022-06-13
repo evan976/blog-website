@@ -26,7 +26,7 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
       const replyList = comments
         ?.filter(comment => comment.parentId)
         ?.reverse()
-      setReplyComments(replyList!)
+      setReplyComments(replyList)
     }
     )
   }, [])

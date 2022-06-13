@@ -28,6 +28,11 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
 
+      img {
+        width: 48px;
+        height: 48px;
+      }
+
       span {
         margin-left: 10px;
         color: ${props => (props.theme.text.link)};

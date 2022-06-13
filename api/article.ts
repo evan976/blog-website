@@ -1,9 +1,11 @@
 import request from '../service'
 
+export const ARTICLE_API_PATH = '/posts'
+
 class ArticleService {
-  findAll(data: Record<string, any>) {
-    return request<Record<string, any>, PaginateResult<IArticle>>({
-      url: '/posts',
+  findAll(data: Record<string, string | number>) {
+    return request<Record<string, string | number>, PaginateResult<IArticle>>({
+      url: ARTICLE_API_PATH,
       method: 'GET',
       data,
       interceptors: {
@@ -14,7 +16,7 @@ class ArticleService {
 
   findById(id: string) {
     return request<string, IArticle>({
-      url: `/posts/${id}`,
+      url: `${ARTICLE_API_PATH}/${id}`,
       method: 'GET',
       interceptors: {
         responseInterceptor: (res) => res
@@ -24,7 +26,7 @@ class ArticleService {
 
   findByCategoryId(id: string) {
     return request<string, PaginateResult<IArticle>>({
-      url: `/posts/category/${id}`,
+      url: `${ARTICLE_API_PATH}/category/${id}`,
       method: 'GET',
       interceptors: {
         responseInterceptor: (res) => res
@@ -34,7 +36,7 @@ class ArticleService {
 
   findByTagId(id: string) {
     return request<string, PaginateResult<IArticle>>({
-      url: `/posts/tag/${id}`,
+      url: `${ARTICLE_API_PATH}/tag/${id}`,
       method: 'GET',
       interceptors: {
         responseInterceptor: (res) => res

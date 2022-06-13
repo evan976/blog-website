@@ -257,3 +257,20 @@ export const CommentItemWrap = styled.div`
     }
   }
 `
+
+export const LatestSkeletonWrap = styled.div`
+  .module {
+    margin: 5px 0;
+
+    .content-skeleton {
+      display: flex;
+      align-items: center;
+
+      .content {
+        flex: 1;
+        height: 32px;
+        margin-left: 10px;
+      }
+    }
+  }
+`

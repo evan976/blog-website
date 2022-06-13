@@ -105,5 +105,40 @@ export const ArticleSkeletonContainer = styled.div`
         }
       }
     }
+
+    @media screen and (max-width: 768px) {
+      .content-skeleton {
+        padding: 10px 20px;
+
+        .main {
+          .meta {
+            margin-bottom: 6px;
+          }
+
+          .content {
+            > .paragraph-line {
+              margin-bottom: 6px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export const LastestArticleSkeletonWrap = styled.div`
+  .module {
+    margin: 5px 0;
+
+    .content-skeleton {
+      display: flex;
+      align-items: center;
+
+      .line-content {
+        flex: 1;
+        height: 16px;
+        margin-left: 10px;
+      }
+    }
   }
 `

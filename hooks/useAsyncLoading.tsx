@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-type PromiseAction = (...args: unknown[]) => Promise<unknown>
+type PromiseAction = (query: Record<string, any>) => Promise<unknown>
 
 function useAsyncLoading<A extends PromiseAction>(
   action: A,
-  wait = 200,
+  wait = 300,
   initialLoading = false
 ): [A, boolean] {
   const timer = React.useRef<NodeJS.Timeout>()
@@ -12,9 +12,9 @@ function useAsyncLoading<A extends PromiseAction>(
   const [loading, setLoading] = React.useState<boolean>(initialLoading)
 
   const actionWithLoading = React.useCallback(
-    (...args: Parameters<A>) => {
+    (query: Parameters<A>) => {
       setPending(true)
-      const promise = action(...args)
+      const promise = action({ ...query })
       promise.then(
         () => setPending(false),
         () => setPending(false)

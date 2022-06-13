@@ -30,7 +30,7 @@ const Comment: NextPage<CommentProps> = ({
       pageSize,
       status: 1
     }).then((res) => {
-      setComments(res.data.data as IComment[])
+      setComments(res.data.data)
     })
   }, [])
 
@@ -41,7 +41,7 @@ const Comment: NextPage<CommentProps> = ({
       status: 1
     }).then((res) => {
       setPage(page)
-      setComments((comment) => [...comment, ...res.data?.data as IArticle[]])
+      setComments((comment) => [...comment, ...res.data?.data])
     })
   }, [])
 
@@ -85,8 +85,8 @@ Comment.getInitialProps = async () => {
   })
 
   return {
-    total: result.data.total as number,
-    comments: result.data.data as IComment[]
+    total: result.data.total,
+    comments: result.data.data
   }
 }
 

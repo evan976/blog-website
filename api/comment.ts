@@ -1,9 +1,11 @@
 import request from '../service'
 
+export const COMMENT_API_PATH = '/comments'
+
 class CommentService {
   findAll(data: Record<string, any>) {
     return request<Record<string, any>, PaginateResult<IComment>>({
-      url: '/comments',
+      url: COMMENT_API_PATH,
       method: 'GET',
       data,
       interceptors: {
@@ -12,9 +14,9 @@ class CommentService {
     })
   }
 
-  create(data: IComment) {
-    return request<IComment, IComment>({
-      url: '/comments',
+  create(data: Partial<IComment>) {
+    return request<Partial<IComment>, IComment>({
+      url: COMMENT_API_PATH,
       method: 'POST',
       data,
       interceptors: {

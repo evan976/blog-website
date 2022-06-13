@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { useRouter } from 'next/router'
+import classNames from 'classnames'
 import { ArticleContainer } from '../../styles/components'
 import ArticleItem from './ArticleItem'
 import * as mainApi from '../../api'
-import classNames from 'classnames'
 import ArticleSkeleton from './ArticleSkeleton'
 import Empty from '../Empty'
-import { useRouter } from 'next/router'
 
 interface ArticleListProps {
   articles: IArticle[]
@@ -27,7 +27,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles, categories, isSearc
       setTimeout(() => {
         setLoading(false)
       }, 1000)
-      setArticleList(result.data.data as IArticle[])
+      setArticleList(result.data?.data)
     }
     ).catch(() => {
       setTimeout(() => {
@@ -43,7 +43,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles, categories, isSearc
         setTimeout(() => {
           setLoading(false)
         }, 1000)
-        setArticleList(res.data.data as IArticle[])
+        setArticleList(res.data?.data)
       })
       .finally(() => {
         setTimeout(() => {

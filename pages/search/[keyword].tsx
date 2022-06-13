@@ -30,7 +30,7 @@ const SearchPage: NextPage<Props> = ({ articles: defaultArticles = [], total, ke
       keyword: router.query.keyword as string,
     }).then(result => {
       setPage(page)
-      setArticles((articles) => [...articles, ...result.data.data as IArticle[]])
+      setArticles((articles) => [...articles, ...result.data.data])
     }
     )
   }, [router.query.keyword])
@@ -64,12 +64,12 @@ const SearchPage: NextPage<Props> = ({ articles: defaultArticles = [], total, ke
 SearchPage.getInitialProps = async ({ query }) => {
   const { keyword } = query
   const result = await mainApi.articleService.findAll({
-    keyword,
+    keyword: keyword as string
   })
   return {
     keyword: keyword as string,
-    total: result.data.total as number,
-    articles: result.data.data as IArticle[],
+    total: result.data?.total,
+    articles: result.data?.data,
   }
 }
 

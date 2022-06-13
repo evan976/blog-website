@@ -1,23 +1,18 @@
 import * as React from 'react'
 import { GlobalContext } from '../context/globalContext'
 import { RecommendContainer } from '../styles/components'
-import ArticleRecommend from './Article/ArticleRecommend'
-import NewComment from './Comment/NewComment'
+import LatestArticle from './Article/LatestArticle'
+import LatestComment from './Comment/LatestComment'
 import Footer from './Footer'
 
-const Recommend = () => {
-
-  const {
-    recommendArticles,
-    comments,
-    setting,
-  } = React.useContext(GlobalContext)
+const Recommend: React.FC = () => {
+  const global = React.useContext(GlobalContext)
 
   return (
     <RecommendContainer>
-      <ArticleRecommend articles={recommendArticles} />
-      <NewComment comments={comments} />
-      <Footer setting={setting} />
+      <LatestArticle />
+      <LatestComment />
+      <Footer setting={global.setting} />
     </RecommendContainer>
   )
 }

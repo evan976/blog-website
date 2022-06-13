@@ -1,6 +1,5 @@
 import * as React from 'react'
 import type { NextPage } from 'next'
-import { useTheme } from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
 import ArticleList from '../components/Article/ArticleList'
 import Recommend from '../components/Recommend'
@@ -23,7 +22,6 @@ const Home: NextPage<HomeProps> = ({
   articles: defaultArticles = [],
   swipers
 }) => {
-  const theme = useTheme()
 
   const { categories } = React.useContext(GlobalContext)
   const [page, setPage] = React.useState<number>(1)
@@ -39,7 +37,7 @@ const Home: NextPage<HomeProps> = ({
       pageSize
     }).then((res) => {
       setPage(page)
-      setArticles((articles) => [...articles, ...res.data?.data as IArticle[]])
+      setArticles((articles) => [...articles, ...res.data?.data])
     })
   }, [])
 
@@ -70,16 +68,15 @@ const Home: NextPage<HomeProps> = ({
 }
 
 Home.getInitialProps = async () => {
-
   const [articles, swipers] = await Promise.all([
     mainApi.articleService.findAll({ page: 1, pageSize }),
-    mainApi.swiperService.findAll({ page: 1, pageSize: 3 })
+    mainApi.swiperService.findAll({ page: 1, pageSize: 6 })
   ])
 
   return {
-    total: articles.data?.total as number,
-    articles: articles.data?.data as IArticle[],
-    swipers: swipers.data?.data as ISwiper[]
+    total: articles.data?.total,
+    articles: articles.data?.data,
+    swipers: swipers.data?.data
   }
 }
 

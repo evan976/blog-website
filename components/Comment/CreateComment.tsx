@@ -1,8 +1,10 @@
 import * as React from 'react'
+import classNames from 'classnames'
+import { ToastContainer } from 'react-toastify'
 import { SendOutlined } from '../Icons/SendOutlined'
 import { CreateCommentWrap } from '../../styles/comment'
 import useComment from '../../hooks/useComment'
-import classNames from 'classnames'
+import 'react-toastify/dist/ReactToastify.css'
 
 interface CreateCommentProps {
   replyComment?: IComment
@@ -86,6 +88,11 @@ const CreateComment: React.FC<CreateCommentProps> = ({
           </button>
         </div>
       </form>
+      <ToastContainer
+        autoClose={3000}
+        hideProgressBar={true}
+        theme='colored'
+      />
     </CreateCommentWrap>
   )
 }

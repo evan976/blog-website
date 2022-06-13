@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { toast } from 'react-toastify'
 import * as mainApi from '../api'
 
 function useComment (refreshComments: () => void, setId?: (id: number) => void) {
@@ -34,6 +35,7 @@ function useComment (refreshComments: () => void, setId?: (id: number) => void) 
       replyUserEmail: comment.email,
     })
     .then(() => {
+      toast.success('回复成功, 等待管理员审核', { type: 'success' })
       refreshComments()
     })
 
@@ -59,6 +61,7 @@ function useComment (refreshComments: () => void, setId?: (id: number) => void) 
       status: 0
     })
       .then(() => {
+        toast.success('评论成功, 等待管理员审核', { type: 'success' })
         setNickname('')
         setEmail('')
         setSite('')

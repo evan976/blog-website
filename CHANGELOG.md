@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/wujihua118/blog-website/compare/v2.1.0...v2.1.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* skeleton ([5b62b57](https://github.com/wujihua118/blog-website/commit/5b62b579ab08e0856848c5f8cb4e3415de85f971))
+
 # [2.1.0](https://github.com/wujihua118/blog-website/compare/v2.0.0...v2.1.0) (2022-06-13)
 
 

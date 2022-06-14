@@ -46,7 +46,11 @@ const LatestArticle: React.FC = () => {
                       'second': index === 1,
                       'third': index === 2
                     })}>{index + 1}</span>
-                    <Link href='/article/[id]' as={`/article/${article.id}`} passHref>
+                    <Link
+                      href='/article/[id]'
+                      as={`/article/${article.articleId}`}
+                      passHref
+                    >
                       {article.title}
                     </Link>
                   </li>

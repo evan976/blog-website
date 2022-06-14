@@ -38,6 +38,7 @@ type ISetting = BaseType & {
 }
 
 type IArticle = BaseType & {
+  articleId: string
   title: string
   thumb: string
   summary: string

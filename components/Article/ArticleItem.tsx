@@ -16,7 +16,7 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ article }) => {
     <div
       className='article-item'
       onClick={() => {
-        Router.push(`/article/${article.id}`)
+        Router.push(`/article/${article.articleId}`)
       }}
     >
       <div className='main'>
@@ -40,7 +40,7 @@ const ArticleItem: React.FC<ArticleItemProps> = ({ article }) => {
             <div className='title'>
               <Link
                 href='/article/[id]'
-                as={`/article/${article.id}`}
+                as={`/article/${article.articleId}`}
                 className='title-link'
                 passHref
               >

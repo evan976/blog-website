@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/wujihua118/blog-website/compare/v2.1.1...v2.1.2) (2022-06-14)
+
+
+### Bug Fixes
+
+* article id ([e1faf6b](https://github.com/wujihua118/blog-website/commit/e1faf6bf4226d6527f0c7189f06d020832f6c1ea))
+
 ## [2.1.1](https://github.com/wujihua118/blog-website/compare/v2.1.0...v2.1.1) (2022-06-13)
 
 

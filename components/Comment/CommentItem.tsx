@@ -7,9 +7,16 @@ import CreateComment from './CreateComment'
 import * as mainApi from '../../api'
 import { CloseOutlined } from '../Icons/CloseOutlined'
 
-const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = ({
+type Props = {
+  comment: IComment
+  replyComments: IComment[]
+  postId?: number
+}
+
+const CommentItem: React.FC<Props> = ({
   comment,
-  replyComments: defaultReplyComments = []
+  replyComments: defaultReplyComments = [],
+  postId
 }) => {
 
   const [id, setId] = React.useState<number>(0)
@@ -87,6 +94,7 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
               replyComment={comment}
               refreshComments={refreshComments}
               setId={setId}
+              postId={postId}
             />
           </div>
         )}
@@ -145,6 +153,7 @@ const CommentItem: React.FC<{ comment: IComment, replyComments: IComment[] }> = 
                         replyComment={replyComment}
                         refreshComments={refreshComments}
                         setId={setId}
+                        postId={postId}
                       />
                     )}
                   </div>

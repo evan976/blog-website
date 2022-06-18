@@ -3,51 +3,108 @@ import styled from 'styled-components'
 export const ArticleContainer = styled.div`
   display: flex;
 
-  .article-detail {
+  .left-content {
     width: 840px;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    padding: 20px;
-    background-color: ${props => props.theme.bg.secondary};
-    border-radius: 2px;
 
-    .article {
-      display: flex;
+    .article-detail {
       flex-direction: column;
       flex: 1;
-      justify-content: center;
-      .article-title {
-        margin-bottom: 20px;
-        font-size: 28px;
-        font-weight: 600;
-        line-height: 1.5;
-        color: ${props => props.theme.text.primary};
-        text-align: center;
-      }
+      padding: 20px;
+      background-color: ${props => props.theme.bg.secondary};
+      border-radius: 2px;
 
-      .article-meta {
-        text-align: center;
-        color: ${props => props.theme.text.tertiary};
-        font-size: ${props => props.theme.fontSizes[1]};
-      }
+      .article {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: center;
+        .article-title {
+          margin-bottom: 20px;
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 1.5;
+          color: ${props => props.theme.text.primary};
+          text-align: center;
+        }
 
-      .article-image {
-        width: 100%;
-        height: auto;
-        margin: 20px 0;
-        border-radius: 2px;
+        .article-meta {
+          text-align: center;
+          color: ${props => props.theme.text.tertiary};
+          font-size: ${props => props.theme.fontSizes[1]};
+        }
 
-        img {
+        .article-image {
           width: 100%;
           height: auto;
+          margin: 20px 0;
           border-radius: 2px;
+
+          img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+          }
+        }
+
+        .article-content {
+          height: auto;
+          overflow-y: auto;
+        }
+
+        .article-categorize {
+          display: flex;
+          font-size: ${props => props.theme.fontSizes[0]};
+
+          .category {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+
+            .item {
+              padding: 5px 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: ${props => props.theme.text.tertiary};
+              background: ${props => props.theme.bg.primary};
+              border-radius: 2px;
+            }
+          }
+
+          .tags {
+            display: flex;
+            align-items: center;
+
+            .item {
+              padding: 5px 10px;
+              display: flex;
+              justify-content: center;
+              margin-right: 5px;
+              align-items: center;
+              border-radius: 2px;
+            }
+          }
         }
       }
+    }
 
-      .article-content {
-        height: auto;
-        overflow-y: auto;
+    .article-comment {
+      margin-top: 10px;
+      background-color: ${props => props.theme.bg.secondary};
+
+      .add-comment {
+        width: 100%;
+        background-color: ${props => props.theme.bg.secondary};
+        padding: 10px;
+        border-radius: 2px;
+
+        .add-comment-title {
+          margin: 10px 0;
+          font-size: ${props => props.theme.fontSizes[3]};
+          color: ${props => props.theme.text.secondary};
+        }
       }
     }
   }
@@ -70,17 +127,26 @@ export const ArticleContainer = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    .article-detail {
+    .left-content {
       width: 100%;
-      padding: 10px;
+      .article-detail {
+
+        .article-categorize {
+          flex-direction: column;
+
+          .tags {
+            margin-top: 10px;
+          }
+        }
+      }
+
+      .article-content {
+        width: 100%;
+      }
     }
 
     .article-toc {
       display: none;
-    }
-
-    .article-content {
-      width: 100%;
     }
   }
 `

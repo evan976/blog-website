@@ -10,12 +10,14 @@ interface CreateCommentProps {
   replyComment?: IComment
   refreshComments?: () => void
   setId?: (id: number) => void
+  postId?: number
 }
 
 const CreateComment: React.FC<CreateCommentProps> = ({
   refreshComments,
   replyComment,
-  setId
+  setId,
+  postId,
 }) => {
 
   const {
@@ -28,7 +30,7 @@ const CreateComment: React.FC<CreateCommentProps> = ({
     handleNicknameChange,
     handleSiteChange,
     handleSubmit,
-  } = useComment(refreshComments!, setId)
+  } = useComment(refreshComments!, setId, postId)
 
   return (
     <CreateCommentWrap>

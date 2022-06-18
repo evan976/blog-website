@@ -2,7 +2,7 @@ import * as React from 'react'
 import { toast } from 'react-toastify'
 import * as mainApi from '../api'
 
-function useComment (refreshComments: () => void, setId?: (id: number) => void) {
+function useComment (refreshComments: () => void, setId?: (id: number) => void, postId?: number) {
   const [nickname, setNickname] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [site, setSite] = React.useState('')
@@ -26,6 +26,7 @@ function useComment (refreshComments: () => void, setId?: (id: number) => void) 
 
   const handleReply = (comment: IComment) => {
     mainApi.commentService.create({
+      postId,
       content: comment.content,
       parentId: comment.id || comment.parentId,
       name: nickname,
@@ -51,6 +52,7 @@ function useComment (refreshComments: () => void, setId?: (id: number) => void) 
     }
 
     mainApi.commentService.create({
+      postId,
       parentId,
       name: nickname,
       email,

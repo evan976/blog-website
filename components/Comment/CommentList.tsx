@@ -2,7 +2,7 @@ import * as React from 'react'
 import Empty from '../Empty'
 import CommentItem from './CommentItem'
 
-const CommentList: React.FC<{ comments: IComment[] }> = ({ comments }) => {
+const CommentList: React.FC<{ comments: IComment[], postId?: number }> = ({ comments, postId }) => {
 
   const replyList = comments
     ?.filter(comment => comment.parentId)
@@ -17,6 +17,7 @@ const CommentList: React.FC<{ comments: IComment[] }> = ({ comments }) => {
               key={index}
               comment={comment}
               replyComments={replyList}
+              postId={postId}
             />
           ))
         ) : (

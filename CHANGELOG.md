@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/wujihua118/blog-website/compare/v2.1.2...v2.2.0) (2022-06-18)
+
+
+### Features
+
+* add article comments ([1c8cdde](https://github.com/wujihua118/blog-website/commit/1c8cdde8efafdc545139288f0329197facb133b1))
+
 ## [2.1.2](https://github.com/wujihua118/blog-website/compare/v2.1.1...v2.1.2) (2022-06-14)
 
 

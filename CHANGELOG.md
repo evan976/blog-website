@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/wujihua118/blog-website/compare/v2.2.0...v2.2.1) (2022-06-18)
+
+
+### Bug Fixes
+
+* home comment list status ([211494d](https://github.com/wujihua118/blog-website/commit/211494dd8863ef942da7c0dc8170552eca08c6e4))
+
 # [2.2.0](https://github.com/wujihua118/blog-website/compare/v2.1.2...v2.2.0) (2022-06-18)
 
 

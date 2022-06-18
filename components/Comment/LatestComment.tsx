@@ -12,12 +12,11 @@ const LatestComment: React.FC = () => {
   const [fetchLatestComment, loading] = useAsyncLoading(commentService.findAll, 150, true)
 
   React.useEffect(() => {
-    fetchLatestComment({ page: 1, pageSize: 10 })
+    fetchLatestComment({ page: 1, pageSize: 10, status: 1 })
       .then(res => {
         setCommentList(res.data.data)
       })
-  }
-  , [])
+  }, [])
 
   return (
     <Card

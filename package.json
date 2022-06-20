@@ -1,6 +1,6 @@
 {
   "name": "blog-website",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A blog website built with React.js and Next.js.",
   "author": {
     "name": "Evan",

@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/wujihua118/blog-website/compare/v2.2.1...v2.2.2) (2022-06-20)
+
+
+### Bug Fixes
+
+* category margin top ([285be4e](https://github.com/wujihua118/blog-website/commit/285be4ece5d2ac77f71077f73d748cd6f6a98ae4))
+
 ## [2.2.1](https://github.com/wujihua118/blog-website/compare/v2.2.0...v2.2.1) (2022-06-18)
 
 

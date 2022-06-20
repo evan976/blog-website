@@ -54,6 +54,7 @@ export const ArticleContainer = styled.div`
         }
 
         .article-categorize {
+          margin-top: 20px;
           display: flex;
           font-size: ${props => props.theme.fontSizes[0]};
 

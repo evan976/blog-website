@@ -114,14 +114,12 @@ const Article: NextPage<ArticleProps> = ({
                       <span
                         className='item'
                         key={tag.id}
-                        style={{ background: Color(tag.color).alpha(0.2).lighten(0.2).hsl().string() }}
+                        style={{
+                          color: tag.color,
+                          background: Color(tag.color).alpha(0.2).lighten(0.2).hsl().string()
+                        }}
                       >
-                        <a
-                          href={`/tag/${tag.id}`}
-                          style={{color: tag.color}}
-                        >
-                          {tag.name}
-                        </a>
+                        {tag.name}
                       </span>
                     ))
                   }

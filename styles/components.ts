@@ -151,6 +151,7 @@ export const ArticleContainer = styled.div`
 
     &.is-search {
       justify-content: center;
+      padding-bottom: 20px;
     }
 
     .search-title {

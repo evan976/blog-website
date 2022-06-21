@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/wujihua118/blog-website/compare/v2.2.2...v2.3.0) (2022-06-21)
+
+
+### Features
+
+* add scroll to top ([1e86cc8](https://github.com/wujihua118/blog-website/commit/1e86cc8159f7b44b010375502ed66c564c7f33f2))
+
 ## [2.2.2](https://github.com/wujihua118/blog-website/compare/v2.2.1...v2.2.2) (2022-06-20)
 
 

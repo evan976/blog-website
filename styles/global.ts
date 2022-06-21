@@ -111,6 +111,20 @@ export const GlobalStyle = createGlobalStyle`
     height: 2px;
   }
 
+  .scroll-to-top {
+    background-color: ${(props) => props.theme.text.link};
+    border-radius: 2px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    cursor: pointer;
+    transition: opacity .3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
   .icon {
     cursor: pointer;
   }

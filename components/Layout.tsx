@@ -11,6 +11,7 @@ import NProgress from './NProgress'
 import Header from './Header'
 import Seo from './Seo'
 import Footer from './Footer'
+import ScrollToTop from './ScrollToTop'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { value } = useDarkMode(true)
@@ -39,6 +40,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className='footer'>
             <Footer setting={global.setting} />
           </div>
+          <ScrollToTop smooth />
         </HelmetProvider>
       </ThemeProvider>
     </GlobalContext.Provider>

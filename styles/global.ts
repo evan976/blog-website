@@ -123,6 +123,7 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
     color: #fff;
+    z-index: 99999;
   }
 
   .icon {

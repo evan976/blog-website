@@ -14,6 +14,7 @@ import { Main } from '../../styles/components'
 import CommentList from '../../components/Comment/CommentList'
 import CreateComment from '../../components/Comment/CreateComment'
 import InfiniteScroll from 'react-infinite-scroller'
+import Approve from '../../components/Approve'
 
 interface ArticleProps {
   total: number
@@ -26,7 +27,7 @@ const pageSize = 12
 
 const Article: NextPage<ArticleProps> = ({
   total,
-  article,
+  article: defaultArticle = {},
   comments: defaultComment = []
 }) => {
 
@@ -34,6 +35,7 @@ const Article: NextPage<ArticleProps> = ({
   const { value } = useDarkMode(false)
 
   const [page, setPage] = React.useState<number>(1)
+  const [article, setArticle] = React.useState<IArticle>(defaultArticle as IArticle)
   const [comments, setComments] = React.useState<IComment[]>(defaultComment)
 
   React.useEffect(() => {
@@ -98,6 +100,20 @@ const Article: NextPage<ArticleProps> = ({
                   theme={value ? 'dark' : 'light'}
                   previewTheme='smart-blue'
                   previewOnly
+                />
+              </div>
+              <div className='approve'>
+                <Approve
+                  id={article.id}
+                  likes={article.likes}
+                  refresh={(likes) => {
+                    setArticle((article) => {
+                      return {
+                        ...article,
+                        likes
+                      }
+                    })
+                  }}
                 />
               </div>
               <div className='article-categorize'>

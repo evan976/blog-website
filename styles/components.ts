@@ -704,3 +704,32 @@ export const EmptyContainer = styled.div`
   color: ${props => props.theme.text.tertiary};
   font-size: ${props => props.theme.fontSizes[1]};
 `
+
+export const ApproveWrap = styled.div`
+  width: 96px;
+  height: 30px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7500;
+  border: 1px solid #ff7500;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: ${props => props.theme.fontSizes[1]};
+
+  span {
+    margin-left: 5px;
+  }
+
+  &.is-approved {
+    background: #ff7500;
+    color: #ffffff;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background: #ff7500;
+    color: #ffffff;
+  }
+`

@@ -170,6 +170,7 @@ export const MarkdownStyle = createGlobalStyle`
     text-align: left;
     font-size: 22px;
     margin: 0;
+    padding: 15px 0;
   }
 
   .md-dark .smart-blue-theme {

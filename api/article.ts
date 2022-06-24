@@ -2,6 +2,10 @@ import request from '../service'
 
 export const ARTICLE_API_PATH = '/posts'
 
+type LikeType = {
+  type: 'like' | 'dislike'
+}
+
 class ArticleService {
   findAll(data: Record<string, string | number>) {
     return request<Record<string, string | number>, PaginateResult<IArticle>>({
@@ -38,6 +42,17 @@ class ArticleService {
     return request<string, PaginateResult<IArticle>>({
       url: `${ARTICLE_API_PATH}/tag/${id}`,
       method: 'GET',
+      interceptors: {
+        responseInterceptor: (res) => res
+      }
+    })
+  }
+
+  updateLikes(id: string, data: LikeType) {
+    return request<LikeType, IArticle>({
+      url: `${ARTICLE_API_PATH}/${id}/like`,
+      method: 'PATCH',
+      data,
       interceptors: {
         responseInterceptor: (res) => res
       }

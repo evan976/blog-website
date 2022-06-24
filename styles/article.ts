@@ -53,6 +53,12 @@ export const ArticleContainer = styled.div`
           overflow-y: auto;
         }
 
+        .approve {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         .article-categorize {
           margin-top: 20px;
           display: flex;

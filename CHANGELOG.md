@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/wujihua118/blog-website/compare/v2.3.0...v2.4.0) (2022-06-24)
+
+
+### Features
+
+* add approval ([f727b86](https://github.com/wujihua118/blog-website/commit/f727b8657115ce0338c696c2e699387e62757697))
+
 # [2.3.0](https://github.com/wujihua118/blog-website/compare/v2.2.2...v2.3.0) (2022-06-21)
 
 

@@ -31,7 +31,7 @@ jobs:
           SOURCE: "/"
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
-          TARGET: /usr/local/src/next-website
+          TARGET: /usr/local/src/website
           EXCLUDE: "/node_modules/, /.git/, /.next/, /.vscode/, /.DS_Store/"
 
       - name: Server Reload
@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.ACCESS_TOKEN }}
           script: |
-            cd /usr/local/src/next-website
+            cd /usr/local/src/website
             yarn
             yarn build
             pm2 reload client

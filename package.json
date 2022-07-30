@@ -13,7 +13,8 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "pm2": "pm2 start yarn --name client --interpreter bash -- start"
   },
   "dependencies": {
     "@better-scroll/core": "^2.4.2",

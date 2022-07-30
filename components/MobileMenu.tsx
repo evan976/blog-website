@@ -1,4 +1,7 @@
 import * as React from 'react'
+import classNames from 'classnames'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 import Image from 'next/image'
 import { MobileMenuContainer } from '../styles/components'
 import logo from '../public/static/code.svg'
@@ -6,9 +9,6 @@ import useDarkMode from 'use-dark-mode'
 import { LightMode } from './Icons/LightMode'
 import { DarkMode } from './Icons/DarkMode'
 import { ROUTE_LINKS } from '../constants'
-import classNames from 'classnames'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 
 const MobileMenu: React.FC<{setOpen: (open: boolean) => void}> = ({ setOpen }) => {
 
@@ -41,7 +41,10 @@ const MobileMenu: React.FC<{setOpen: (open: boolean) => void}> = ({ setOpen }) =
               className={classNames('item', {
                 'active': router.asPath === route.path
               })}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false)
+                router.push(route.path)
+              }}
             >
               <Link href={route.path} passHref>{route.label}</Link>
             </li>

@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/wujihua118/blog-website/compare/v2.4.0...v2.4.1) (2022-07-31)
+
+
+### Bug Fixes
+
+* 修复首页文章列表对齐问题 ([694254b](https://github.com/wujihua118/blog-website/commit/694254b4b16decb1d7b10643ef6b3cf8a0c952bf))
+
 # [2.4.0](https://github.com/wujihua118/blog-website/compare/v2.3.0...v2.4.0) (2022-06-24)
 
 

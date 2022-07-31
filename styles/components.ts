@@ -259,6 +259,8 @@ export const ArticleContainer = styled.div`
 
       .content-wrapper {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-top: 10px;
         width: 100%;
 
@@ -318,6 +320,12 @@ export const ArticleContainer = styled.div`
           @media screen and (max-width: 768px) {
             margin-left: 0;
           }
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .content-main {
+          margin-right: 0 !important;
         }
       }
     }

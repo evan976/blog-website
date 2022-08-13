@@ -19,19 +19,20 @@ const About: NextPage = () => {
       <Helmet>
         <title>{setting.title + ' - ' + '关于'}</title>
       </Helmet>
-      <div className='about-bg'>
+      {/* <div className='about-bg'>
         <Image
           src={bg}
           alt="about"
           height={320}
         />
-      </div>
+      </div> */}
       <div className='about-content'>
         <MdEditor
           modelValue={setting.description!}
           theme={value ? 'dark' : 'light'}
           previewTheme='smart-blue'
           previewOnly
+          className='about-content-md'
         />
       </div>
     </AboutContainer>

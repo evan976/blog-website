@@ -11,10 +11,10 @@ interface ArticleListProps {
   articles: IArticle[]
   categories?: ICategory[]
   isSearch?: boolean
+  hideHeader?: boolean
 }
 
-const ArticleList: React.FC<ArticleListProps> = ({ articles, categories, isSearch }) => {
-
+const ArticleList: React.FC<ArticleListProps> = ({ articles, categories, isSearch, hideHeader }) => {
   const [articleList, setArticleList] = React.useState<IArticle[]>(articles)
   const [loading, setLoading] = React.useState<boolean>(false)
   const [active, setActive] = React.useState<number>(0)
@@ -23,6 +23,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles, categories, isSearc
   React.useEffect(() => {
     mainApi.articleService.findAll({
       keyword: router.query.keyword as string,
+      tagSlug: router.query.slug as string,
     }).then(result => {
       setTimeout(() => {
         setLoading(false)
@@ -34,7 +35,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles, categories, isSearc
         setLoading(false)
       }, 1000)
     })
-  }, [router.query.keyword])
+  }, [router.query.keyword, router.query.slug])
 
   const getArticleList = React.useCallback((id: string) => {
     setLoading(true)
@@ -54,42 +55,44 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles, categories, isSearc
 
   return (
     <ArticleContainer>
-      <header className={classNames('list-header', {
-        'is-search': isSearch,
-      })}>
-        {
-          isSearch ? (
-            <div className='search-title'>
-              和 <span>{router.query.keyword}</span> 有关的所有文章
-            </div>
-          ) : (
-            <>
-              <li className={classNames('nav-item', {
-                active: active === 0
-              })}>
-                <span onClick={() => {
-                  setArticleList(articles)
-                  setActive(0)
-                }}>所有</span>
-              </li>
-              {
-                categories?.map(category => (
-                  <li key={category.id} className={classNames('nav-item', {
-                    active: active === category.id
-                  })}>
-                    <span onClick={() => {
-                      getArticleList(String(category.id))
-                      setActive(category.id!)
-                    }}>
-                      {category.name}
-                    </span>
-                  </li>
-                ))
-              }
-            </>
-          )
-        }
-      </header>
+      {!hideHeader && (
+        <header className={classNames('list-header', {
+          'is-search': isSearch,
+        })}>
+          {
+            isSearch ? (
+              <div className='search-title'>
+                和 <span>{router.query.keyword}</span> 有关的所有文章
+              </div>
+            ) : (
+              <>
+                <li className={classNames('nav-item', {
+                  active: active === 0
+                })}>
+                  <span onClick={() => {
+                    setArticleList(articles)
+                    setActive(0)
+                  }}>所有</span>
+                </li>
+                {
+                  categories?.map(category => (
+                    <li key={category.id} className={classNames('nav-item', {
+                      active: active === category.id
+                    })}>
+                      <span onClick={() => {
+                        getArticleList(String(category.id))
+                        setActive(category.id!)
+                      }}>
+                        {category.name}
+                      </span>
+                    </li>
+                  ))
+                }
+              </>
+            )
+          }
+        </header>
+      )}
       <div className='list-content'>
         {
           loading ? (

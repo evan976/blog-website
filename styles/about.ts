@@ -20,7 +20,7 @@ export const AboutContainer = styled.div`
     padding: 10px;
 
     .md-previewOnly {
-      padding: 20px;
+      padding: 0 20px;
     }
   }
 

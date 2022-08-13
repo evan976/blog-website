@@ -17,6 +17,7 @@ export const CommentContainer = styled.div`
     justify-content: center;
     position: sticky;
     top: 64px;
+    z-index: 99;
 
     .title {
       text-align: center;
@@ -187,6 +188,7 @@ export const CommentItemWrap = styled.div`
         overflow: hidden;
         background: ${props => props.theme.bg.inset};
         margin-right: 10px;
+        flex-shrink: 0;
 
         img {
           width: 100%;
@@ -204,6 +206,7 @@ export const CommentItemWrap = styled.div`
       .content {
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
 
         .base-info {
           display: flex;

@@ -12,6 +12,26 @@ class TagService {
       }
     })
   }
+
+  findById(id: string) {
+    return request<string, ITag>({
+      url: `${TAG_API_PATH}/${id}`,
+      method: 'GET',
+      interceptors: {
+        responseInterceptor: (res) => res
+      }
+    })
+  }
+
+  findBySlug(slug: string) {
+    return request<string, ITag>({
+      url: `${TAG_API_PATH}/slug/${slug}`,
+      method: 'GET',
+      interceptors: {
+        responseInterceptor: (res) => res
+      }
+    })
+  }
 }
 
 export default new TagService()

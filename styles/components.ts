@@ -391,6 +391,8 @@ export const CardContainer = styled.div`
   .content {
     padding: 12px 20px;
 
+
+
     .item {
       display: flex;
       align-items: center;
@@ -495,6 +497,13 @@ export const CardContainer = styled.div`
           }
         }
       }
+    }
+
+    .tag-list {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   }
 `

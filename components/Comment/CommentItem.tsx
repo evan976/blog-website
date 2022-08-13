@@ -1,4 +1,6 @@
 import * as React from 'react'
+import MdEditor from 'md-editor-rt'
+import useDarkMode from 'use-dark-mode'
 import { CommentItemWrap } from '../../styles/comment'
 import LocaleTime from '../LocaleTime'
 import { ReplyOutlined } from '../Icons/ReplyOutlined'
@@ -6,7 +8,10 @@ import { filterAddress, filterBrowser } from '../../utils'
 import CreateComment from './CreateComment'
 import * as mainApi from '../../api'
 import { CloseOutlined } from '../Icons/CloseOutlined'
+import 'md-editor-rt/lib/style.css'
 
+const COMMENT_EDITOR_ID = 'COMMENT_EDITOR_ID'
+const COMMENT_EDITOR_REPLY_ID = 'COMMENT_EDITOR_REPLY_ID'
 type Props = {
   comment: IComment
   replyComments: IComment[]
@@ -20,6 +25,7 @@ const CommentItem: React.FC<Props> = ({
 }) => {
 
   const [id, setId] = React.useState<number>(0)
+  const { value } = useDarkMode(false)
   
   const [replyComments, setReplyComments] = React.useState<IComment[]>(defaultReplyComments)
 
@@ -63,7 +69,14 @@ const CommentItem: React.FC<Props> = ({
                   </div>
                 </div>
                 <div className='comment-content'>
-                  {comment.content}
+                  <MdEditor
+                    editorId={COMMENT_EDITOR_ID}
+                    modelValue={comment.content!}
+                    theme={value ? 'dark' : 'light'}
+                    previewTheme='github'
+                    previewOnly
+                    style={{background: 'inherit'}}
+                  />
                 </div>
                 <div className='action'>
                   <LocaleTime date={comment.createdAt!} />
@@ -124,7 +137,14 @@ const CommentItem: React.FC<Props> = ({
                       </div>
                     </div>
                     <div className='comment-content'>
-                      {replyComment.content}
+                    <MdEditor
+                      editorId={COMMENT_EDITOR_REPLY_ID}
+                      modelValue={replyComment.content!}
+                      theme={value ? 'dark' : 'light'}
+                      previewTheme='github'
+                      previewOnly
+                      style={{background: 'inherit'}}
+                    />
                     </div>
                     <div className='action'>
                       <LocaleTime date={replyComment.createdAt!} />

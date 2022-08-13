@@ -2,8 +2,8 @@ import * as React from 'react'
 import { GlobalContext } from '../context/globalContext'
 import { RecommendContainer } from '../styles/components'
 import LatestArticle from './Article/LatestArticle'
-import LatestComment from './Comment/LatestComment'
 import Footer from './Footer'
+import TagList from './Tag/TagList'
 
 const Recommend: React.FC = () => {
   const global = React.useContext(GlobalContext)
@@ -11,7 +11,8 @@ const Recommend: React.FC = () => {
   return (
     <RecommendContainer>
       <LatestArticle />
-      <LatestComment />
+      {/* <LatestComment /> */}
+      <TagList />
       <Footer setting={global.setting} />
     </RecommendContainer>
   )

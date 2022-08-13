@@ -157,6 +157,10 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const MarkdownStyle = createGlobalStyle`
+  /* .md {
+    --md-bk-color: inherit;
+  } */
+
   .md-dark {
     --md-bk-color: ${(props) => props.theme.bg.secondary};
   }
@@ -184,5 +188,38 @@ export const MarkdownStyle = createGlobalStyle`
   .md-dark .smart-blue-theme pre code {
     color: #999;
     background-color: ${(props) => props.theme.bg.primary};
+  }
+
+  .comment-list .md-content .md-preview {
+    padding: 0;
+  }
+
+  .github-theme pre {
+    padding: 0;
+    background-color: inherit;
+  }
+
+  .github-theme p,
+  .github-theme blockquote,
+  .github-theme ul,
+  .github-theme ol,
+  .github-theme dl,
+  .github-theme table,
+  .github-theme pre,
+  .github-theme details {
+    margin-bottom: 0;
+  }
+
+  .github-theme code {
+    background-color: inherit;
+  }
+
+  .github-theme pre code {
+    padding: 0;
+  }
+
+  .comment-list .md-content .md-preview,
+  .comment-list .md-content .md-html {
+    font-size: 12px;
   }
 `

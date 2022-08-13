@@ -38,10 +38,11 @@ class ArticleService {
     })
   }
 
-  findByTagId(id: string) {
-    return request<string, PaginateResult<IArticle>>({
+  findByTagId(id: string, query?: Record<string, string | number>) {
+    return request<Record<string, string | number>, PaginateResult<IArticle>>({
       url: `${ARTICLE_API_PATH}/tag/${id}`,
       method: 'GET',
+      data: query,
       interceptors: {
         responseInterceptor: (res) => res
       }

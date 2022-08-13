@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/wujihua118/blog-website/compare/v2.4.1...v2.5.0) (2022-08-13)
+
+
+### Features
+
+* add tag page ([fe9127c](https://github.com/wujihua118/blog-website/commit/fe9127c97d86b8a7c6139bae794185b12a6a065d))
+
 ## [2.4.1](https://github.com/wujihua118/blog-website/compare/v2.4.0...v2.4.1) (2022-07-31)
 
 

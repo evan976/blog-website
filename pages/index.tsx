@@ -25,9 +25,9 @@ const Home: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 
-  const articles = await fetch.get('posts')
+  // const articles = await fetch.get('posts')
 
-  console.log(articles)
+  // console.log(articles)
 
   return {
     props: {}

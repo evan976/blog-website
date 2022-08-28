@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'markdown.scss';
+
+:root {
+  transition: all .3s;
+  background-color: #e3e3e3;
+
+  &.light {
+    background-color: #e3e3e3;
+    @include markdownLightTheme();
+  }
+
+  &.dark {
+    background-color: #232323;
+    @include markdownDarkTheme();
+  }
+}

@@ -1,0 +1,9 @@
+@use 'sass:meta';
+
+@mixin markdownLightTheme {
+  @include meta.load-css('highlight.js/styles/github');
+}
+
+@mixin markdownDarkTheme {
+  @include meta.load-css('highlight.js/styles/github-dark');
+}

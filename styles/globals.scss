@@ -2,19 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'colors.scss';
+@import 'iconfont.scss';
 @import 'markdown.scss';
+
 
 :root {
   transition: all .3s;
-  background-color: #e3e3e3;
+  background-color: $body-bg-color-light;
 
   &.light {
-    background-color: #e3e3e3;
+    background-color: $body-bg-color-light;
     @include markdownLightTheme();
+
+    #{--bg-primary}: $white;
+    #{--bg-secondary}: darken($white, 5%);
+    #{--bg-tertiary}: darken($white, 9%);
+    #{--bg-quaternary}: darken($white, 13%);
+    #{--bg-quinary}: darken($white, 18%);
+
+    #{--text-primary}: rgba(#000, 0.68);
+    #{--text-secondary}: darken(rgba(#000, 0.68), 9%);
+    #{--text-tertiary}: darken(rgba(#000, 0.68), 13%);
+    #{--text-quaternary}: darken(rgba(#000, 0.68), 19%);
+    #{--text-quinary}: darken(rgba(#000, 0.68), 24%);
+
+    #{--rotate-color}: $primary;
+    
+    
   }
 
   &.dark {
-    background-color: #232323;
+    background-color: $body-bg-color-dark;
     @include markdownDarkTheme();
+
+    #{--bg-primary}: rgb(68, 68, 68);
+    #{--bg-secondary}: darken(rgb(68, 68, 68), 5%);
+    #{--bg-tertiary}: darken(rgb(68, 68, 68), 9%);
+    #{--bg-quaternary}: darken(rgb(68, 68, 68), 13%);
+    #{--bg-quinary}: darken(rgb(68, 68, 68), 18%);
+
+    #{--text-primary}: #f0f0f0;
+    #{--text-secondary}: darken(#f0f0f0, 9%);
+    #{--text-tertiary}: darken(#f0f0f0, 13%);
+    #{--text-quaternary}: darken(#f0f0f0, 19%);
+    #{--text-quinary}: darken(#f0f0f0, 24%);
+
+    #{--rotate-color}: darken(#f0f0f0, 9%);
   }
+}
+
+a {
+  color: #666;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  user-select: none;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
 }

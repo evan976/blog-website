@@ -1,15 +1,19 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "2.6.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "release": "semantic-release",
+    "pm2": "pm2 start yarn --name client --interpreter bash -- start"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "classnames": "^2.3.1",
     "highlight.js": "^11.6.0",
     "marked": "^4.0.19",
     "next": "12.2.5",
@@ -18,6 +22,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.3.1",
     "@types/marked": "^4.0.6",
     "@types/node": "18.7.13",
     "@types/react": "18.0.17",

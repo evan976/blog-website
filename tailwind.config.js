@@ -8,7 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': 'rgba(68, 68, 68, .6)'
+        background: {
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          tertiary: 'var(--bg-tertiary)',
+          quaternary: 'var(--bg-quaternary)',
+          quinary: 'var(--bg-quinary)'
+        },
+        font: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
+          quaternary: 'var(--text-quaterna)',
+          quinary: 'var(--text-quinary)'
+        },
+        filter: 'var(--rotate-color)'
       }
     },
   },

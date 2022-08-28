@@ -1,14 +1,12 @@
-import { NextPage } from 'next'
+import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import Layout from '../components/Layout'
-import 'nprogress/nprogress.css'
+import { ThemeProvider } from 'next-themes'
 
-
-const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
+    <ThemeProvider attribute='class' enableSystem={false}>
       <Component {...pageProps} />
-    </Layout>
+    </ThemeProvider>
   )
 }
 

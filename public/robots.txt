@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://evanone.site/
-
-# Sitemaps
-Sitemap: https://evanone.site/sitemap.xml

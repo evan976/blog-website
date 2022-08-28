@@ -1,5 +1,6 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { useTheme } from 'next-themes'
+import fetch from '../service/fetch'
 
 const Home: NextPage = () => {
 
@@ -20,6 +21,17 @@ const Home: NextPage = () => {
       </button>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+
+  const articles = await fetch.get('posts')
+
+  console.log(articles)
+
+  return {
+    props: {}
+  }
 }
 
 export default Home

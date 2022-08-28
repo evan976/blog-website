@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import { useTheme } from 'next-themes'
-import fetch from '../service/fetch'
+import fetch from '@/service/fetch'
 
 const Home: NextPage = () => {
 

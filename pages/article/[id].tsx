@@ -120,7 +120,7 @@ const Article: NextPage<ArticleProps> = ({
                 <div className='category'>
                   <span>分类：</span>
                   <span className='item'>
-                    {article.category.name}
+                    {article.category?.name}
                   </span>
                 </div>
                 <div className='tags'>

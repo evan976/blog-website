@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
-import Logo from '@/public/vercel.svg'
-import { IconDark, IconLight } from '@/components/icon'
+import { IconDark, IconLight } from 'components/icon'
+import Logo from 'public/vercel.svg'
 
 enum Theme {
   LIGHT = 'light',

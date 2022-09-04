@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
-import * as Icon from '@/components/icon'
-import Logo from '@/public/vercel.svg'
+import * as Icon from 'components/icon'
+import Logo from 'public/vercel.svg'
 
 const Header: React.FC = () => {
 
@@ -22,7 +22,7 @@ const Header: React.FC = () => {
           <Icon.IconMenu />
         </div>
         <Link className='logo' href='/'>
-          <Logo />
+          <a><Logo /></a>
         </Link>
         <div className='navbar-search'>
           <Icon.IconSearch onClick={() => setOpen(true)} />

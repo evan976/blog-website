@@ -5,6 +5,7 @@
 @import 'colors.scss';
 @import 'iconfont.scss';
 @import 'markdown.scss';
+@import 'highlight.scss';
 
 
 :root {
@@ -13,7 +14,8 @@
 
   &.light {
     background-color: $body-bg-color-light;
-    @include markdownLightTheme();
+
+    #{--hljs-bg}: $hljs-bg-light;
 
     #{--bg-primary}: $white;
     #{--bg-secondary}: darken($white, 5%);
@@ -28,13 +30,24 @@
     #{--text-quinary}: darken(rgba(#000, 0.68), 24%);
 
     #{--rotate-color}: $primary;
+    #{--primary-color}: $primary;
+    #{--success-color}: $success;
+    #{--warning-color}: $warning;
+    #{--danger-color}: $danger;
+    #{--purple-color}: $purple;
+    #{--lime-color}: $lime;
+    #{--yellow-color}: $yellow;
+    #{--pink-color}: $pink;
+    #{--gold-color}: $gold;
+    #{--orange-color}: $orange;
     
     
   }
 
   &.dark {
     background-color: $body-bg-color-dark;
-    @include markdownDarkTheme();
+
+    #{--hljs-bg}: $hljs-bg-dark;
 
     #{--bg-primary}: rgb(68, 68, 68);
     #{--bg-secondary}: darken(rgb(68, 68, 68), 5%);
@@ -49,6 +62,16 @@
     #{--text-quinary}: darken(#f0f0f0, 24%);
 
     #{--rotate-color}: darken(#f0f0f0, 9%);
+    #{--primary-color}: $primary-dark;
+    #{--success-color}: $success-dark;
+    #{--warning-color}: $warning-dark;
+    #{--danger-color}: $danger-dark;
+    #{--purple-color}: $purple-dark;
+    #{--lime-color}: $lime-dark;
+    #{--yellow-color}: $yellow-dark;
+    #{--pink-color}: $pink-dark;
+    #{--gold-color}: $gold-dark;
+    #{--orange-color}: $orange-dark;
   }
 }
 

@@ -1,10 +1,5 @@
 .markdown-body {
-  word-break: break-word;
-  line-height: 1.75;
-  font-weight: 400;
-  font-size: 14px;
-  overflow-x: hidden;
-  color: var(--text-quaternary);
+  @apply break-words leading-[1.75] font-normal text-sm overflow-x-hidden;
 
   h1,
   h2,
@@ -12,17 +7,11 @@
   h4,
   h5,
   h6 {
-    line-height: 1.5;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    font-weight: 700;
-    color: var(--text-primary);
+    @apply leading-[1.5] mt-5 mb-[10px] pb-[5px] font-bold text-font-100;
   }
 
   h1 {
-    font-size: 24px;
-    margin-bottom: 5px;
+    @apply text-2xl mb-[5px];
   }
 
   h2,
@@ -30,143 +19,100 @@
   h4,
   h5,
   h6 {
-    font-size: 20px;
+    @apply text-xl;
   }
 
   h2 {
-    padding-bottom: 12px;
+    @apply mb-3;
   }
 
   h3 {
-    font-size: 18px;
-    padding-bottom: 0;
+    @apply text-lg pb-0;
   }
 
   h6 {
-    margin-top: 5px;
+    @apply mb-[5px];
   }
 
   p {
-    line-height: 2;
-    font-weight: 400;
+    @apply leading-[2] font-normal;
   }
 
   img {
-    max-width: 100%;
+    @apply max-w-full;
   }
 
   hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    @apply border-none border-t border-border my-8;
   }
 
   code {
-    word-break: break-word;
-    border-radius: 2px;
-    overflow-x: auto;
-    background-color: rgba(191, 193, 201, 0.12);
-    color: var(--danger-color);
-    font-size: .87em;
-    padding: .065em .4em;
+    @apply break-words rounded-sm overflow-x-auto bg-code text-red px-[6px] py-[1px] text-sm;
   }
 
   pre {
-    overflow: auto;
-    position: relative;
-    line-height: 1.75;
-    margin: 10px 0;
+    @apply overflow-auto relative leading-[1.75] my-[10px];
 
     > code {
-      font-size: 12px;
-      padding: 15px 12px;
-      margin: 0;
-      word-break: normal;
-      display: block;
-      overflow-x: auto;
-      color: var(--text-quaternary);
+      @apply text-[12px] py-[15px] px-3 m-0 break-normal block overflow-x-auto text-font-200;
     }
   }
 
   a {
-    text-decoration: none;
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--primary-color);
+    @apply underline decoration-1 text-blue decoration-blue;
 
     &:active,
     &:hover {
-      opacity: .8;
+      @apply opacity-80;
     }
   }
 
   table {
-    display: inline-block !important;
-    font-size: 12px;
-    width: auto;
-    max-width: 100%;
-    overflow: auto;
-    border: 1px solid var(--bg-primary);
+    @apply inline-block text-[12px] w-auto max-w-full overflow-auto border border-border;
 
     thead {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      text-align: left;
+      @apply bg-bg-100 text-font-100 text-left;
     }
 
     tr:nth-child(2n) {
-      background-color: var(--bg-secondary);
+      @apply bg-bg-200;
     }
 
     td,
     th {
-      padding: 12px 7px;
-      line-height: 24px;
-    }
-
-    td {
-      min-width: 120px;
+      @apply px-2 py-3;
     }
   }
 
   blockquote {
-    color: var(--text-tertiary);
-    padding: 1px 23px;
-    margin: 22px 0;
-    border-left: 4px solid var(--primary-color);
-    background-color: var(--hljs-bg);
+    @apply text-font-300 px-5 py-[1px] my-6 border-l-4 border-lime bg-code;
 
     > p {
-      margin: 10px 0;
+      @apply my-[10px];
     }
 
     &:after {
-      display: block;
-      content: "";
+      @apply block content-none;
     }
   }
 
   ul,
   ol {
-    margin-top: 1em;
-    margin-bottom: 0;
-    padding-left: 1.6em;
+    @apply mt-4 mb-0 pl-5;
 
     li {
-      margin: 0;
-      display: list-item;
-      list-style:disc;
+      @apply m-0 list-item list-disc;
 
       .task-list-item {
-        list-style: none;
+        @apply list-none;
 
         ol,
         ul {
-          margin-top: 0;
+          @apply mt-0;
 
           ol,
           ul {
-            margin-top: 3px;
+            @apply mt-1;
           }
         }
       }
@@ -175,29 +121,29 @@
 
   ol {
     li {
-      padding-left: 6px;
+      @apply pl-2;
     }
   }
 
   .contains-task-list {
-    padding-left: 0;
+    @apply pl-0;
   }
 
   .task-list-item {
-    list-style: none;
+    @apply list-none;
   }
 
   @media (max-width:720px) {
     h1 {
-      font-size: 24px;
+      @apply text-2xl;
     }
   
     h2 {
-      font-size: 20px;
+      @apply text-xl;
     }
   
     h3 {
-      font-size: 18px;
+      @apply text-lg;
     }
   }
 }

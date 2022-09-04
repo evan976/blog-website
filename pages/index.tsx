@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   const html = markdownToHTML(value)
 
   return (
-    <div className='bg-background-primary rounded p-3'>
+    <div className='bg-bg-100 rounded p-3'>
 
       <div className='markdown-body'>
         <div dangerouslySetInnerHTML={{ __html: html }}></div>

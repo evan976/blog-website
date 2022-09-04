@@ -1,29 +1,23 @@
-@import 'colors.scss';
-
 pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em;
+  @apply block overflow-x-auto p-4;
 }
 
 code.hljs {
-  padding: 3px 5px;
+  @apply p-1;
 }
 
 .hljs {
-  color: var(--text-tertiary);
-  background: var(--hljs-bg);
+  @apply text-font-200 bg-code;
 
   .hljs-comment,
   .hljs-quote {
-    color: #a0a1a7;
-    font-style: italic;
+    @apply text-font-300 italic;
   }
 
   .hljs-doctag,
   .hljs-formula,
   .hljs-keyword {
-    color: var(--pink-color);
+    @apply text-pinkpuple;
   }
 
   .hljs-deletion,
@@ -31,11 +25,11 @@ code.hljs {
   .hljs-section,
   .hljs-selector-tag,
   .hljs-subst {
-    color: var(--danger-color);
+    @apply text-red;
   }
 
   .hljs-literal {
-    color: var(--primary-color);
+    @apply text-blue;
   }
 
   .hljs-addition,
@@ -43,7 +37,7 @@ code.hljs {
   .hljs-meta .hljs-string,
   .hljs-regexp,
   .hljs-string {
-    color: var(--success-color);
+    @apply text-green;
   }
 
   .hljs-attr,
@@ -54,7 +48,7 @@ code.hljs {
   .hljs-template-variable,
   .hljs-type,
   .hljs-variable {
-    color: var(--orange-color);
+    @apply text-orange;
   }
 
   .hljs-bullet,
@@ -63,24 +57,24 @@ code.hljs {
   .hljs-selector-id,
   .hljs-symbol,
   .hljs-title {
-    color: var(--primary-color);
+    @apply text-blue;
   }
 
   .hljs-built_in,
   .hljs-class .hljs-title,
   .hljs-title.class_ {
-    color: var(--gold-color);
+    @apply text-gold;
   }
 
   .hljs-emphasis {
-    font-style: italic
+    @apply italic;
   }
 
   .hljs-strong {
-    font-weight: 700
+    @apply font-bold;
   }
 
   .hljs-link {
-    text-decoration: underline
+    @apply underline;
   }
 }

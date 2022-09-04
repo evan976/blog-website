@@ -2,88 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'colors.scss';
 @import 'iconfont.scss';
 @import 'markdown.scss';
 @import 'highlight.scss';
 
-
-:root {
-  transition: all .3s;
-  background-color: $body-bg-color-light;
-
-  &.light {
-    background-color: $body-bg-color-light;
-
-    #{--hljs-bg}: $hljs-bg-light;
-
-    #{--bg-primary}: $white;
-    #{--bg-secondary}: darken($white, 5%);
-    #{--bg-tertiary}: darken($white, 9%);
-    #{--bg-quaternary}: darken($white, 13%);
-    #{--bg-quinary}: darken($white, 18%);
-
-    #{--text-primary}: rgba(#000, 0.68);
-    #{--text-secondary}: darken(rgba(#000, 0.68), 9%);
-    #{--text-tertiary}: darken(rgba(#000, 0.68), 13%);
-    #{--text-quaternary}: darken(rgba(#000, 0.68), 19%);
-    #{--text-quinary}: darken(rgba(#000, 0.68), 24%);
-
-    #{--rotate-color}: $primary;
-    #{--primary-color}: $primary;
-    #{--success-color}: $success;
-    #{--warning-color}: $warning;
-    #{--danger-color}: $danger;
-    #{--purple-color}: $purple;
-    #{--lime-color}: $lime;
-    #{--yellow-color}: $yellow;
-    #{--pink-color}: $pink;
-    #{--gold-color}: $gold;
-    #{--orange-color}: $orange;
-    
-    
+@layer base {
+  :root {
+    @apply transition-all duration-300 bg-bg-200;
   }
 
-  &.dark {
-    background-color: $body-bg-color-dark;
-
-    #{--hljs-bg}: $hljs-bg-dark;
-
-    #{--bg-primary}: rgb(68, 68, 68);
-    #{--bg-secondary}: darken(rgb(68, 68, 68), 5%);
-    #{--bg-tertiary}: darken(rgb(68, 68, 68), 9%);
-    #{--bg-quaternary}: darken(rgb(68, 68, 68), 13%);
-    #{--bg-quinary}: darken(rgb(68, 68, 68), 18%);
-
-    #{--text-primary}: #f0f0f0;
-    #{--text-secondary}: darken(#f0f0f0, 9%);
-    #{--text-tertiary}: darken(#f0f0f0, 13%);
-    #{--text-quaternary}: darken(#f0f0f0, 19%);
-    #{--text-quinary}: darken(#f0f0f0, 24%);
-
-    #{--rotate-color}: darken(#f0f0f0, 9%);
-    #{--primary-color}: $primary-dark;
-    #{--success-color}: $success-dark;
-    #{--warning-color}: $warning-dark;
-    #{--danger-color}: $danger-dark;
-    #{--purple-color}: $purple-dark;
-    #{--lime-color}: $lime-dark;
-    #{--yellow-color}: $yellow-dark;
-    #{--pink-color}: $pink-dark;
-    #{--gold-color}: $gold-dark;
-    #{--orange-color}: $orange-dark;
+  :root.light {
+    --color-blue: 0, 129, 255;
+    --color-green: 0, 180, 42;
+    --color-orange: 255, 125, 0;
+    --color-red: 245, 63, 63;
+    --color-purple: 114, 46, 209;
+    --color-lime: 159, 219, 29;
+    --color-yellow: 250, 220, 25;
+    --color-pinkpuple: 217, 26, 217;
+    --color-magenta: 245, 49, 157;
+    --color-cyan: 20, 201, 201;
+    --color-gold: 247, 186, 30;
+    --color-orangered: 247, 114, 52;
+    --color-grey: 134, 144, 156;
+    --color-bg-1: 255, 255, 255;
+    --color-bg-2: 240, 240, 240;
+    --color-bg-3: 230, 230, 230;
+    --color-bg-4: 220, 220, 220;
+    --color-font-1: 223deg, 17.9%, 17.3%;
+    --color-font-2: 224deg, 12%, 36.1%;
+    --color-font-3: 220deg, 9.9%, 58.2%;
+    --color-font-4: 216deg, 14%, 79%;
+    --color-border: 228, 230, 235;
+    --color-code-bg: 191, 193, 201
   }
+
+  :root.dark {
+    --color-blue: 60, 126, 255;
+    --color-green: 39, 195, 70;
+    --color-orange: 255, 150, 38;
+    --color-red: 247, 105, 101;
+    --color-purple: 142, 81, 218;
+    --color-lime: 184, 226, 75;
+    --color-yellow: 251, 233, 75;
+    --color-pinkpuple: 225, 61, 219;
+    --color-magenta: 247, 86, 169;
+    --color-cyan: 63, 212, 207;
+    --color-gold: 249, 204, 68;
+    --color-orangered: 249, 146, 90;
+    --color-grey: 146, 146, 147;
+    --color-bg-1: 51, 51, 51;
+    --color-bg-2: 34, 34, 34;
+    --color-bg-3: 42, 42, 43;
+    --color-bg-4: 35, 35, 36;
+    --color-font-1: 0deg, 0%, 100%;
+    --color-font-2: 0deg, 0%, 100%;
+    --color-font-3: 0deg, 0%, 100%;
+    --color-font-4: 0deg, 0%, 100%;
+    --color-border: 55, 55, 57;
+    --color-code-bg: 191, 193, 201;
+  }
+}
+
+::-webkit-scrollbar {
+  @apply w-[5px];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  @apply bg-red;
 }
 
 a {
-  color: #666;
+  @apply text-[#666];
 }
 
 body {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  user-select: none;
-  font-family: 'Noto Sans SC', sans-serif;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+  @apply overflow-x-hidden overflow-y-auto select-none font-sans text-sm text-font-200;
 }

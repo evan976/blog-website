@@ -3,7 +3,7 @@ module.exports = {
   darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}'
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -33,8 +33,8 @@ module.exports = {
           400: 'hsl(var(--color-font-4), 0.3)',
         },
         border: 'rgba(var(--color-border))',
-        code: 'rgba(var(--color-code-bg), 0.12)'
-      }
+        code: 'rgba(var(--color-code-bg), 0.12)',
+      },
     },
   },
   plugins: [],

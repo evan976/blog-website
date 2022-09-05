@@ -2,6 +2,7 @@ import React from 'react'
 import Article from './article'
 import Calendar from './calendar'
 import Search from './search'
+import Tag from './tag'
 
 const Aside: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const Aside: React.FC = () => {
       <Search />
       <Article />
       <Calendar />
+      <Tag />
     </div>
   )
 }

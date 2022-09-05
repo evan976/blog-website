@@ -6,7 +6,7 @@ const Search = () => {
     <Card>
       <form className='w-full flex justify-center items-center'>
         <input
-          className='outline-none h-8 flex-1 text-sm px-[10px] rounded-l-sm bg-bg-300'
+          className='outline-none h-8 flex-1 text-sm px-[10px] rounded-l-sm bg-bg-200'
           type="search"
           name="search"
           maxLength={16}

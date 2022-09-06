@@ -3,6 +3,8 @@ import { ThemeProvider } from 'next-themes'
 import Layout from 'components/layout'
 import useMobile from 'hooks/useMobile'
 import 'styles/globals.scss'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 function MyApp({ Component, pageProps }: AppProps) {
 

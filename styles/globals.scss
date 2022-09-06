@@ -71,6 +71,7 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-blue;
 }
+
 ::-webkit-scrollbar-thumb:window-inactive {
   @apply bg-red;
 }
@@ -81,4 +82,12 @@ a {
 
 body {
   @apply overflow-x-hidden overflow-y-auto select-none font-sans text-sm text-font-200;
+}
+
+#nprogress {
+  @apply pointer-events-none;
+
+  .bar {
+    @apply bg-blue fixed z-[1024px] top-0 left-0 w-full h-[2px];
+  }
 }

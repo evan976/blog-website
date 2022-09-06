@@ -10,16 +10,7 @@ import {
   EffectFade,
 } from 'swiper'
 
-SwiperClass.use([
-  Grid,
-  Pagination,
-  Navigation,
-  Mousewheel,
-  Autoplay,
-  A11y,
-  Lazy,
-  EffectFade,
-])
+SwiperClass.use([Grid, Pagination, Navigation, Mousewheel, Autoplay, A11y, Lazy, EffectFade])
 
 export default SwiperClass
 

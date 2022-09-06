@@ -8,11 +8,9 @@ type MainProps = {
 
 const Main: React.FC<MainProps> = ({ children }) => {
   return (
-    <div className='w-[1050px] mx-auto flex justify-between relative top-20'>
+    <div className="w-[1050px] mx-auto flex justify-between relative top-20">
       <Nav />
-      <div className='order-2 flex-grow relative overflow-hidden transition-none'>
-        {children}
-      </div>
+      <div className="order-2 flex-grow relative overflow-hidden transition-none">{children}</div>
       <Aside />
     </div>
   )

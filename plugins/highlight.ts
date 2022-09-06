@@ -28,7 +28,7 @@ const languages: Record<string, LanguageFn> = {
   css,
   less,
   scss,
-  stylus
+  stylus,
 }
 
 Object.keys(languages).forEach((name) => hljs.registerLanguage(name, languages[name]))

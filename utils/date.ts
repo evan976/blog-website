@@ -46,12 +46,9 @@ export const generateCalendar = (date: Date) => {
   const {
     days: lastMonthDays,
     year: lastMonthYear,
-    month: lastMonth
+    month: lastMonth,
   } = getNextOrLastMonthDays(date, 'last')
-  const {
-    year: nextMonthYear,
-    month: nextMonth
-  } = getNextOrLastMonthDays(date, 'next')
+  const { year: nextMonthYear, month: nextMonth } = getNextOrLastMonthDays(date, 'next')
 
   const weekIndex = new Date(`${currentYear}/${currentMonth + 1}/1`).getDay()
   const trailDays = calendarGrid - weekIndex - days
@@ -86,7 +83,7 @@ export const generateCalendar = (date: Date) => {
       year: currentYear,
       month: currentMonth,
       day: d,
-      isCurrentMonth: true
+      isCurrentMonth: true,
     }
   }
 

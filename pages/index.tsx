@@ -1,13 +1,18 @@
 import type { GetStaticProps, NextPage } from 'next'
-import fetch from 'service/fetch'
+import Image from 'next/image'
+import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
+import fetch from 'service/fetch'
 
-const Home: NextPage = () => {
+type Props = {
+  swipers: Swiper[]
+}
 
+const Home: NextPage<Props> = ({ swipers }) => {
   return (
-    <div className='w-full h-full'>
+    <div className="w-full h-full">
       <Swiper
-        className='w-[610px] h-[200px] rounded bg-bg-100'
+        className="w-[610px] h-[200px] rounded bg-bg-100"
         setWrapperSize={true}
         observeParents={true}
         grabCursor={false}
@@ -15,30 +20,35 @@ const Home: NextPage = () => {
         preloadImages={true}
         lazy={true}
         pagination={{
-          clickable: true
+          clickable: true,
         }}
         autoplay={{
           delay: 3500,
-          disableOnInteraction: false
+          disableOnInteraction: false,
         }}
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
+        {swipers?.map((item) => (
+          <SwiperSlide key={item.id}>
+            <Image src={item.url} layout="fill" alt={item.name} />
+          </SwiperSlide>
+        ))}
       </Swiper>
+      <ArticleList />
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-
   // const articles = await fetch.get('posts')
+
+  const swipers = await fetch.get<PaginateResponse<Swiper>>('/wallpapers')
 
   // console.log(articles)
 
   return {
-    props: {}
+    props: {
+      swipers: swipers.data,
+    },
   }
 }
 

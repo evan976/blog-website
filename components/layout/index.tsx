@@ -9,11 +9,8 @@ type AppLayoutProps = {
 
 const AppLayout: React.FC<AppLayoutProps> = ({ mobile, children }) => {
   return (
-    <div id='app' className='app'>
-      {mobile
-        ? <MobileLayout>{children}</MobileLayout>
-        : <DesktopLayout>{children}</DesktopLayout>
-      }
+    <div id="app" className="app">
+      {mobile ? <MobileLayout>{children}</MobileLayout> : <DesktopLayout>{children}</DesktopLayout>}
     </div>
   )
 }

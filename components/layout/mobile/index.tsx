@@ -7,7 +7,7 @@ type MobileLayoutProps = {
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   return (
-    <div className='mobile-layout'>
+    <div className="mobile-layout">
       <Header />
       {children}
     </div>

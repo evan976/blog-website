@@ -1,9 +1,7 @@
 import React from 'react'
 
 const CommentPage = () => {
-  return (
-    <div>CommentPage</div>
-  )
+  return <div>CommentPage</div>
 }
 
 export default CommentPage

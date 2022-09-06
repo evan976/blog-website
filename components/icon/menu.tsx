@@ -1,8 +1,10 @@
-import * as React from 'react'
 import classNames from 'classnames'
+import * as React from 'react'
 
-export const IconMenu = React.memo<JSX.IntrinsicElements['svg']
->(function IconMenu({className, ...rest}) {
+export const IconMenu = React.memo<JSX.IntrinsicElements['svg']>(function IconMenu({
+  className,
+  ...rest
+}) {
   return (
     <svg
       width="1.2em"

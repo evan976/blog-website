@@ -91,3 +91,11 @@ body {
     @apply bg-blue fixed z-[1024px] top-0 left-0 w-full h-[2px];
   }
 }
+
+.swiper-pagination-bullet {
+  @apply w-4 h-[6px] rounded-[1px];
+
+  &-active {
+    @apply w-6 bg-bg-400 opacity-50;
+  }
+}

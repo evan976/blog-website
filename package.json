@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
+    "date-fns": "^2.29.2",
     "highlight.js": "^11.6.0",
     "marked": "^4.0.19",
     "next": "12.2.5",

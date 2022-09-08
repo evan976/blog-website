@@ -1,8 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
-import useRequest from 'hooks/useRequest'
 import fetch from 'service/fetch'
 
 type Props = {
@@ -25,17 +25,24 @@ const Home: NextPage<Props> = ({ swipers, total, articles }) => {
         simulateTouch={false}
         preloadImages={true}
         lazy={true}
-        pagination={{
-          clickable: true,
-        }}
+        pagination={{ clickable: true }}
         autoplay={{
           delay: 3500,
-          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false
         }}
       >
         {swipers?.map((item) => (
           <SwiperSlide key={item.id}>
-            <Image src={item.url} layout="fill" alt={item.name} />
+            <Link href={item.link}>
+              <a>
+                <Image
+                  className="duration-200 scale-100 hover:scale-105"
+                  src={item.url}
+                  layout="fill" alt={item.name}
+                />
+              </a>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

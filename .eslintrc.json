@@ -20,6 +20,7 @@
     "semi": ["error", "never"],
     "semi-spacing": ["error", { "before": true, "after": false }],
     "jsx-quotes": ["error", "prefer-double"],
-    "import/named": 0
+    "import/named": 0,
+    "@next/next/no-img-element": 0
   }
 }

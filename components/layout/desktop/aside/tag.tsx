@@ -1,7 +1,9 @@
-import Card from 'components/common/card'
 import React from 'react'
+import Card from 'components/common/card'
+import useRequest from 'hooks/useRequest'
 
 const Tag: React.FC = () => {
+
   return (
     <Card title="文章标签" icon="&#xe701;" className="mt-3 sticky top-[382px]">
       <ul className="max-h-80 overflow-y-scroll">

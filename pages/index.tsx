@@ -2,13 +2,19 @@ import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
+import useRequest from 'hooks/useRequest'
 import fetch from 'service/fetch'
 
 type Props = {
   swipers: Swiper[]
+  total: number
+  articles: Article[]
 }
 
-const Home: NextPage<Props> = ({ swipers }) => {
+const Home: NextPage<Props> = ({ swipers, total, articles }) => {
+
+  if (!swipers) return <div>loading...</div>
+
   return (
     <div className="w-full h-full">
       <Swiper
@@ -33,7 +39,7 @@ const Home: NextPage<Props> = ({ swipers }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <ArticleList />
+      <ArticleList articles={articles} />
     </div>
   )
 }
@@ -42,12 +48,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // const articles = await fetch.get('posts')
 
   const swipers = await fetch.get<PaginateResponse<Swiper>>('/wallpapers')
+  const articles = await fetch.get<PaginateResponse<Article>>('/posts')
 
   // console.log(articles)
 
   return {
     props: {
       swipers: swipers.data,
+      total: articles.total,
+      articles: articles.data
     },
   }
 }

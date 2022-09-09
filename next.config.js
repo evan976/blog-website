@@ -2,7 +2,7 @@
 const path = require('path')
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     domains: ['static.evanone.site'],
@@ -15,7 +15,6 @@ const nextConfig = {
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     })
-
     return config
   },
 }

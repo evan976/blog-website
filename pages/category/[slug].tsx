@@ -1,6 +1,8 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
 import ArticleList from 'components/article/list'
+import Layout from 'components/layout'
+import { NextPageWithLayout } from 'pages/_app'
 import fetch from 'service/fetch'
 
 type Props = {
@@ -8,7 +10,7 @@ type Props = {
   category: Category
 }
 
-const CategoryPage: NextPage<Props> = ({ articles, category }) => {
+const CategoryPage: NextPageWithLayout<Props> = ({ articles, category }) => {
   return (
     <div className="w-full">
       <div className="w-full h-[210px] rounded overflow-hidden relative">
@@ -27,12 +29,16 @@ const CategoryPage: NextPage<Props> = ({ articles, category }) => {
   )
 }
 
+CategoryPage.getLayout = (page) => (
+  <Layout mobile={false}>
+    {page}
+  </Layout>
+)
+
+
+
 export const getStaticPaths: GetStaticPaths = async () => {
-
   const categories = await fetch.get<CategoryResponse>('/categories')
-
-  console.log(categories)
-
   const paths = categories.data?.map(category => ({
     params: { slug: category.slug }
   }))
@@ -45,11 +51,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context
-
   const articles = await fetch.get<ArticleResponse>('/posts', {
     params: { categorySlug: params?.slug }
   })
-
   const category = await fetch.get<Category>(`/categories/slug/${params?.slug}`)
 
   return {

@@ -1,51 +1,42 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
-import useSWR, { SWRConfiguration, SWRResponse } from 'swr'
+import * as React from 'react'
 
-export type GetRequest = AxiosRequestConfig | null
+type PromiseAction = (query: Record<string, any>) => Promise<unknown>
 
-interface Return<Data, Error>
-  extends Pick<
-    SWRResponse<AxiosResponse<Data>, AxiosError<Error>>,
-    'isValidating' | 'error' | 'mutate'
-  > {
-  data: Data | undefined
-  response: AxiosResponse<Data> | undefined
-}
+function useRequest<A extends PromiseAction>(
+  action: A,
+  wait = 300,
+  initialLoading = false,
+): [A, boolean] {
+  const timer = React.useRef<NodeJS.Timeout>()
+  const [pending, setPending] = React.useState<boolean>(false)
+  const [loading, setLoading] = React.useState<boolean>(initialLoading)
 
-export interface Config<Data = unknown, Error = unknown>
-  extends Omit<SWRConfiguration<AxiosResponse<Data>, AxiosError<Error>>, 'fallbackData'> {
-  fallbackData?: Data
-}
-
-export default function useRequest<Data = unknown, Error = unknown>(
-  request: GetRequest,
-  { fallbackData, ...config }: Config<Data, Error> = {},
-): Return<Data, Error> {
-  const {
-    data: response,
-    error,
-    isValidating,
-    mutate,
-  } = useSWR<AxiosResponse<Data>, AxiosError<Error>>(
-    request && JSON.stringify(request),
-    () => axios.request<Data>(request!),
-    {
-      ...config,
-      fallbackData: fallbackData && {
-        status: 200,
-        statusText: 'InitialData',
-        config: request!,
-        headers: {},
-        data: fallbackData,
-      },
+  const actionWithLoading = React.useCallback(
+    (query: Parameters<A>) => {
+      setPending(true)
+      const promise = action({ ...query })
+      promise.then(
+        () => setPending(false),
+        () => setPending(false),
+      )
+      return promise
     },
+    [action],
   )
 
-  return {
-    data: response && response.data,
-    response,
-    error,
-    isValidating,
-    mutate,
-  }
+  React.useEffect(() => {
+    clearTimeout(timer.current)
+
+    timer.current = setTimeout(() => {
+      setLoading(pending)
+    }, wait)
+
+    return () => {
+      clearTimeout(timer.current)
+    }
+  }, [wait, pending])
+
+  return [actionWithLoading as A, loading]
 }
+
+export default useRequest

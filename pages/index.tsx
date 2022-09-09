@@ -1,8 +1,10 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { NextPageWithLayout } from './_app'
 import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
+import Layout from 'components/layout'
 import fetch from 'service/fetch'
 
 type Props = {
@@ -11,14 +13,12 @@ type Props = {
   articles: Article[]
 }
 
-const Home: NextPage<Props> = ({ swipers, total, articles }) => {
-
-  if (!swipers) return <div>loading...</div>
+const HomePage: NextPageWithLayout<Props> = ({ swipers, total, articles }) => {
 
   return (
     <div className="w-full h-full">
       <Swiper
-        className="w-[610px] h-[200px] rounded bg-bg-100"
+        className="w-[610px] h-[200px] hidden sm:block rounded bg-bg-100"
         setWrapperSize={true}
         observeParents={true}
         grabCursor={false}
@@ -51,13 +51,15 @@ const Home: NextPage<Props> = ({ swipers, total, articles }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  // const articles = await fetch.get('posts')
+HomePage.getLayout = (page) => (
+  <Layout mobile={false}>
+    {page}
+  </Layout>
+)
 
-  const swipers = await fetch.get<PaginateResponse<Swiper>>('/wallpapers')
-  const articles = await fetch.get<PaginateResponse<Article>>('/posts')
-
-  // console.log(articles)
+export const getStaticProps: GetStaticProps = async () => {
+  const swipers = await fetch.get<SwiperResponse>('/wallpapers')
+  const articles = await fetch.get<ArticleResponse>('/posts')
 
   return {
     props: {
@@ -68,4 +70,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 }
 
-export default Home
+export default HomePage

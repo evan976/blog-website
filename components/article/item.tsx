@@ -4,8 +4,8 @@ import DateTime from 'components/common/date'
 
 const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
   return (
-    <div className="bg-bg-100 rounded p-3 flex justify-start mt-3">
-      <div className="rounded w-[180px] h-[102px] border border-border overflow-hidden">
+    <div className="bg-bg-100 rounded sm:p-3 flex sm:flex-row flex-col justify-start mt-3">
+      <div className="rounded-t-[4px] sm:rounded sm:w-[180px] sm:h-[102px] w-full h-[120px] sm:border sm:border-border overflow-hidden">
         <Link href={`/article/${article.articleId}`}>
           <img
             className="duration-200
@@ -15,7 +15,7 @@ const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
           />
         </Link>
       </div>
-      <div className="ml-3 flex-1 flex flex-col justify-between">
+      <div className="p-2 sm:ml-3 sm:p-0 flex-1 flex flex-col justify-between">
         <Link href={`/article/${article.articleId}`}>
           <a className="inline-block self-start">
             <h1 className="text-lg text-font-100 mb-3 hover:underline hover:text-blue duration-200 hover:underline-offset-4">{article.title}</h1>

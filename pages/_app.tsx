@@ -1,22 +1,30 @@
-import { GetStaticProps } from 'next'
+import type { NextPage } from 'next'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { SWRConfig } from 'swr'
+import { ReactElement, ReactNode, useEffect } from 'react'
 import NProgress from 'components/common/nprogress'
-import Layout from 'components/layout'
 import useMobile from 'hooks/useMobile'
-import fetch from 'service/fetch'
 import { GA_TRACKING_ID, pageview } from 'utils/gtag'
 import 'nprogress/nprogress.css'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'styles/globals.scss'
 
-function MyApp({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const mobile = useMobile()
   const router = useRouter()
+
+  const getLayout = Component.getLayout ?? ((page) => page)
 
   useEffect(() => {
     if (!GA_TRACKING_ID) return
@@ -32,27 +40,25 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class">
       <NProgress />
-      <Layout mobile={mobile}>
-        <Component {...pageProps} />
-      </Layout>
+      {getLayout(<Component {...pageProps} />)}
     </ThemeProvider>
   )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  // const articles = await fetch.get('posts')
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   // const articles = await fetch.get('posts')
 
-  // const swipers = await fetch.get<PaginateResponse<Swiper>>('/wallpapers')
+//   // const swipers = await fetch.get<PaginateResponse<Swiper>>('/wallpapers')
 
-  const tags = await fetch.get<any>('/tags')
+//   const tags = await fetch.get<any>('/tags')
 
-  console.log(tags)
+//   console.log(tags)
 
-  return {
-    props: {
-      globalData: tags,
-    },
-  }
-}
+//   return {
+//     props: {
+//       globalData: tags,
+//     },
+//   }
+// }
 
 export default MyApp

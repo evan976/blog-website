@@ -31,7 +31,7 @@ type Category = {
 }
 
 type Tag = {
-  d: number
+  id: number
   name: string
   slug: string
   color: string

@@ -21,7 +21,7 @@ const LineSkeleton: React.FC<LineSkeletonProps> = ({
 
   return (
     <div
-      className={`w-[70%] h-full animate-pulse bg-bg-200 ${className}`}
+      className={`h-full animate-pulse bg-bg-200 ${className}`}
       style={{ ...style, ...styles }}
     />
   )

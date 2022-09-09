@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import Card from 'components/common/card'
-import { CalendarItem, generateCalendar, weekMap } from 'utils/date'
 import { isAllTrue } from 'utils'
+import { CalendarItem, generateCalendar, weekMap } from 'utils/date'
 
 const Calendar = () => {
   const [date, setDate] = useState<Date>(new Date())
@@ -59,9 +59,8 @@ const Calendar = () => {
       <div className="text-sm font-bold grid grid-cols-7 h-7 leading-7">
         {weekMap.map((item, index) => (
           <span
-            className={`text-center text-font-200 block ${
-              index === 0 || index === 6 ? 'text-font-300 font-normal' : undefined
-            }`}
+            className={`text-center text-font-200 block ${index === 0 || index === 6 ? 'text-font-300 font-normal' : undefined
+              }`}
             key={index}
           >
             {item}
@@ -75,9 +74,8 @@ const Calendar = () => {
         {calendarTable.map((item, index) => (
           <div
             key={index}
-            className={`text-sm leading-[2.5em] block text-center rounded-full [&:nth-child(7n)]:text-font-300 [&:nth-child(7n-6)]:text-font-300 ${
-              isToday(item) ? 'text-white bg-blue' : undefined
-            } ${!item.isCurrentMonth ? '!text-font-400' : undefined}`}
+            className={`text-sm leading-[2.5em] block text-center rounded-full [&:nth-child(7n)]:text-font-300 [&:nth-child(7n-6)]:text-font-300 ${isToday(item) ? 'text-white bg-blue' : undefined
+              } ${!item.isCurrentMonth ? '!text-font-400' : undefined}`}
           >
             {item.day}
           </div>

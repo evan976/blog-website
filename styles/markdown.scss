@@ -11,7 +11,7 @@
   }
 
   h1 {
-    @apply text-2xl mb-[5px];
+    @apply text-base mb-[5px];
   }
 
   h2,
@@ -19,7 +19,7 @@
   h4,
   h5,
   h6 {
-    @apply text-xl;
+    @apply text-base;
   }
 
   h2 {
@@ -27,7 +27,7 @@
   }
 
   h3 {
-    @apply text-lg pb-0;
+    @apply text-base pb-0;
   }
 
   h6 {
@@ -53,7 +53,7 @@
   pre {
     @apply overflow-auto relative leading-[1.75] my-[10px];
 
-    > code {
+    >code {
       @apply text-[12px] py-[15px] px-3 m-0 break-normal block overflow-x-auto text-font-200;
     }
   }
@@ -87,7 +87,7 @@
   blockquote {
     @apply text-font-300 px-5 py-[1px] my-6 border-l-4 border-lime bg-code;
 
-    > p {
+    >p {
       @apply my-[10px];
     }
 
@@ -137,11 +137,11 @@
     h1 {
       @apply text-2xl;
     }
-  
+
     h2 {
       @apply text-xl;
     }
-  
+
     h3 {
       @apply text-lg;
     }

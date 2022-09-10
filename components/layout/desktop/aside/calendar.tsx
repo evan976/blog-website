@@ -74,7 +74,7 @@ const Calendar = () => {
         {calendarTable.map((item, index) => (
           <div
             key={index}
-            className={`text-sm leading-[2.5em] block text-center rounded-full [&:nth-child(7n)]:text-font-300 [&:nth-child(7n-6)]:text-font-300 ${isToday(item) ? 'text-white bg-blue' : undefined
+            className={`text-sm leading-[2.5em] block text-center rounded-full [&:nth-child(7n)]:text-font-300 [&:nth-child(7n-6)]:text-font-300 ${isToday(item) ? '!text-white bg-blue' : undefined
               } ${!item.isCurrentMonth ? '!text-font-400' : undefined}`}
           >
             {item.day}

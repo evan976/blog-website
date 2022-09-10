@@ -1,0 +1,83 @@
+$animation-duration-base: 0.3s;
+$animation-timing-function-enter: ease-out;
+$animation-timing-function-leave: ease-in;
+
+@keyframes slide-up-enter {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes slide-up-leave {
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes slide-left-enter {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes slide-left-leave {
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes slide-down-enter {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes slide-down-leave {
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes slide-right-enter {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes slide-right-leave {
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.slide-up-enter-active {
+  animation: $animation-duration-base slide-up-enter both $animation-timing-function-enter;
+}
+
+.slide-up-exit-active {
+  animation: $animation-duration-base slide-up-leave both $animation-timing-function-leave;
+}
+
+.slide-left-enter-active {
+  animation: $animation-duration-base slide-left-enter both $animation-timing-function-enter;
+}
+
+.slide-left-exit-active {
+  animation: $animation-duration-base slide-left-leave both $animation-timing-function-leave;
+}
+
+.slide-down-enter-active {
+  animation: $animation-duration-base slide-down-enter both $animation-timing-function-enter;
+}
+
+.slide-down-exit-active {
+  animation: $animation-duration-base slide-down-leave both $animation-timing-function-leave;
+}
+
+.slide-right-enter-active {
+  animation: $animation-duration-base slide-right-enter both $animation-timing-function-enter;
+}
+
+.slide-right-exit-active {
+  animation: $animation-duration-base slide-right-leave both $animation-timing-function-leave;
+}

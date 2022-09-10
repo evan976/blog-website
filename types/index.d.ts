@@ -1,4 +1,4 @@
-type PaginateResponse<T = any> = {
+type Paginate<T = any> = {
   page: number
   pageSize: number
   total: number
@@ -61,7 +61,7 @@ type Article = {
   createdAt: string
 }
 
-type Comment = {
+type IComment = {
   id: number
   postId: number
   parentId: number
@@ -84,8 +84,14 @@ type Comment = {
   createdAt: string
 }
 
-type ArticleResponse = PaginateResponse<Article>
+type ArticleResponse = Paginate<Article>
 
-type CategoryResponse = PaginateResponse<Category>
+type CategoryResponse = Paginate<Category>
 
-type SwiperResponse = PaginateResponse<Swiper>
+type SwiperResponse = Paginate<Swiper>
+
+type CommentReponse = Paginate<IComment>
+
+type CommentWithChildren = IComment & {
+  children?: Array<CommentWithChildren>
+}

@@ -5,6 +5,7 @@
 @import 'iconfont.scss';
 @import 'markdown.scss';
 @import 'highlight.scss';
+@import 'animation.scss';
 
 @layer base {
   :root {
@@ -81,7 +82,7 @@ a {
 }
 
 body {
-  @apply overflow-x-hidden overflow-y-auto select-none font-sans text-sm text-font-200;
+  @apply overflow-x-hidden overflow-y-auto select-none font-sans text-sm text-font-200 antialiased;
 }
 
 #nprogress {
@@ -90,6 +91,10 @@ body {
   .bar {
     @apply bg-blue fixed z-[1024px] top-0 left-0 w-full h-[2px];
   }
+}
+
+.dividing {
+  @apply w-full h-[1px] bg-bg-200;
 }
 
 .swiper-pagination-bullet {

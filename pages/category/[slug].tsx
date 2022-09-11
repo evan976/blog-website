@@ -4,6 +4,7 @@ import ArticleList from 'components/article/list'
 import Layout from 'components/layout'
 import { NextPageWithLayout } from 'pages/_app'
 import fetch from 'service/fetch'
+import { API_PATHS, Article, ArticleResponse, Category, CategoryResponse } from 'types'
 
 type Props = {
   articles: Array<Article>
@@ -38,7 +39,7 @@ CategoryPage.getLayout = (page) => (
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await fetch.get<CategoryResponse>('/categories')
+  const categories = await fetch.get<CategoryResponse>(API_PATHS.CATEGORIES)
   const paths = categories.data?.map(category => ({
     params: { slug: category.slug }
   }))
@@ -51,10 +52,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context
-  const articles = await fetch.get<ArticleResponse>('/posts', {
+  const articles = await fetch.get<ArticleResponse>(API_PATHS.ARTICLES, {
     params: { categorySlug: params?.slug }
   })
-  const category = await fetch.get<Category>(`/categories/slug/${params?.slug}`)
+  const category = await fetch.get<Category>(`${API_PATHS.CATEGORIES}/slug/${params?.slug}`)
 
   return {
     props: {

@@ -6,9 +6,10 @@ import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import Layout from 'components/layout'
 import fetch from 'service/fetch'
+import { Article, ArticleResponse, Swiper as ISwiper, SwiperResponse } from 'types'
 
 type Props = {
-  swipers: Swiper[]
+  swipers: ISwiper[]
   total: number
   articles: Article[]
 }

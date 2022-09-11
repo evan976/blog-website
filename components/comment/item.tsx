@@ -3,10 +3,11 @@ import Publish from './publish'
 import DateTime from 'components/common/date'
 import Slide from 'components/common/slide'
 import markdownToHTML from 'plugins/markdown'
+import { IComment } from 'types'
 import { filterAddress, filterBrowser, filterOS } from 'utils/filter'
 
 interface CommentItemProps {
-  comment: CommentWithChildren
+  comment: IComment
   isChildren?: boolean
 }
 
@@ -14,7 +15,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
 
   const [visible, setVisible] = React.useState(false)
 
-  const isAdminAuthor = (comment: CommentWithChildren) => {
+  const isAdminAuthor = (comment: IComment) => {
     return comment.name === process.env.NEXT_PUBLIC_ADMIN_USERNAME
   }
 
@@ -57,9 +58,12 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
             <div className="text-xs flex">
               <DateTime date={comment.createdAt} />
               <span className="mx-3">{filterAddress(comment.address)}</span>
-              <button className="flex items-center" onClick={() => setVisible(!visible)}>
-                <i className="iconfont">&#xe63c;</i>
-                <span className="ml-1">回复</span>
+              <button className="flex items-center hover:text-font-100 duration-200" onClick={() => setVisible(!visible)}>
+                <i
+                  className="iconfont"
+                  dangerouslySetInnerHTML={{ __html: visible ? '&#xe685;' : '&#xe63c;' }}
+                />
+                <span className="ml-1">{visible ? '取消回复' : '回复'}</span>
               </button>
             </div>
           </div>
@@ -76,9 +80,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
             <Publish visible={visible} isReply />
           </div>
         </Slide>
-        {comment.children &&
-          comment.children.length > 0 &&
-          comment.children.map((item) => (
+        {comment.replys &&
+          comment.replys.length > 0 &&
+          comment.replys.map((item) => (
             <CommentItem
               key={item.id}
               comment={item}

@@ -13,11 +13,20 @@ const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
   return (
     <div>
       {!innerVisible ? (
-        <div
-          className={`w-full h-14 bg-bg-200 rounded-sm flex justify-start items-center cursor-text px-6 hover:bg-bg-300 duration-150`}
-          onClick={() => setInnerVisible(true)}
-        >
-          说点什么吧
+        <div className="w-full h-14 flex justify-start items-center">
+          <div className={`hidden sm:block rounded-sm w-14 h-14 border-4 border-bg-200 flex-shrink-0`}>
+            <img
+              className="rounded-sm w-full h-full"
+              src="/garavatar.png"
+              alt="avatar"
+            />
+          </div>
+          <div
+            className={`w-full ml-3 h-14 bg-bg-200 rounded-sm flex justify-start items-center cursor-text px-6 hover:bg-bg-300 duration-150`}
+            onClick={() => setInnerVisible(true)}
+          >
+            畅所欲言
+          </div>
         </div>
       ) : (
         <form className="w-full">

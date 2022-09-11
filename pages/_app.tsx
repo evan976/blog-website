@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { ReactElement, ReactNode, useEffect } from 'react'
 import NProgress from 'components/common/nprogress'
-import useMobile from 'hooks/useMobile'
 import { GA_TRACKING_ID, pageview } from 'utils/gtag'
 import 'nprogress/nprogress.css'
 import 'swiper/css'
@@ -21,7 +20,6 @@ type AppPropsWithLayout = AppProps & {
 
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const mobile = useMobile()
   const router = useRouter()
 
   const getLayout = Component.getLayout ?? ((page) => page)
@@ -44,21 +42,5 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     </ThemeProvider>
   )
 }
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   // const articles = await fetch.get('posts')
-
-//   // const swipers = await fetch.get<PaginateResponse<Swiper>>('/wallpapers')
-
-//   const tags = await fetch.get<any>('/tags')
-
-//   console.log(tags)
-
-//   return {
-//     props: {
-//       globalData: tags,
-//     },
-//   }
-// }
 
 export default MyApp

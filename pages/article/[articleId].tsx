@@ -5,6 +5,7 @@ import Layout from 'components/layout'
 import type { NextPageWithLayout } from 'pages/_app'
 import markdownToHTML from 'plugins/markdown'
 import fetch from 'service/fetch'
+import type { Article } from 'types'
 
 type Props = {
   article: Article

@@ -1,4 +1,4 @@
-type Paginate<T = any> = {
+export type Paginate<T = any> = {
   page: number
   pageSize: number
   total: number
@@ -6,7 +6,15 @@ type Paginate<T = any> = {
   data: T[]
 }
 
-type Swiper = {
+export enum API_PATHS {
+  COMMENTS = '/comments',
+  ARTICLES = '/posts',
+  SWIPERS = '/wallpapers',
+  TAGS = '/tags',
+  CATEGORIES = '/categories',
+}
+
+export type Swiper = {
   id: number
   name: string
   url: string
@@ -18,7 +26,7 @@ type Swiper = {
   weight: number
 }
 
-type Category = {
+export type Category = {
   id: number
   name: string
   slug: string
@@ -30,7 +38,7 @@ type Category = {
   createdAt: string
 }
 
-type Tag = {
+export type Tag = {
   id: number
   name: string
   slug: string
@@ -42,7 +50,7 @@ type Tag = {
   createdAt: string
 }
 
-type Article = {
+export type Article = {
   id: number
   articleId: string
   title: string
@@ -61,7 +69,7 @@ type Article = {
   createdAt: string
 }
 
-type IComment = {
+export type IComment = {
   id: number
   postId: number
   parentId: number
@@ -76,6 +84,7 @@ type IComment = {
   weight: number
   replyUserName: string
   replyUserEmail: string
+  replys: Array<IComment>
   address: string
   ip: string
   browser: string
@@ -84,14 +93,10 @@ type IComment = {
   createdAt: string
 }
 
-type ArticleResponse = Paginate<Article>
+export type ArticleResponse = Paginate<Article>
 
-type CategoryResponse = Paginate<Category>
+export type CategoryResponse = Paginate<Category>
 
-type SwiperResponse = Paginate<Swiper>
+export type SwiperResponse = Paginate<Swiper>
 
-type CommentReponse = Paginate<IComment>
-
-type CommentWithChildren = IComment & {
-  children?: Array<CommentWithChildren>
-}
+export type CommentReponse = Paginate<IComment>

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import CommentItem from './item'
+import Empty from 'components/common/empty'
 import fetch from 'service/fetch'
 import { API_PATHS, CommentReponse, IComment } from 'types'
 
@@ -24,7 +25,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments, totalPage, total })
 
   const fetchMoreComments = React.useCallback(() => {
     fetch.get<CommentReponse>(API_PATHS.COMMENTS, {
-      params: { page: page + 1 }
+      params: { page: page + 1, status: 1 }
     })
       .then(result => {
         setPage(page => page + 1)
@@ -32,15 +33,23 @@ const CommentList: React.FC<CommentListProps> = ({ comments, totalPage, total })
       })
   }, [page])
 
+  React.useEffect(() => {
+    setList(comments)
+  }, [comments])
+
 
   return (
     <div className="w-full h-full flex flex-col">
-      {list?.map((comment) => (
-        <CommentItem
-          key={comment.id}
-          comment={comment}
-        />
-      ))}
+      {list.length ? (
+        list?.map((comment) => (
+          <CommentItem
+            key={comment.id}
+            comment={comment}
+          />
+        ))
+      ) : (
+        <Empty description="期待你的捷足先登 😎" />
+      )}
       {hasMore && (
         <button
           className="px-8 py-2 bg-bg-200 rounded-sm self-start mx-auto hover:bg-bg-300 duration-150"

@@ -11,10 +11,11 @@ import { Article, ArticleResponse, Swiper as ISwiper, SwiperResponse } from 'typ
 type Props = {
   swipers: ISwiper[]
   total: number
+  totalPage: number
   articles: Article[]
 }
 
-const HomePage: NextPageWithLayout<Props> = ({ swipers, total, articles }) => {
+const HomePage: NextPageWithLayout<Props> = ({ swipers, total, totalPage, articles }) => {
 
   return (
     <div className="w-full h-full">
@@ -47,7 +48,11 @@ const HomePage: NextPageWithLayout<Props> = ({ swipers, total, articles }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <ArticleList articles={articles} />
+      <ArticleList
+        articles={articles}
+        total={total}
+        totalPage={totalPage}
+      />
     </div>
   )
 }
@@ -66,6 +71,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       swipers: swipers.data,
       total: articles.total,
+      totalPage: articles.totalPage,
       articles: articles.data
     },
   }

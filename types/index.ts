@@ -84,6 +84,7 @@ export type IComment = {
   weight: number
   replyUserName: string
   replyUserEmail: string
+  replyUserSite: string
   replys: Array<IComment>
   address: string
   ip: string

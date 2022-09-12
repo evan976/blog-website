@@ -9,9 +9,11 @@ import { API_PATHS, Article, ArticleResponse, Tag } from 'types'
 type Props = {
   articles: Array<Article>
   tag: Tag
+  total: number
+  totalPage: number
 }
 
-const TagPage: NextPageWithLayout<Props> = ({ articles, tag }) => {
+const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage }) => {
   return (
     <div className="w-full">
       <div className="w-full h-[210px] rounded overflow-hidden relative">
@@ -24,7 +26,11 @@ const TagPage: NextPageWithLayout<Props> = ({ articles, tag }) => {
           <h1 className="text-center text-white text-lg">{tag?.name}</h1>
         </div>
       </div>
-      <ArticleList articles={articles} />
+      <ArticleList
+        articles={articles}
+        total={total}
+        totalPage={totalPage}
+      />
     </div>
   )
 }
@@ -57,6 +63,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       articles: articles.data,
+      total: articles.total,
+      totalPage: articles.totalPage,
       tag
     }
   }

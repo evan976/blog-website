@@ -1,14 +1,80 @@
 import * as React from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import useReactive from 'hooks/useReactive'
+import fetch from 'service/fetch'
+import { API_PATHS, IComment } from 'types'
 
 interface PublishProps {
   visible?: boolean
   setVisible?: React.Dispatch<React.SetStateAction<boolean>>
   isReply?: boolean
+  comment?: IComment
+  reply?: IComment
+  articleId?: number
 }
 
-const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
+type FormValue = {
+  name: string
+  email: string
+  site: string
+  content: string
+}
+
+const Publish: React.FC<PublishProps> = ({
+  visible,
+  isReply = false,
+  comment,
+  reply,
+  articleId
+}) => {
 
   const [innerVisible, setInnerVisible] = React.useState(visible)
+
+  const formValue = useReactive<FormValue>({
+    name: '',
+    email: '',
+    site: '',
+    content: ''
+  })
+
+  const handleAddComment: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault()
+    const data = {
+      name: formValue.name,
+      email: formValue.email,
+      site: formValue.site,
+      content: formValue.content
+    }
+
+    if (articleId) {
+      Object.assign(data, { postId: articleId })
+    }
+
+    if (comment && (comment.parentId || comment.id)) {
+      Object.assign(data, { parentId: comment.parentId ?? comment.id })
+    }
+
+    if (comment && comment.postId) {
+      Object.assign(data, { postId: comment.postId })
+    }
+
+    if (reply) {
+      Object.assign(data, {
+        replyUserName: reply.name,
+        replyUserEmail: reply.email,
+        replyUserSite: reply.site
+      })
+    }
+
+    fetch.post(API_PATHS.COMMENTS, data)
+      .then(() => {
+        toast.success(`${isReply ? '回复' : '评论'}成功, 等待管理员审核`, { type: 'success' })
+        formValue.name = ''
+        formValue.email = ''
+        formValue.site = ''
+        formValue.content = ''
+      })
+  }
 
   return (
     <div>
@@ -29,7 +95,7 @@ const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
           </div>
         </div>
       ) : (
-        <form className="w-full">
+        <form className="w-full" onSubmit={handleAddComment}>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className={`${isReply ? 'bg-bg-300 ' : 'bg-bg-200'} rounded-sm flex justify-between items-center px-3 h-7`}>
               <input
@@ -37,6 +103,10 @@ const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
                 type="text"
                 placeholder="昵称 *"
                 required
+                value={formValue.name}
+                onChange={(e) => {
+                  formValue.name = e.target.value
+                }}
               />
             </div>
             <div className={`${isReply ? 'bg-bg-300 ' : 'bg-bg-200'} rounded-sm flex justify-between items-center px-3 h-7`}>
@@ -45,6 +115,10 @@ const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
                 type="text"
                 placeholder="邮箱 *"
                 required
+                value={formValue.email}
+                onChange={(e) => {
+                  formValue.email = e.target.value
+                }}
               />
             </div>
             <div className={`${isReply ? 'bg-bg-300 ' : 'bg-bg-200'} rounded-sm flex justify-between items-center px-3 h-7`}>
@@ -52,6 +126,10 @@ const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
                 className="outline-none w-full h-full border-none bg-transparent placeholder:text-xs"
                 type="text"
                 placeholder="网址"
+                value={formValue.site}
+                onChange={(e) => {
+                  formValue.site = e.target.value
+                }}
               />
             </div>
           </div>
@@ -59,21 +137,33 @@ const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
             <textarea
               rows={4}
               className="w-full outline-none px-3 py-2 bg-transparent placeholder:text-xs"
-              placeholder="说点什么吧"
-            ></textarea>
+              placeholder={comment?.name ? `@${comment?.name}: ` : '说点什么吧'}
+              value={formValue.content}
+              required
+              onChange={(e) => {
+                formValue.content = e.target.value
+              }}
+            />
             <div className="flex justify-between items-center h-7 bg-bg-300 rounded-b-sm">
               <div>
-                <button className="bg-bg-400 w-12 h-7 rounded-bl-sm">
-                  <i className="iconfont">&#xec04;</i>
-                </button>
-                <button className="w-7 h-7 hover:bg-bg-400">
-                  <i className="iconfont">&#xe7fc;</i>
-                </button>
-                <button className="w-7 h-7 hover:bg-bg-400">
-                  <i className="iconfont">&#xe63d;</i>
+                <a href="https://daringfireball.net/projects/markdown/">
+                  <button className="bg-bg-400 w-12 h-7 rounded-bl-sm">
+                    <i className="iconfont">&#xec04;</i>
+                  </button>
+                </a>
+                <button
+                  className="w-7 h-7 hover:bg-bg-400"
+                  onClick={() => {
+                    formValue.content = '```js\n\n```'
+                  }}
+                >
+                  <i className="iconfont">&#xe747;</i>
                 </button>
               </div>
-              <button className="min-w-[80px] px-3 h-full bg-bg-400 rounded-br-sm">
+              <button
+                className="min-w-[80px] px-3 h-full bg-bg-400 rounded-br-sm"
+                type="submit"
+              >
                 发布
                 <i className="iconfont">&#xe705;</i>
               </button>
@@ -81,7 +171,11 @@ const Publish: React.FC<PublishProps> = ({ visible, isReply = false }) => {
           </div>
         </form>
       )}
-
+      <ToastContainer
+        autoClose={3000}
+        hideProgressBar={true}
+        theme="colored"
+      />
     </div>
   )
 }

@@ -4,14 +4,22 @@ import ArticleList from 'components/article/list'
 import Layout from 'components/layout'
 import { NextPageWithLayout } from 'pages/_app'
 import fetch from 'service/fetch'
-import { API_PATHS, Article, ArticleResponse, Category, CategoryResponse } from 'types'
+import {
+  API_PATHS,
+  Article,
+  ArticleResponse,
+  Category,
+  CategoryResponse
+} from 'types'
 
 type Props = {
   articles: Array<Article>
   category: Category
+  total: number
+  totalPage: number
 }
 
-const CategoryPage: NextPageWithLayout<Props> = ({ articles, category }) => {
+const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, totalPage }) => {
   return (
     <div className="w-full">
       <div className="w-full h-[210px] rounded overflow-hidden relative">
@@ -25,7 +33,11 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category }) => {
           <p className="text-center text-white text-sm mt-2">{category?.description}</p>
         </div>
       </div>
-      <ArticleList articles={articles} />
+      <ArticleList
+        articles={articles}
+        total={total}
+        totalPage={totalPage}
+      />
     </div>
   )
 }
@@ -60,6 +72,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       articles: articles.data,
+      total: articles.total,
+      totalPage: articles.totalPage,
       category
     }
   }

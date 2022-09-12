@@ -1,16 +1,18 @@
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Card from 'components/common/card'
 import LineSkeleton from 'components/common/skeleton/line'
 import useRequest from 'hooks/useRequest'
 import fetch from 'service/fetch'
+import { ArticleResponse, Article as IArticle, API_PATHS } from 'types'
 
-const fetchArticles = () => fetch.get<ArticleResponse>('/posts', {
+const fetchArticles = () => fetch.get<ArticleResponse>(API_PATHS.ARTICLES, {
   params: { weight: 3 }
 })
 
 const Article: React.FC = () => {
 
-  const [hotList, setHotList] = useState<Array<Article>>([])
+  const [hotList, setHotList] = useState<Array<IArticle>>([])
 
   const [fetchHotList, loading] = useRequest(fetchArticles, 150, true)
 
@@ -40,12 +42,12 @@ const Article: React.FC = () => {
               >
                 {index + 1}
               </span>
-              <a
-                href="/"
+              <Link
+                href={`/article/${article.articleId}`}
                 className="truncate text-sm text-font-200 text-ellipsis overflow-hidden transition-all duration-200 hover:text-blue"
               >
                 {article.title}
-              </a>
+              </Link>
             </li>
           ))
         )}

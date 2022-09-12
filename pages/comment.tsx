@@ -19,16 +19,19 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
       <div className="w-full h-[210px] rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
-          src={'/about.jpeg'}
+          src={'/comment.jpeg'}
           alt={'about'}
         />
-        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
-          <h1 className="text-center text-white text-lg antialiased">望你的见解一针见血</h1>
+        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col">
+          <i className="iconfont mx-auto text-white !text-7xl">&#xe6aa;</i>
+          <p className="text-center text-white text-sm mt-4">
+            有朋自远方来，不亦乐乎
+          </p>
         </div>
       </div>
       <div className="w-full h-full mt-3 rounded bg-bg-100 p-3">
         <Publish />
-        <div className="dividing my-3"></div>
+        <div className="dividing my-3" />
         <CommentList
           comments={comments}
           total={total}
@@ -46,7 +49,7 @@ CommentPage.getLayout = (page) => (
 )
 
 CommentPage.getInitialProps = async () => {
-  const result = await fetch.get<CommentReponse>(API_PATHS.COMMENTS)
+  const result = await fetch.get<CommentReponse>(API_PATHS.COMMENTS, { params: { status: 1 } })
   return {
     total: result.total,
     totalPage: result.totalPage,

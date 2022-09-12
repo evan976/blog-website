@@ -8,10 +8,11 @@ import { filterAddress, filterBrowser, filterOS } from 'utils/filter'
 
 interface CommentItemProps {
   comment: IComment
+  reply?: IComment
   isChildren?: boolean
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
+const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply }) => {
 
   const [visible, setVisible] = React.useState(false)
 
@@ -30,26 +31,41 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
               alt={comment.name}
             />
           </div>
-          <div className="rounded-sm flex-1 flex flex-col">
-            <div className="flex items-center">
-              <span className="text-font-100 text-base flex items-center">
-                <span>{comment.name}</span>
-                {isAdminAuthor(comment) && <span className="bg-blue text-xs text-white px-[4px] rounded-[2px] ml-1">博主</span>}
-              </span>
-              <span className="mx-3 text-xs flex items-center">
-                <i
-                  className="iconfont"
-                  dangerouslySetInnerHTML={{ __html: filterOS(comment.os).icon }}
-                />
-                {filterOS(comment.os).name}
-              </span>
-              <span className="text-xs flex items-center">
-                <i
-                  className="iconfont"
-                  dangerouslySetInnerHTML={{ __html: filterBrowser(comment.browser).icon }}
-                />
-                {filterBrowser(comment.browser).name}
-              </span>
+          <div className="flex-1 flex flex-col">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="flex items-center">
+                  <span className="text-sm">
+                    <a className="text-font-100" href={comment.site}>{comment.name}</a>
+                    {isAdminAuthor(comment) && <span className="bg-blue text-xs text-white px-[4px] rounded-[2px] ml-1">博主</span>}
+                  </span>
+                  {comment.replyUserName && (
+                    <>
+                      <span className="text-font-300 text-sm mx-1">回复</span>
+                      <span className="text-sm">
+                        <a className="text-font-100" href={comment.replyUserSite}>
+                          {comment.replyUserName}
+                        </a>
+                      </span>
+                    </>
+                  )}
+                </span>
+                <span className="mx-3 text-xs flex items-center">
+                  <i
+                    className="iconfont"
+                    dangerouslySetInnerHTML={{ __html: filterOS(comment.os).icon }}
+                  />
+                  {filterOS(comment.os).name}
+                </span>
+                <span className="text-xs flex items-center">
+                  <i
+                    className="iconfont"
+                    dangerouslySetInnerHTML={{ __html: filterBrowser(comment.browser).icon }}
+                  />
+                  {filterBrowser(comment.browser).name}
+                </span>
+              </div>
+              <span className="text-xs text-font-300">#{comment.id}</span>
             </div>
             <div
               className="markdown-body my-1"
@@ -77,7 +93,12 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
           }}
         >
           <div className={`bg-bg-200 pb-2`}>
-            <Publish visible={visible} isReply />
+            <Publish
+              visible={visible}
+              isReply
+              comment={comment}
+              reply={comment}
+            />
           </div>
         </Slide>
         {comment.replys &&
@@ -86,6 +107,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
             <CommentItem
               key={item.id}
               comment={item}
+              reply={item}
               isChildren
             />
           ))}

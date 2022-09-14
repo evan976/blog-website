@@ -1,24 +1,10 @@
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import * as React from 'react'
 import Card from 'components/common/card'
 import LineSkeleton from 'components/common/skeleton/line'
-import useRequest from 'hooks/useRequest'
-import fetch from 'service/fetch'
+import { Tag as ITag } from 'types'
 
-const fetchTags = () => fetch.get<Array<Tag>>('/tags')
-
-const Tag: React.FC = () => {
-
-  const [tagList, setTagList] = useState<Array<Tag>>([])
-
-  const [fetchTagList, loading] = useRequest(fetchTags, 150, true)
-
-  useEffect(() => {
-    fetchTagList()
-      .then(data => {
-        setTagList(data)
-      })
-  }, [fetchTagList])
+const Tag: React.FC<{ tags: Array<ITag>, loading: boolean }> = ({ loading, tags }) => {
 
   return (
     <Card title="文章标签" icon="&#xe701;" className="mt-3 sticky top-[382px]">
@@ -30,15 +16,14 @@ const Tag: React.FC = () => {
             </li>
           ))
         ) : (
-          tagList?.map(tag => (
+          tags?.map(tag => (
             <Link href={`/tag/${tag.slug}`} key={tag.id}>
               <a>
                 <li
-                  className={`inline-block m-1 cursor-pointer transition-all duration-300 py-[2px] px-2 rounded-sm text-white opacity-80 hover:opacity-100`}
+                  className={`inline-block m-1 cursor-pointer transition-all duration-300 py-[2px] px-2 rounded-sm text-white`}
                   style={{ background: tag.color }}
                 >
-                  <i className="iconfont align-middle">&#xe701;</i>
-                  <span className="ml-[2px] text-sm">{tag.name}({tag.postCount})</span>
+                  <span className="ml-[2px] text-sm">{tag.name}({tag.article_count})</span>
                 </li>
               </a>
             </Link>

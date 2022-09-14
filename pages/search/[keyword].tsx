@@ -1,9 +1,9 @@
-import React from 'react'
+import * as React from 'react'
+import { fetchArticleList } from 'api'
 import ArticleList from 'components/article/list'
 import Layout from 'components/layout'
 import type { NextPageWithLayout } from 'pages/_app'
-import fetch from 'service/fetch'
-import { API_PATHS, Article, ArticleResponse } from 'types'
+import { Article } from 'types'
 
 type Props = {
   articles: Array<Article>
@@ -37,22 +37,16 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
   )
 }
 
-SearchPage.getLayout = (page) => (
-  <Layout mobile={false}>
-    {page}
-  </Layout>
-)
+SearchPage.getLayout = (page) => <Layout>{page}</Layout>
 
 SearchPage.getInitialProps = async ({ query }) => {
   const { keyword } = query
-  const articles = await fetch.get<ArticleResponse>(API_PATHS.ARTICLES, {
-    params: { keyword }
-  })
+  const { data, total, total_page } = await fetchArticleList({ keyword: keyword as string })
 
   return {
-    articles: articles.data,
-    total: articles.total,
-    totalPage: articles.totalPage,
+    articles: data,
+    total: total,
+    totalPage: total_page,
     keyword: keyword as string
   }
 }

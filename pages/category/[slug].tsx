@@ -1,16 +1,10 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import React from 'react'
+import * as React from 'react'
+import { fetchArticleListBySlug, fetchCategoryBySlug, fetchCategoryList } from 'api'
 import ArticleList from 'components/article/list'
 import Layout from 'components/layout'
 import { NextPageWithLayout } from 'pages/_app'
-import fetch from 'service/fetch'
-import {
-  API_PATHS,
-  Article,
-  ArticleResponse,
-  Category,
-  CategoryResponse
-} from 'types'
+import { Article, Category, } from 'types'
 
 type Props = {
   articles: Array<Article>
@@ -28,7 +22,7 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
           src={category?.background}
           alt={category?.name}
         />
-        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[50%]">
+        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
           <h1 className="text-center text-white text-lg">{category?.name}</h1>
           <p className="text-center text-white text-sm mt-2">{category?.description}</p>
         </div>
@@ -42,39 +36,33 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
   )
 }
 
-CategoryPage.getLayout = (page) => (
-  <Layout mobile={false}>
-    {page}
-  </Layout>
-)
-
-
+CategoryPage.getLayout = (page) => <Layout>{page}</Layout>
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await fetch.get<CategoryResponse>(API_PATHS.CATEGORIES)
-  const paths = categories.data?.map(category => ({
-    params: { slug: category.slug }
-  }))
-
-  return {
-    paths: paths,
-    fallback: false
+  try {
+    const result = await fetchCategoryList()
+    const paths = result.data.map(category => {
+      return {
+        params: { slug: category.slug }
+      }
+    })
+    return { paths: paths, fallback: false }
+  } catch (error) {
+    return { paths: [], fallback: false }
   }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context
-  const articles = await fetch.get<ArticleResponse>(API_PATHS.ARTICLES, {
-    params: { categorySlug: params?.slug }
-  })
-  const category = await fetch.get<Category>(`${API_PATHS.CATEGORIES}/slug/${params?.slug}`)
+  const { data, total, total_page } = await fetchArticleListBySlug(params?.slug as string, 'category')
+  const category = await fetchCategoryBySlug(params?.slug as string)
 
   return {
     props: {
-      articles: articles.data,
-      total: articles.total,
-      totalPage: articles.totalPage,
-      category
+      category,
+      articles: data,
+      total: total,
+      totalPage: total_page,
     }
   }
 }

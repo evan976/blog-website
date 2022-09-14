@@ -1,9 +1,9 @@
 import React from 'react'
 import ArticleItem from './item'
 import ArticleSkeleton from './skeleton'
+import { fetchArticleList } from 'api'
 import Empty from 'components/common/empty'
-import fetch from 'service/fetch'
-import { API_PATHS, Article, ArticleResponse } from 'types'
+import { Article } from 'types'
 
 type Props = {
   articles: Array<Article>
@@ -26,10 +26,7 @@ const ArticleList: React.FC<Props> = ({ articles, total, totalPage }) => {
 
   const loadMoreArticle = React.useCallback(() => {
     if (!hasMore) return
-
-    fetch.get<ArticleResponse>(API_PATHS.ARTICLES, {
-      params: { page: page + 1 }
-    })
+    fetchArticleList({ page: page + 1 })
       .then(result => {
         setPage(page => page + 1)
         setArticleList((articles) => [...articles, ...result.data])

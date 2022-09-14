@@ -1,18 +1,20 @@
 import React from 'react'
-import DesktopLayout from './desktop'
-import MobileLayout from './mobile'
+import Footer from './footer'
+import Header from './header'
+import Main from './main'
 
-type AppLayoutProps = {
-  mobile: boolean
+type LayoutProps = {
   children: React.ReactNode
 }
 
-const AppLayout: React.FC<AppLayoutProps> = ({ mobile, children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div id="app" className="app">
-      <DesktopLayout>{children}</DesktopLayout>
+    <div className="layout">
+      <Header />
+      <Main>{children}</Main>
+      <Footer />
     </div>
   )
 }
 
-export default AppLayout
+export default Layout

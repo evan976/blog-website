@@ -1,10 +1,10 @@
 import * as React from 'react'
 import type { NextPageWithLayout } from './_app'
+import { fetchCommentList } from 'api'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import Layout from 'components/layout'
-import fetch from 'service/fetch'
-import { API_PATHS, CommentReponse, IComment } from 'types'
+import { IComment } from 'types'
 
 
 type Props = {
@@ -43,16 +43,16 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
 }
 
 CommentPage.getLayout = (page) => (
-  <Layout mobile={false}>
+  <Layout>
     {page}
   </Layout>
 )
 
 CommentPage.getInitialProps = async () => {
-  const result = await fetch.get<CommentReponse>(API_PATHS.COMMENTS, { params: { status: 1 } })
+  const result = await fetchCommentList({ status: 1 })
   return {
     total: result.total,
-    totalPage: result.totalPage,
+    totalPage: result.total_page,
     comments: result.data
   }
 }

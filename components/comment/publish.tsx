@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { toast, ToastContainer } from 'react-toastify'
+import { addComment } from 'api'
 import useReactive from 'hooks/useReactive'
-import fetch from 'service/fetch'
-import { API_PATHS, IComment } from 'types'
+import { IComment } from 'types'
 
 interface PublishProps {
   visible?: boolean
@@ -47,33 +47,32 @@ const Publish: React.FC<PublishProps> = ({
     }
 
     if (articleId) {
-      Object.assign(data, { postId: articleId })
+      Object.assign(data, { article_id: articleId })
     }
 
-    if (comment && (comment.parentId || comment.id)) {
-      Object.assign(data, { parentId: comment.parentId ?? comment.id })
+    if (comment && (comment.parent_id || comment.id)) {
+      Object.assign(data, { parent_id: comment.parent_id ?? comment.id })
     }
 
-    if (comment && comment.postId) {
-      Object.assign(data, { postId: comment.postId })
+    if (comment && comment.article_id) {
+      Object.assign(data, { article_id: comment.article_id })
     }
 
     if (reply) {
       Object.assign(data, {
-        replyUserName: reply.name,
-        replyUserEmail: reply.email,
-        replyUserSite: reply.site
+        reply_user_name: reply.name,
+        reply_user_email: reply.email,
+        reply_user_site: reply.site
       })
     }
 
-    fetch.post(API_PATHS.COMMENTS, data)
-      .then(() => {
-        toast.success(`${isReply ? '回复' : '评论'}成功, 等待管理员审核`, { type: 'success' })
-        formValue.name = ''
-        formValue.email = ''
-        formValue.site = ''
-        formValue.content = ''
-      })
+    addComment(data).then(() => {
+      toast.success(`${isReply ? '回复' : '评论'}成功, 等待管理员审核`, { type: 'success' })
+      formValue.name = ''
+      formValue.email = ''
+      formValue.site = ''
+      formValue.content = ''
+    })
   }
 
   return (
@@ -152,6 +151,7 @@ const Publish: React.FC<PublishProps> = ({
                   </button>
                 </a>
                 <button
+                  type="button"
                   className="w-7 h-7 hover:bg-bg-400"
                   onClick={() => {
                     formValue.content = '```js\n\n```'

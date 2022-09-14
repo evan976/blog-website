@@ -26,13 +26,13 @@ export const menus: Array<MenuItem> = [
     key: MenuKey.Code,
     path: '/category/code',
     icon: '&#xe7fc;',
-    name: '代码',
+    name: '黄金屋',
   },
   {
     key: MenuKey.Lift,
     icon: '&#xe62b;',
     path: '/category/life',
-    name: '生活',
+    name: '颜如玉',
   },
   {
     key: MenuKey.Github,
@@ -45,7 +45,7 @@ export const menus: Array<MenuItem> = [
     key: MenuKey.Comment,
     path: '/comment',
     icon: '&#xe6aa;',
-    name: '留言',
+    name: '广开言路',
   },
   {
     key: MenuKey.Abount,

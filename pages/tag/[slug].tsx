@@ -1,10 +1,10 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import React from 'react'
+import * as React from 'react'
+import { fetchArticleListBySlug, fetchTagBySlug, fetchTagList } from 'api'
 import ArticleList from 'components/article/list'
 import Layout from 'components/layout'
 import type { NextPageWithLayout } from 'pages/_app'
-import fetch from 'service/fetch'
-import { API_PATHS, Article, ArticleResponse, Tag } from 'types'
+import { Article, Tag } from 'types'
 
 type Props = {
   articles: Array<Article>
@@ -35,37 +35,34 @@ const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage })
   )
 }
 
-TagPage.getLayout = (page) => (
-  <Layout mobile={false}>
-    {page}
-  </Layout>
-)
+TagPage.getLayout = (page) => <Layout>{page}</Layout>
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await fetch.get<Array<Tag>>(API_PATHS.TAGS)
-  const paths = tags?.map(tag => ({
-    params: { slug: tag.slug }
-  }))
+  try {
+    const tags = await fetchTagList()
+    const paths = tags.map(tag => {
+      return {
+        params: { slug: tag.slug }
+      }
+    })
 
-  return {
-    paths: paths,
-    fallback: false
+    return { paths: paths, fallback: false }
+  } catch (error) {
+    return { paths: [], fallback: false }
   }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context
-  const articles = await fetch.get<ArticleResponse>(API_PATHS.ARTICLES, {
-    params: { tagSlug: params?.slug }
-  })
-  const tag = await fetch.get<Tag>(`${API_PATHS.TAGS}/slug/${params?.slug}`)
+  const { data, total, total_page } = await fetchArticleListBySlug(params?.slug as string, 'tag')
+  const tag = await fetchTagBySlug(params?.slug as string)
 
   return {
     props: {
-      articles: articles.data,
-      total: articles.total,
-      totalPage: articles.totalPage,
-      tag
+      tag,
+      articles: data,
+      total: total,
+      totalPage: total_page,
     }
   }
 }

@@ -21,6 +21,7 @@
     "semi-spacing": ["error", { "before": false, "after": true }],
     "jsx-quotes": ["error", "prefer-double"],
     "import/named": 0,
-    "@next/next/no-img-element": 0
+    "@next/next/no-img-element": 0,
+    "import/no-anonymous-default-export": 0
   }
 }

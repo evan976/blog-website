@@ -39,12 +39,12 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
                     <a className="text-font-100" href={comment.site}>{comment.name}</a>
                     {isAdminAuthor(comment) && <span className="bg-blue text-xs text-white px-[4px] rounded-[2px] ml-1">博主</span>}
                   </span>
-                  {comment.replyUserName && (
+                  {comment.reply_user_name && (
                     <>
                       <span className="text-font-300 text-sm mx-1">回复</span>
                       <span className="text-sm">
-                        <a className="text-font-100" href={comment.replyUserSite}>
-                          {comment.replyUserName}
+                        <a className="text-font-100" href={comment.reply_user_site}>
+                          {comment.reply_user_name}
                         </a>
                       </span>
                     </>
@@ -72,7 +72,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
               dangerouslySetInnerHTML={{ __html: markdownToHTML(comment.content) }}>
             </div>
             <div className="text-xs flex">
-              <DateTime date={comment.createdAt} />
+              <DateTime date={comment.created_at * 1000} />
               <span className="mx-3">{filterAddress(comment.address)}</span>
               <button className="flex items-center hover:text-font-100 duration-200" onClick={() => setVisible(!visible)}>
                 <i

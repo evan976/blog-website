@@ -14,7 +14,7 @@ const AboutPage: NextPageWithLayout = () => {
         <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col">
           <i className="iconfont mx-auto text-white !text-7xl">&#xe61d;</i>
           <p className="text-center text-white text-sm mt-4">
-            保持热爱，奔赴山海
+            寄蜉蝣于天地，渺沧海之一粟
           </p>
         </div>
       </div>
@@ -23,10 +23,6 @@ const AboutPage: NextPageWithLayout = () => {
   )
 }
 
-AboutPage.getLayout = (page) => (
-  <Layout mobile={false}>
-    {page}
-  </Layout>
-)
+AboutPage.getLayout = (page) => <Layout>{page}</Layout>
 
 export default AboutPage

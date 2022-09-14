@@ -1,21 +1,25 @@
 import type { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
 import { NextPageWithLayout } from './_app'
+import { fetchArticleList } from 'api'
 import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import Layout from 'components/layout'
-import fetch from 'service/fetch'
-import { Article, ArticleResponse, Swiper as ISwiper, SwiperResponse } from 'types'
+import { Article } from 'types'
 
 type Props = {
-  swipers: ISwiper[]
   total: number
   totalPage: number
   articles: Article[]
 }
 
-const HomePage: NextPageWithLayout<Props> = ({ swipers, total, totalPage, articles }) => {
+const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles }) => {
+
+  const banners = React.useMemo(() => {
+    return articles.slice(0, 6)
+  }, [articles])
 
   return (
     <div className="w-full h-full">
@@ -34,14 +38,15 @@ const HomePage: NextPageWithLayout<Props> = ({ swipers, total, totalPage, articl
           disableOnInteraction: false
         }}
       >
-        {swipers?.map((item) => (
+        {banners?.map((item) => (
           <SwiperSlide key={item.id}>
-            <Link href={item.link}>
+            <Link href={`/article/${item.article_id}`}>
               <a>
                 <Image
                   className="duration-200 scale-100 hover:scale-105"
-                  src={item.url}
-                  layout="fill" alt={item.name}
+                  src={item.thumb}
+                  layout="fill"
+                  alt={item.title}
                 />
               </a>
             </Link>
@@ -57,22 +62,15 @@ const HomePage: NextPageWithLayout<Props> = ({ swipers, total, totalPage, articl
   )
 }
 
-HomePage.getLayout = (page) => (
-  <Layout mobile={false}>
-    {page}
-  </Layout>
-)
+HomePage.getLayout = (page) => <Layout>{page}</Layout>
 
 export const getStaticProps: GetStaticProps = async () => {
-  const swipers = await fetch.get<SwiperResponse>('/wallpapers')
-  const articles = await fetch.get<ArticleResponse>('/posts')
-
+  const result = await fetchArticleList()
   return {
     props: {
-      swipers: swipers.data,
-      total: articles.total,
-      totalPage: articles.totalPage,
-      articles: articles.data
+      total: result.total,
+      totalPage: result.total_page,
+      articles: result.data
     },
   }
 }

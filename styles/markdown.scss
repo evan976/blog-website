@@ -1,6 +1,18 @@
 .markdown-body {
   @apply break-words leading-[1.75] font-normal text-sm overflow-x-hidden;
 
+  ::-webkit-scrollbar {
+    @apply h-1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bg-300;
+  }
+
+  ::-webkit-scrollbar-thumb:window-inactive {
+    @apply bg-bg-400;
+  }
+
   h1,
   h2,
   h3,

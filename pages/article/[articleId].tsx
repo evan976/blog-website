@@ -1,6 +1,8 @@
 import Color from 'color'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
+import { fetchArticleComments, fetchArticleDetail, fetchArticleList } from 'api'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import DateTime from 'components/common/date'
@@ -8,8 +10,7 @@ import Divider from 'components/common/divider'
 import Layout from 'components/layout'
 import type { NextPageWithLayout } from 'pages/_app'
 import markdownToHTML from 'plugins/markdown'
-import fetch from 'service/fetch'
-import { API_PATHS, Article, CommentReponse } from 'types'
+import { Article, CommentReponse } from 'types'
 
 type Props = {
   article: Article
@@ -29,7 +30,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
         <article>
           <h1 className="text-center font-bold text-font-100 text-xl my-2">{article.title}</h1>
           <div className="mt-3 text-center">
-            <DateTime date={article.createdAt!} from={false} />
+            <DateTime date={article.created_at!} from={false} />
             <span>&nbsp;&nbsp;·&nbsp;&nbsp;阅读 {article.views}</span>
           </div>
           <div className="w-full h-[210px] mt-3 p-2 rounded-sm border border-bg-200">
@@ -63,9 +64,9 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
           <div className="mt-2">
             <span>永久链接：</span>
             <a
-              href={`https://evanone.site/article/${article.articleId}`}
+              href={`https://evanone.site/article/${article.article_id}`}
               className="underline underline-offset-2 text-font-200 hover:text-blue duration-200"
-            >https://evanone.site/article/{article.articleId}</a>
+            >https://evanone.site/article/{article.article_id}</a>
           </div>
           <a
             className="mt-2 inline-block text-font-200 underline-offset-2 hover:text-blue hover:underline duration-200"
@@ -80,29 +81,39 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
         <CommentList
           comments={comments?.data}
           total={comments?.total}
-          totalPage={comments?.totalPage}
+          totalPage={comments?.total_page}
         />
       </div>
     </div>
   )
 }
 
-ArticlePage.getLayout = (page) => (
-  <Layout mobile={false}>
-    {page}
-  </Layout>
-)
+ArticlePage.getLayout = (page) => <Layout>{page}</Layout>
 
-ArticlePage.getInitialProps = async ({ query }) => {
-  const { articleId } = query
-  const article = await fetch.get<Article>(`${API_PATHS.ARTICLES}/${articleId}`)
-  const comments = await fetch.get<CommentReponse>(API_PATHS.COMMENTS, {
-    params: { postId: article?.id }
-  })
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    const result = await fetchArticleList({ page_size: 999 })
+    const paths = result.data.map(article => {
+      return {
+        params: { articleId: article.article_id }
+      }
+    })
+    return { paths: paths, fallback: false }
+  } catch (error) {
+    return { paths: [], fallback: false }
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { params } = context
+  const article = await fetchArticleDetail(params?.articleId as string)
+  const comments = await fetchArticleComments(article.id)
 
   return {
-    article,
-    comments
+    props: {
+      article,
+      comments
+    }
   }
 }
 

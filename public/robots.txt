@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://localhost:8080
+
+# Sitemaps
+Sitemap: https://localhost:8080/sitemap.xml

@@ -13,7 +13,7 @@ fetch.interceptors.response.use(
       }
     }
 
-    return response.data.data
+    return response.data.result
   },
   (error) => {
     const errorJSON = error.toJSON()

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import CommentItem from './item'
+import { fetchCommentList } from 'api'
 import Empty from 'components/common/empty'
-import fetch from 'service/fetch'
-import { API_PATHS, CommentReponse, IComment } from 'types'
+import { IComment } from 'types'
 
 interface CommentListProps {
   comments: Array<IComment>
@@ -24,9 +24,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments, totalPage, total })
   }, [list.length, total])
 
   const fetchMoreComments = React.useCallback(() => {
-    fetch.get<CommentReponse>(API_PATHS.COMMENTS, {
-      params: { page: page + 1, status: 1 }
-    })
+    fetchCommentList({ page: page + 1, status: 1 })
       .then(result => {
         setPage(page => page + 1)
         setList((comment) => [...comment, ...result.data])

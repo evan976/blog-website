@@ -30,7 +30,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
         <article>
           <h1 className="text-center font-bold text-font-100 text-xl my-2">{article.title}</h1>
           <div className="mt-3 text-center">
-            <DateTime date={article.created_at!} from={false} />
+            <DateTime date={article.created_at * 1000} from={false} />
             <span>&nbsp;&nbsp;·&nbsp;&nbsp;阅读 {article.views}</span>
           </div>
           <div className="w-full h-[210px] mt-3 p-2 rounded-sm border border-bg-200">

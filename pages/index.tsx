@@ -4,22 +4,23 @@ import Link from 'next/link'
 import React from 'react'
 import { NextPageWithLayout } from './_app'
 import { fetchArticleList } from 'api'
+import { fetchWeiboList } from 'api/tripartite'
 import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import Layout from 'components/layout'
+import Weibo from 'components/weibo'
 import { Article } from 'types'
 
 type Props = {
   total: number
   totalPage: number
   articles: Article[]
+  weibo: any[]
 }
 
-const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles }) => {
+const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo }) => {
 
-  const banners = React.useMemo(() => {
-    return articles.slice(0, 6)
-  }, [articles])
+  const banners = React.useMemo(() => articles.slice(0, 6), [articles])
 
   return (
     <div className="w-full h-full">
@@ -53,6 +54,7 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles }) => 
           </SwiperSlide>
         ))}
       </Swiper>
+      <Weibo weibo={weibo} />
       <ArticleList
         articles={articles}
         total={total}
@@ -66,11 +68,15 @@ HomePage.getLayout = (page) => <Layout>{page}</Layout>
 
 export const getStaticProps: GetStaticProps = async () => {
   const result = await fetchArticleList()
+
+  const weibo = await fetchWeiboList()
+
   return {
     props: {
       total: result.total,
       totalPage: result.total_page,
-      articles: result.data
+      articles: result.data,
+      weibo
     },
   }
 }

@@ -16,6 +16,7 @@ export default class MyDocument extends Document {
               />
             </>
           )}
+          <script async src="//at.alicdn.com/t/c/font_3611336_mqgj4wsvpfe.js" />
         </Head>
         <body>
           <Main />

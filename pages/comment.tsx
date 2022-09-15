@@ -42,11 +42,7 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
   )
 }
 
-CommentPage.getLayout = (page) => (
-  <Layout>
-    {page}
-  </Layout>
-)
+CommentPage.getLayout = (page) => <Layout>{page}</Layout>
 
 CommentPage.getInitialProps = async () => {
   const result = await fetchCommentList({ status: 1 })

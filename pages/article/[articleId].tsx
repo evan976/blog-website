@@ -28,7 +28,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
       <Helmet>
         <title>{article?.title + ' | ' + META.title}</title>
       </Helmet>
-      <div className="w-full h-full bg-bg-100 rounded p-3">
+      <div className="w-full h-full mt-3 sm:mt-0 bg-bg-100 rounded p-3">
         <article>
           <ArticleMeta article={article} />
           <h1 className="text-center font-bold text-font-100 text-xl my-2">{article.title}</h1>
@@ -36,7 +36,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
             <DateTime date={article.created_at * 1000} from={false} />
             <span>&nbsp;&nbsp;·&nbsp;&nbsp;阅读 {article.views}</span>
           </div>
-          <div className="w-full h-[210px] mt-3 p-2 rounded-sm border border-bg-200">
+          <div className="w-full h-[154px] sm:h-[210px] mt-3 p-2 rounded-sm border border-bg-200">
             <img className="w-full h-full rounded-sm" src={article.thumb} alt={article.title} />
           </div>
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
@@ -64,7 +64,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
               >{tag.name}</a>
             ))}
           </div>
-          <div className="mt-2">
+          <div className="mt-2 truncate">
             <span>永久链接：</span>
             <a
               href={`https://evanone.site/article/${article.article_id}`}
@@ -74,7 +74,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
           <a
             className="mt-2 inline-block text-font-200 underline-offset-2 hover:text-blue hover:underline duration-200"
             href="">
-            遵循CC 4.0 BY-SA版权协议，转载请注明出处，严禁非法转载
+            遵循CC 4.0 BY-SA版权协议，严禁非法转载
           </a>
         </article>
       </div>

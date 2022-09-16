@@ -2,6 +2,7 @@ import * as React from 'react'
 import Publish from './publish'
 import DateTime from 'components/common/date'
 import Slide from 'components/common/slide'
+import useMobile from 'hooks/useMobile'
 import markdownToHTML from 'plugins/markdown'
 import { IComment } from 'types'
 import { filterAddress, filterBrowser, filterOS } from 'utils/filter'
@@ -14,6 +15,8 @@ interface CommentItemProps {
 
 const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply }) => {
 
+  const isMobile = useMobile()
+
   const [visible, setVisible] = React.useState(false)
 
   const isAdminAuthor = (comment: IComment) => {
@@ -21,8 +24,8 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
   }
 
   return (
-    <div className={`bg-bg-200 rounded-sm ${isChildren ? 'mb-0 border-t border-dashed border-border' : 'mb-3'}`}>
-      <div className={`relative ${isChildren ? 'pl-[68px] pr-0' : 'pl-20 pr-3'}`}>
+    <div className={`bg-bg-200 rounded-sm ${isChildren ? 'mb-0 border-t border-dashed border-border' : 'mb-3 last:mb-0'}`}>
+      <div className={`relative ${isChildren ? 'pl-3 sm:pl-[68px] pr-0' : 'pl-3 sm:pl-20 pr-3'}`}>
         <div className={`w-full flex bg-bg-200 py-3`}>
           <div className={`hidden sm:block rounded-sm absolute w-14 h-14 translate-y-3 border-4 border-bg-100 flex-shrink-0 ${isChildren ? 'left-0' : 'left-3'}`}>
             <img
@@ -57,7 +60,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
                   />
                   {filterOS(comment.os).name}
                 </span>
-                <span className="text-xs flex items-center">
+                <span className="text-xs hidden sm:flex items-center">
                   <i
                     className="iconfont"
                     dangerouslySetInnerHTML={{ __html: filterBrowser(comment.browser).icon }}
@@ -88,7 +91,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
           visible={visible}
           options={{
             from: { opacity: 0, height: 0 },
-            enter: { opacity: 1, height: 177 },
+            enter: { opacity: 1, height: isMobile ? 260 : 177 },
             leave: { opacity: 0, height: 0 },
           }}
         >

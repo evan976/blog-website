@@ -22,7 +22,7 @@ const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage })
       <Helmet>
         <title>{tag.name + ' | ' + tag.slug + ' | ' + META.title}</title>
       </Helmet>
-      <div className="w-full h-[210px] rounded overflow-hidden relative">
+      <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
           src={tag?.background}

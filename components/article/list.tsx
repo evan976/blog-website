@@ -1,6 +1,5 @@
 import React from 'react'
 import ArticleItem from './item'
-import ArticleSkeleton from './skeleton'
 import { fetchArticleList } from 'api'
 import Empty from 'components/common/empty'
 import { Article } from 'types'
@@ -38,13 +37,13 @@ const ArticleList: React.FC<Props> = ({ articles, total, totalPage }) => {
   }, [articles])
 
   return (
-    <div className="my-3">
+    <>
       {!articleList.length ? (<Empty />) : (
         <>
           {articleList?.map(article => (
             <ArticleItem key={article.id} article={article} />
           ))}
-          <div className="bg-bg-100 h-8 leading-[32px] my-3 rounded flex justify-between items-center">
+          <div className="bg-bg-100 h-8 leading-[32px] mt-3 mb-3 sm:mb-0 rounded flex justify-between items-center">
             <span className="ml-3 text-font-300">{currentPage} / {total}</span>
             <button
               className={`text-font-200 text-sm bg-bg-100 w-32 h-full flex justify-end pr-4 items-center text-center relative cursor-pointer rounded-r-[4px] duration-150 before:content-[''] before:absolute before:block before:w-4 before:h-[125%] before:top-[-12%] before:left-[-5px] before:bg-bg-200 before:rotate-[18deg] ${hasMore ? 'cursor-pointer hover:bg-lime hover:text-white' : 'cursor-not-allowed'}`}
@@ -56,7 +55,7 @@ const ArticleList: React.FC<Props> = ({ articles, total, totalPage }) => {
           </div>
         </>
       )}
-    </div>
+    </>
   )
 }
 

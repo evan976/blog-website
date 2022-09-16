@@ -87,7 +87,7 @@ const Publish: React.FC<PublishProps> = ({
             />
           </div>
           <div
-            className={`w-full ml-3 h-14 bg-bg-200 rounded-sm flex justify-start items-center cursor-text px-6 hover:bg-bg-300 duration-150`}
+            className={`w-full sm:ml-3 h-14 bg-bg-200 rounded-sm flex justify-start items-center cursor-text px-6 hover:bg-bg-300 duration-150`}
             onClick={() => setInnerVisible(true)}
           >
             畅所欲言

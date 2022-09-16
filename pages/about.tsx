@@ -11,7 +11,7 @@ const AboutPage: NextPageWithLayout = () => {
       <Helmet>
         <title>{'关于' + ' | ' + 'about' + ' | ' + META.title}</title>
       </Helmet>
-      <div className="w-full h-[210px] rounded overflow-hidden relative">
+      <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
           src={'/about.jpeg'}
@@ -46,26 +46,26 @@ const AboutPage: NextPageWithLayout = () => {
               </a>
             </li>
           </ul>
-          <ul className="grid grid-cols-4 gap-3 mt-3">
-            <li className="px-3 py-2 bg-black flex justify-center items-center rounded">
+          <ul className="grid grid-cols-4 gap-2 sm:gap-3 mt-3">
+            <li className="px-2 sm:px-3 py-2 bg-black flex justify-center items-center rounded">
               <a href={CONNECT_LINKS.github} target="_blank" rel="noreferrer">
                 <i className="iconfont text-white">&#xe601;</i>
                 <span className="text-white ml-1">Github</span>
               </a>
             </li>
-            <li className="px-3 py-2 bg-[#056CE8] flex justify-center items-center rounded">
+            <li className="px-2 sm:px-3 py-2 bg-[#056CE8] flex justify-center items-center rounded">
               <a href={CONNECT_LINKS.zhihu} target="_blank" rel="noreferrer">
                 <i className="iconfont text-white">&#xea8b;</i>
                 <span className="text-white ml-1">知乎</span>
               </a>
             </li>
-            <li className="px-3 py-2 bg-[#1F80FF] flex justify-center items-center rounded">
+            <li className="px-2 sm:px-3 py-2 bg-[#1F80FF] flex justify-center items-center rounded">
               <a href={CONNECT_LINKS.juejin} target="_blank" rel="noreferrer">
                 <i className="iconfont text-white">&#xe60b;</i>
                 <span className="text-white ml-1">掘金</span>
               </a>
             </li>
-            <li className="px-3 py-2 bg-red flex justify-center items-center rounded">
+            <li className="px-2 sm:px-3 py-2 bg-red flex justify-center items-center rounded">
               <a href={CONNECT_LINKS.music_163} target="_blank" rel="noreferrer">
                 <i className="iconfont text-white">&#xe622;</i>
                 <span className="text-white ml-1">网抑云</span>

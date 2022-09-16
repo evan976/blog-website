@@ -13,6 +13,7 @@ export interface MenuItem {
   name: string
   icon: string
   link?: boolean
+  hidden?: boolean
 }
 
 export const menus: Array<MenuItem> = [
@@ -25,12 +26,12 @@ export const menus: Array<MenuItem> = [
   {
     key: MenuKey.Code,
     path: '/category/code',
-    icon: '&#xe7fc;',
+    icon: '&#xe747;',
     name: '黄金屋',
   },
   {
     key: MenuKey.Lift,
-    icon: '&#xe62b;',
+    icon: '&#xe653;',
     path: '/category/life',
     name: '颜如玉',
   },
@@ -40,6 +41,7 @@ export const menus: Array<MenuItem> = [
     icon: '&#xe601;',
     name: 'Github',
     link: true,
+    hidden: true,
   },
   {
     key: MenuKey.Comment,

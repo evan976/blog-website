@@ -4,6 +4,7 @@ import type { NextPageWithLayout } from './_app'
 import { fetchCommentList } from 'api'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
+import Divider from 'components/common/divider'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import { IComment } from 'types'
@@ -17,11 +18,11 @@ type Props = {
 
 const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full mb-3 sm:mb-0">
       <Helmet>
         <title>{'广开言路' + ' | ' + 'comment' + ' | ' + META.title}</title>
       </Helmet>
-      <div className="w-full h-[210px] rounded overflow-hidden relative">
+      <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
           src={'/comment.jpeg'}
@@ -36,7 +37,7 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
       </div>
       <div className="w-full h-full mt-3 rounded bg-bg-100 p-3">
         <Publish />
-        <div className="dividing my-3" />
+        <Divider />
         <CommentList
           comments={comments}
           total={total}

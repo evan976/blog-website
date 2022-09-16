@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 
 const useMobile = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const updateMedia = () => {
-      setIsMobile(window.innerWidth < 768)
+      setIsMobile(window.innerWidth < 640)
     }
 
     updateMedia()

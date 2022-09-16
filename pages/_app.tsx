@@ -3,6 +3,7 @@ import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { ReactElement, ReactNode, useEffect } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import NProgress from 'components/common/nprogress'
 import { GA_TRACKING_ID, pageview } from 'utils/gtag'
 import 'react-toastify/dist/ReactToastify.css'
@@ -37,10 +38,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   }, [router.events])
 
   return (
-    <ThemeProvider attribute="class">
-      <NProgress />
-      {getLayout(<Component {...pageProps} />)}
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider attribute="class">
+        <NProgress />
+        {getLayout(<Component {...pageProps} />)}
+      </ThemeProvider>
+    </HelmetProvider>
   )
 }
 

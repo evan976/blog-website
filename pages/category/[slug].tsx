@@ -1,8 +1,11 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import * as React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { fetchArticleListBySlug, fetchCategoryBySlug, fetchCategoryList } from 'api'
 import ArticleList from 'components/article/list'
+import Ad from 'components/common/ad'
 import Layout from 'components/layout'
+import { META } from 'config/app.config'
 import { NextPageWithLayout } from 'pages/_app'
 import { Article, Category, } from 'types'
 
@@ -15,7 +18,10 @@ type Props = {
 
 const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, totalPage }) => {
   return (
-    <div className="w-full">
+    <>
+      <Helmet>
+        <title>{category.name + ' | ' + category.slug + ' | ' + META.title}</title>
+      </Helmet>
       <div className="w-full h-[210px] rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
@@ -27,12 +33,13 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
           <p className="text-center text-white text-sm mt-2">{category?.description}</p>
         </div>
       </div>
+      <Ad />
       <ArticleList
         articles={articles}
         total={total}
         totalPage={totalPage}
       />
-    </div>
+    </>
   )
 }
 

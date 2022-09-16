@@ -19,7 +19,7 @@ const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
       <div className="p-2 sm:ml-3 sm:p-0 flex-1 flex flex-col justify-between">
         <Link href={`/article/${article.article_id}`}>
           <a className="inline-block self-start">
-            <h1 className="text-lg text-font-100 mb-3 hover:underline hover:text-blue duration-200 hover:underline-offset-4">{article.title}</h1>
+            <h1 className="text-base text-font-100 mb-3 hover:underline hover:text-blue duration-200 hover:underline-offset-4">{article.title}</h1>
           </a>
         </Link>
         <p className="mb-4 text-font-200">{article.summary}</p>

@@ -25,7 +25,7 @@ const Weibo: React.FC<{ weibo: any[] }> = ({ weibo }) => {
   const userInfo = React.useMemo(() => weibo[0]?.user, [weibo])
 
   return (
-    <div className="w-full flex justify-between h-16 mt-3">
+    <div className="w-full hidden sm:flex justify-between h-16 mt-3">
       <div className="w-16 bg-bg-100 rounded flex justify-center items-center p-3">
         <div className="rounded-sm">
           <img

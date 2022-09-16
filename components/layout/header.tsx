@@ -1,6 +1,5 @@
 import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
-import { IconDark, IconLight } from 'components/icon'
 import Logo from 'public/logo.svg'
 
 enum Theme {
@@ -31,7 +30,10 @@ const Header: React.FC = () => {
           className="cursor-pointer"
           onClick={() => setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)}
         >
-          {theme === Theme.DARK ? <IconDark /> : <IconLight />}
+          {theme === Theme.DARK
+            ? <i className="iconfont !text-xl">&#xe68f;</i>
+            : <i className="iconfont !text-xl">&#xe624;</i>
+          }
         </div>
       </div>
     </header>

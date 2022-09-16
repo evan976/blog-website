@@ -1,7 +1,10 @@
 import * as React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { fetchArticleList } from 'api'
 import ArticleList from 'components/article/list'
+import Ad from 'components/common/ad'
 import Layout from 'components/layout'
+import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
 import { Article } from 'types'
 
@@ -14,7 +17,10 @@ type Props = {
 
 const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, keyword }) => {
   return (
-    <div className="w-full">
+    <>
+      <Helmet>
+        <title>{keyword + ' | ' + 'search' + ' | ' + META.title}</title>
+      </Helmet>
       <div className="w-full h-[210px] rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
@@ -28,12 +34,13 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
           </p>
         </div>
       </div>
+      <Ad />
       <ArticleList
         articles={articles}
         total={total}
         totalPage={totalPage}
       />
-    </div>
+    </>
   )
 }
 

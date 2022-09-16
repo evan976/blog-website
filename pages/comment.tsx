@@ -1,9 +1,11 @@
 import * as React from 'react'
+import { Helmet } from 'react-helmet-async'
 import type { NextPageWithLayout } from './_app'
 import { fetchCommentList } from 'api'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import Layout from 'components/layout'
+import { META } from 'config/app.config'
 import { IComment } from 'types'
 
 
@@ -16,6 +18,9 @@ type Props = {
 const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) => {
   return (
     <div className="w-full h-full">
+      <Helmet>
+        <title>{'广开言路' + ' | ' + 'comment' + ' | ' + META.title}</title>
+      </Helmet>
       <div className="w-full h-[210px] rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"

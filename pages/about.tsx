@@ -1,12 +1,16 @@
 import React from 'react'
-import ReactTooltip from 'react-tooltip'
+import { Helmet } from 'react-helmet-async'
 import { NextPageWithLayout } from './_app'
+import Ad from 'components/common/ad'
 import Layout from 'components/layout'
-import { CONNECT_LINKS } from 'config/app.config'
+import { CONNECT_LINKS, META } from 'config/app.config'
 
 const AboutPage: NextPageWithLayout = () => {
   return (
     <div className="w-full h-full">
+      <Helmet>
+        <title>{'关于' + ' | ' + 'about' + ' | ' + META.title}</title>
+      </Helmet>
       <div className="w-full h-[210px] rounded overflow-hidden relative">
         <img
           className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
@@ -96,9 +100,7 @@ const AboutPage: NextPageWithLayout = () => {
           <li>奔赴山海、高处见</li>
         </ul>
       </div>
-      <div className="bg-bg-100 rounded my-3 p-3 min-h-[120px] flex justify-center items-center">
-        种一个月亮 🌛
-      </div>
+      <Ad />
     </div>
   )
 }

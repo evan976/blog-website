@@ -3,11 +3,13 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { fetchArticleComments, fetchArticleDetail, fetchArticleList } from 'api'
+import ArticleMeta from 'components/article/meta'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import DateTime from 'components/common/date'
 import Divider from 'components/common/divider'
 import Layout from 'components/layout'
+import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
 import markdownToHTML from 'plugins/markdown'
 import { Article, CommentReponse } from 'types'
@@ -22,12 +24,13 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
   const html = markdownToHTML(article.content)
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>{article?.title + ' | ' + META.title}</title>
+      </Helmet>
       <div className="w-full h-full bg-bg-100 rounded p-3">
-        {/* <Helmet>
-        <title>{'evanone.site' + ' - ' + article?.title}</title>
-      </Helmet> */}
         <article>
+          <ArticleMeta article={article} />
           <h1 className="text-center font-bold text-font-100 text-xl my-2">{article.title}</h1>
           <div className="mt-3 text-center">
             <DateTime date={article.created_at * 1000} from={false} />
@@ -84,7 +87,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
           totalPage={comments?.total_page}
         />
       </div>
-    </div>
+    </>
   )
 }
 

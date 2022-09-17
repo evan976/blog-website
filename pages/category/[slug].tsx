@@ -20,7 +20,7 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
   return (
     <>
       <Helmet>
-        <title>{category.name + ' | ' + category.slug + ' | ' + META.title}</title>
+        <title>{category.name + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img

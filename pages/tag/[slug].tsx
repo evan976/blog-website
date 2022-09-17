@@ -20,7 +20,7 @@ const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage })
   return (
     <>
       <Helmet>
-        <title>{tag.name + ' | ' + tag.slug + ' | ' + META.title}</title>
+        <title>{tag.name + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img

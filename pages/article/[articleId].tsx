@@ -26,7 +26,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
   return (
     <>
       <Helmet>
-        <title>{article?.title + ' | ' + META.title}</title>
+        <title>{article?.title + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-full mt-3 sm:mt-0 bg-bg-100 rounded p-3">
         <article>

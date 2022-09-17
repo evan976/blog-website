@@ -20,7 +20,7 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
   return (
     <div className="w-full h-full mb-3 sm:mb-0">
       <Helmet>
-        <title>{'广开言路' + ' | ' + 'comment' + ' | ' + META.title}</title>
+        <title>{'广开言路' + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img

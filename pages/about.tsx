@@ -9,7 +9,7 @@ const AboutPage: NextPageWithLayout = () => {
   return (
     <div className="w-full h-full">
       <Helmet>
-        <title>{'关于' + ' | ' + 'about' + ' | ' + META.title}</title>
+        <title>{'关于' + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img

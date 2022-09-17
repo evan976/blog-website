@@ -19,7 +19,7 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
   return (
     <>
       <Helmet>
-        <title>{keyword + ' | ' + 'search' + ' | ' + META.title}</title>
+        <title>{keyword + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img

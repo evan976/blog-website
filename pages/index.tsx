@@ -1,83 +1,84 @@
-import * as React from 'react'
-import type { NextPage } from 'next'
-import InfiniteScroll from 'react-infinite-scroller'
-import ArticleList from '../components/Article/ArticleList'
-import Recommend from '../components/Recommend'
-import Swiper from '../components/Swiper'
-import { GlobalContext } from '../context/globalContext'
-import { HomeContainer } from '../styles/home'
-import * as mainApi from '../api'
-import { Main } from '../styles/components'
+import type { GetStaticProps } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import { NextPageWithLayout } from './_app'
+import { fetchArticleList } from 'api'
+import { fetchWeiboList } from 'api/tripartite'
+import ArticleList from 'components/article/list'
+import { Swiper, SwiperSlide } from 'components/common/swiper'
+import Layout from 'components/layout'
+import Weibo from 'components/weibo'
+import { Article } from 'types'
 
-interface HomeProps {
+type Props = {
   total: number
-  articles: IArticle[]
-  swipers: ISwiper[]
+  totalPage: number
+  articles: Article[]
+  weibo: any[]
 }
 
-const pageSize = 12
+const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo }) => {
 
-const Home: NextPage<HomeProps> = ({
-  total = 0,
-  articles: defaultArticles = [],
-  swipers
-}) => {
-
-  const { categories } = React.useContext(GlobalContext)
-  const [page, setPage] = React.useState<number>(1)
-  const [articles, setArticles] = React.useState<IArticle[]>(defaultArticles)
-
-  React.useEffect(() => {
-    setArticles(defaultArticles)
-  }, [defaultArticles])
-
-  const getArticles = React.useCallback((page: number) => {
-    mainApi.articleService.findAll({
-      page,
-      pageSize
-    }).then((res) => {
-      setPage(page)
-      setArticles((articles) => [...articles, ...res.data?.data])
-    })
-  }, [])
+  const banners = React.useMemo(() => articles.slice(0, 6), [articles])
 
   return (
-    <Main>
-      <HomeContainer>
-        <div className='home-left'>
-          <div className='swiper-container'>
-            <Swiper swipers={swipers} />
-          </div>
-          <InfiniteScroll
-            pageStart={1}
-            loadMore={getArticles}
-            hasMore={page * pageSize < total}
-            loader={
-              <div className={'loading'} key={0}>
-                loading ...
-              </div>
-            }
-          >
-            <ArticleList categories={categories} articles={articles} />
-          </InfiniteScroll>
-        </div>
-        <Recommend />
-      </HomeContainer>
-    </Main>
+    <div className="w-full h-full">
+      <Swiper
+        className="w-[610px] h-[200px] hidden sm:block rounded bg-bg-100"
+        setWrapperSize={true}
+        observeParents={true}
+        grabCursor={false}
+        simulateTouch={false}
+        preloadImages={true}
+        lazy={true}
+        pagination={{ clickable: true }}
+        autoplay={{
+          delay: 3500,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false
+        }}
+      >
+        {banners?.map((item) => (
+          <SwiperSlide key={item.id}>
+            <Link href={`/article/${item.article_id}`}>
+              <a>
+                <Image
+                  className="duration-200 scale-100 hover:scale-105"
+                  src={item.thumb}
+                  layout="fill"
+                  alt={item.title}
+                />
+              </a>
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <Weibo weibo={weibo} />
+      <ArticleList
+        articles={articles}
+        total={total}
+        totalPage={totalPage}
+      />
+    </div>
   )
 }
 
-Home.getInitialProps = async () => {
-  const [articles, swipers] = await Promise.all([
-    mainApi.articleService.findAll({ page: 1, pageSize }),
-    mainApi.swiperService.findAll({ page: 1, pageSize: 6 })
-  ])
+HomePage.getLayout = (page) => <Layout>{page}</Layout>
+
+export const getStaticProps: GetStaticProps = async () => {
+  const result = await fetchArticleList()
+
+  const weibo = await fetchWeiboList()
 
   return {
-    total: articles.data?.total,
-    articles: articles.data?.data,
-    swipers: swipers.data?.data
+    props: {
+      total: result.total,
+      totalPage: result.total_page,
+      articles: result.data,
+      weibo
+    },
   }
 }
 
-export default Home
+export default HomePage

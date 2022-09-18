@@ -1,93 +1,63 @@
 import * as React from 'react'
-import type { NextPage } from 'next'
 import { Helmet } from 'react-helmet-async'
-import InfiniteScroll from 'react-infinite-scroller'
-import { CommentContainer } from '../styles/comment'
-import CreateComment from '../components/Comment/CreateComment'
-import { GlobalContext } from '../context/globalContext'
-import CommentList from '../components/Comment/CommentList'
-import * as mainApi from '../api'
+import type { NextPageWithLayout } from './_app'
+import { fetchCommentList } from 'api'
+import CommentList from 'components/comment/list'
+import Publish from 'components/comment/publish'
+import Divider from 'components/common/divider'
+import Layout from 'components/layout'
+import { META } from 'config/app.config'
+import { IComment } from 'types'
 
-const pageSize = 12
 
-interface CommentProps {
+type Props = {
   total: number
-  comments: IComment[]
+  totalPage: number
+  comments: Array<IComment>
 }
 
-const Comment: NextPage<CommentProps> = ({
-  comments: defaultComments = [],
-  total = 0
-}) => {
-
-  const { setting } = React.useContext(GlobalContext)
-  const [page, setPage] = React.useState<number>(1)
-  const [comments, setComments] = React.useState<IComment[]>(defaultComments)
-
-  const refreshComments = React.useCallback(() => {
-    mainApi.commentService.findAll({
-      page: 1,
-      pageSize,
-      status: 1
-    }).then((res) => {
-      setComments(res.data.data)
-    })
-  }, [])
-
-  const getComments = React.useCallback((page: number) => {
-    mainApi.commentService.findAll({
-      page,
-      pageSize,
-      status: 1
-    }).then((res) => {
-      setPage(page)
-      setComments((comment) => [...comment, ...res.data?.data])
-    })
-  }, [])
-
+const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) => {
   return (
-    <CommentContainer>
+    <div className="w-full h-full mb-3 sm:mb-0">
       <Helmet>
-        <title>{setting.title + ' - ' + '留言'}</title>
+        <title>{'广开言路' + ' - ' + META.title}</title>
       </Helmet>
-      <div className='header'>
-        <h1 className='title'>留言版</h1>
-        <p className='summary'>「 在下有一愚见，不知当讲不当讲 」</p>
-      </div>
-      <div className='main-comtent'>
-        <div className='add-comment'>
-          <CreateComment refreshComments={refreshComments} />
+      <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
+        <img
+          className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
+          src={'/comment.jpeg'}
+          alt={'about'}
+        />
+        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col">
+          <i className="iconfont mx-auto text-white !text-7xl">&#xe6aa;</i>
+          <p className="text-center text-white text-sm mt-4">
+            有朋自远方来，不亦乐乎
+          </p>
         </div>
-          <InfiniteScroll
-            pageStart={1}
-            loadMore={getComments}
-            hasMore={page * pageSize < total}
-            loader={
-              <div className={'loading'} key={0}>
-                loading ...
-              </div>
-            }
-          >
-            <div className='comment-list'>
-              <CommentList comments={comments} />
-            </div>
-          </InfiniteScroll>
       </div>
-    </CommentContainer>
+      <div className="w-full h-full mt-3 rounded bg-bg-100 p-3">
+        <Publish />
+        <Divider />
+        <CommentList
+          comments={comments}
+          total={total}
+          totalPage={totalPage}
+        />
+      </div>
+    </div>
   )
 }
 
-Comment.getInitialProps = async () => {
-  const result = await mainApi.commentService.findAll({
-    page: 1,
-    pageSize,
-    status: 1
-  })
+CommentPage.getLayout = (page) => <Layout>{page}</Layout>
 
+CommentPage.getInitialProps = async () => {
+  const result = await fetchCommentList({ status: 1 })
   return {
-    total: result.data.total,
-    comments: result.data.data
+    total: result.total,
+    totalPage: result.total_page,
+    comments: result.data
   }
 }
 
-export default Comment
+
+export default CommentPage

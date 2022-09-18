@@ -1,90 +1,76 @@
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
+import type { GetStaticPaths, GetStaticProps } from 'next'
+import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import InfiniteScroll from 'react-infinite-scroller'
-import * as mainApi from '../../api'
-import ArticleList from '../../components/Article/ArticleList'
-import Recommend from '../../components/Recommend'
-import { Main } from '../../styles/components'
-import { TagPageWrap } from '../../styles/tag'
+import { fetchArticleListBySlug, fetchTagBySlug, fetchTagList } from 'api'
+import ArticleList from 'components/article/list'
+import Ad from 'components/common/ad'
+import Layout from 'components/layout'
+import { META } from 'config/app.config'
+import type { NextPageWithLayout } from 'pages/_app'
+import { Article, Tag } from 'types'
 
 type Props = {
-  tag: ITag
-  totalArticle: number
-  articles: IArticle[]
+  articles: Array<Article>
+  tag: Tag
+  total: number
+  totalPage: number
 }
 
-const pageSize = 12
-
-const TagPage: NextPage<Props> = ({ tag, totalArticle, articles: defaultArticles = [] }) => {
-  const router = useRouter()
-  const [page, setPage] = useState<number>(1)
-  const [articles, setArticles] = useState<IArticle[]>(defaultArticles)
-
-  const getArticles = useCallback((page: number) => {
-    mainApi.articleService.findAll({
-      page,
-      pageSize,
-      tagSlug: router.query.slug as string
-    })
-      .then(result => {
-        setPage(page)
-        setArticles((articles) => [...articles, ...result.data.data])
-      }
-    )
-  }, [router.query.slug])
-
+const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage }) => {
   return (
-    <Main>
+    <>
       <Helmet>
-        <title>{tag.slug + ' | ' + 'Evanone.site'}</title>
+        <title>{tag.name + ' - ' + META.title}</title>
       </Helmet>
-      <TagPageWrap>
-        <div className='tag-flow-page'>
-          <div className='header'>
-            <div
-              className='background'
-              style={{ backgroundImage: `url(${tag.background})` }}
-            />
-            <div className='content'>
-              <div className='icon'>
-              </div>
-              <div className='title'>
-                #{tag.name}
-              </div>
-            </div>
-          </div>
-          <div className='article-list'>
-            <InfiniteScroll
-              pageStart={1}
-              loadMore={getArticles}
-              hasMore={page * pageSize < totalArticle}
-              loader={
-                <div className={'loading'} key={0}>
-                  loading ...
-                </div>
-              }
-            >
-              <ArticleList articles={articles} hideHeader />
-            </InfiniteScroll>
-          </div>
+      <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
+        <img
+          className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
+          src={tag?.background}
+          alt={tag?.name}
+        />
+        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[50%]">
+          <h1 className="text-center text-white text-lg">{tag?.name}</h1>
         </div>
-        <Recommend />
-      </TagPageWrap>
-    </Main>
+      </div>
+      <Ad />
+      <ArticleList
+        articles={articles}
+        total={total}
+        totalPage={totalPage}
+      />
+    </>
   )
 }
 
-TagPage.getInitialProps = async ({ query }) => {
-  const { slug } = query
-  const article = await mainApi.articleService.findAll({ tagSlug: slug as string })
-  const tag = await mainApi.tagService.findBySlug(slug as string)
+TagPage.getLayout = (page) => <Layout>{page}</Layout>
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    const tags = await fetchTagList()
+    const paths = tags.map(tag => {
+      return {
+        params: { slug: tag.slug }
+      }
+    })
+
+    return { paths: paths, fallback: false }
+  } catch (error) {
+    return { paths: [], fallback: false }
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { params } = context
+  const { data, total, total_page } = await fetchArticleListBySlug(params?.slug as string, 'tag')
+  const tag = await fetchTagBySlug(params?.slug as string)
 
   return {
-    tag: tag.data,
-    totalArticle: article.data?.total,
-    articles: article.data?.data,
+    props: {
+      tag,
+      articles: data,
+      total: total,
+      totalPage: total_page,
+    }
   }
 }
 

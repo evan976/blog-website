@@ -1,75 +1,60 @@
 import * as React from 'react'
-import { NextPage } from 'next'
 import { Helmet } from 'react-helmet-async'
-import InfiniteScroll from 'react-infinite-scroller'
-import * as mainApi from '../../api'
-import ArticleList from '../../components/Article/ArticleList'
-import { Main } from '../../styles/components'
-import { useRouter } from 'next/router'
-import Recommend from '../../components/Recommend'
-import { SearchPageWrap } from '../../styles/search'
+import { fetchArticleList } from 'api'
+import ArticleList from 'components/article/list'
+import Ad from 'components/common/ad'
+import Layout from 'components/layout'
+import { META } from 'config/app.config'
+import type { NextPageWithLayout } from 'pages/_app'
+import { Article } from 'types'
 
-interface Props {
+type Props = {
+  articles: Array<Article>
   keyword: string
   total: number
-  articles: IArticle[]
+  totalPage: number
 }
 
-const pageSize = 12
-
-const SearchPage: NextPage<Props> = ({ articles: defaultArticles = [], total, keyword }) => {
-
-  const router = useRouter()
-  const [page, setPage] = React.useState<number>(1)
-  const [articles, setArticles] = React.useState<IArticle[]>(defaultArticles)
-
-  const getArticles = React.useCallback((page: number) => {
-    mainApi.articleService.findAll({
-      page,
-      pageSize,
-      keyword: router.query.keyword as string,
-    }).then(result => {
-      setPage(page)
-      setArticles((articles) => [...articles, ...result.data.data])
-    }
-    )
-  }, [router.query.keyword])
-
+const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, keyword }) => {
   return (
-    <Main>
+    <>
       <Helmet>
-        <title>{'搜索结果' + ' - ' + keyword}</title>
+        <title>{keyword + ' - ' + META.title}</title>
       </Helmet>
-      <SearchPageWrap>
-        <div className='article-list'>
-          <InfiniteScroll
-            pageStart={1}
-            loadMore={getArticles}
-            hasMore={page * pageSize < total}
-            loader={
-              <div className={'loading'} key={0}>
-                loading ...
-              </div>
-            }
-          >
-            <ArticleList articles={articles} isSearch />
-          </InfiniteScroll>
+      <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
+        <img
+          className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
+          src="/google-search.jpeg"
+          alt="search"
+        />
+        <div className="absolute top-[10%] left-1/2 translate-x-[-50%] flex flex-col">
+          <i className="iconfont mx-auto text-white !text-7xl">&#xe741;</i>
+          <p className="text-center text-white text-sm">
+            和<span> “{keyword}” </span>有关的所有文章
+          </p>
         </div>
-        <Recommend />
-      </SearchPageWrap>
-    </Main>
+      </div>
+      <Ad />
+      <ArticleList
+        articles={articles}
+        total={total}
+        totalPage={totalPage}
+      />
+    </>
   )
 }
 
+SearchPage.getLayout = (page) => <Layout>{page}</Layout>
+
 SearchPage.getInitialProps = async ({ query }) => {
   const { keyword } = query
-  const result = await mainApi.articleService.findAll({
-    keyword: keyword as string
-  })
+  const { data, total, total_page } = await fetchArticleList({ keyword: keyword as string })
+
   return {
-    keyword: keyword as string,
-    total: result.data?.total,
-    articles: result.data?.data,
+    articles: data,
+    total: total,
+    totalPage: total_page,
+    keyword: keyword as string
   }
 }
 

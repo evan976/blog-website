@@ -1,0 +1,80 @@
+pre code.hljs {
+  @apply block overflow-x-auto p-4;
+}
+
+code.hljs {
+  @apply p-1;
+}
+
+.hljs {
+  @apply text-font-200 bg-code;
+
+  .hljs-comment,
+  .hljs-quote {
+    @apply text-font-300 italic;
+  }
+
+  .hljs-doctag,
+  .hljs-formula,
+  .hljs-keyword {
+    @apply text-pinkpuple;
+  }
+
+  .hljs-deletion,
+  .hljs-name,
+  .hljs-section,
+  .hljs-selector-tag,
+  .hljs-subst {
+    @apply text-red;
+  }
+
+  .hljs-literal {
+    @apply text-blue;
+  }
+
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-meta .hljs-string,
+  .hljs-regexp,
+  .hljs-string {
+    @apply text-green;
+  }
+
+  .hljs-attr,
+  .hljs-number,
+  .hljs-selector-attr,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-variable {
+    @apply text-orange;
+  }
+
+  .hljs-bullet,
+  .hljs-link,
+  .hljs-meta,
+  .hljs-selector-id,
+  .hljs-symbol,
+  .hljs-title {
+    @apply text-blue;
+  }
+
+  .hljs-built_in,
+  .hljs-class .hljs-title,
+  .hljs-title.class_ {
+    @apply text-purple;
+  }
+
+  .hljs-emphasis {
+    @apply italic;
+  }
+
+  .hljs-strong {
+    @apply font-bold;
+  }
+
+  .hljs-link {
+    @apply underline;
+  }
+}

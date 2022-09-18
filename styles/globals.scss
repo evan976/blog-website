@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'iconfont.scss';
+@import 'markdown.scss';
+@import 'highlight.scss';
+
+@layer base {
+  :root {
+    @apply transition-all duration-300 bg-bg-200;
+  }
+
+  :root.light {
+    --color-blue: 0, 129, 255;
+    --color-green: 0, 180, 42;
+    --color-orange: 255, 125, 0;
+    --color-red: 245, 63, 63;
+    --color-purple: 114, 46, 209;
+    --color-lime: 159, 219, 29;
+    --color-yellow: 250, 220, 25;
+    --color-pinkpuple: 217, 26, 217;
+    --color-magenta: 245, 49, 157;
+    --color-cyan: 20, 201, 201;
+    --color-gold: 247, 186, 30;
+    --color-orangered: 247, 114, 52;
+    --color-grey: 134, 144, 156;
+    --color-bg-1: 255, 255, 255;
+    --color-bg-2: 240, 240, 240;
+    --color-bg-3: 230, 230, 230;
+    --color-bg-4: 220, 220, 220;
+    --color-font-1: 223deg, 17.9%, 17.3%;
+    --color-font-2: 224deg, 12%, 36.1%;
+    --color-font-3: 220deg, 9.9%, 58.2%;
+    --color-font-4: 216deg, 14%, 79%;
+    --color-border: 228, 230, 235;
+    --color-code-bg: 191, 193, 201
+  }
+
+  :root.dark {
+    --color-blue: 60, 126, 255;
+    --color-green: 39, 195, 70;
+    --color-orange: 255, 150, 38;
+    --color-red: 247, 105, 101;
+    --color-purple: 142, 81, 218;
+    --color-lime: 184, 226, 75;
+    --color-yellow: 251, 233, 75;
+    --color-pinkpuple: 225, 61, 219;
+    --color-magenta: 247, 86, 169;
+    --color-cyan: 63, 212, 207;
+    --color-gold: 249, 204, 68;
+    --color-orangered: 249, 146, 90;
+    --color-grey: 146, 146, 147;
+    --color-bg-1: 51, 51, 51;
+    --color-bg-2: 34, 34, 34;
+    --color-bg-3: 42, 42, 43;
+    --color-bg-4: 35, 35, 36;
+    --color-font-1: 0deg, 0%, 100%;
+    --color-font-2: 0deg, 0%, 100%;
+    --color-font-3: 0deg, 0%, 100%;
+    --color-font-4: 0deg, 0%, 100%;
+    --color-border: 55, 55, 57;
+    --color-code-bg: 191, 193, 201;
+  }
+}
+
+::-webkit-scrollbar {
+  @apply w-[5px];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  @apply bg-red;
+}
+
+a {
+  @apply text-[#666];
+}
+
+body {
+  @apply overflow-x-hidden overflow-y-auto select-none font-sans text-sm text-font-200 antialiased;
+}
+
+#nprogress {
+  @apply pointer-events-none;
+
+  .bar {
+    @apply bg-blue fixed z-[1024px] top-0 left-0 w-full h-[2px];
+  }
+}
+
+.dividing {
+  @apply w-full h-[1px] bg-bg-200;
+}
+
+.swiper-pagination-bullet {
+  @apply w-4 h-[6px] rounded-[1px];
+
+  &-active {
+    @apply w-6 bg-bg-400 opacity-50;
+  }
+}

@@ -1,0 +1,162 @@
+.markdown-body {
+  @apply break-words leading-[1.75] font-normal text-sm overflow-x-hidden;
+
+  ::-webkit-scrollbar {
+    @apply h-1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bg-300;
+  }
+
+  ::-webkit-scrollbar-thumb:window-inactive {
+    @apply bg-bg-400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply leading-[1.5] mt-5 mb-[10px] pb-[5px] font-bold text-font-100;
+  }
+
+  h1 {
+    @apply text-base mb-[5px];
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-base;
+  }
+
+  h2 {
+    @apply mb-3;
+  }
+
+  h3 {
+    @apply text-base pb-0;
+  }
+
+  h6 {
+    @apply mb-[5px];
+  }
+
+  p {
+    @apply leading-[2] font-normal;
+  }
+
+
+  img {
+    @apply max-w-full my-3;
+  }
+
+  hr {
+    @apply border-none border-t border-border my-8;
+  }
+
+  code {
+    @apply break-words rounded-sm overflow-x-auto bg-code text-red px-[6px] py-[1px] text-sm;
+  }
+
+  pre {
+    @apply overflow-auto relative leading-[1.75] my-[10px];
+
+    >code {
+      @apply text-[12px] py-[15px] px-3 m-0 break-normal block overflow-x-auto text-font-200;
+    }
+  }
+
+  a {
+    @apply underline decoration-1 text-blue decoration-blue;
+
+    &:active,
+    &:hover {
+      @apply opacity-80;
+    }
+  }
+
+  table {
+    @apply inline-block text-[12px] w-auto max-w-full overflow-auto border border-border;
+
+    thead {
+      @apply bg-bg-100 text-font-100 text-left;
+    }
+
+    tr:nth-child(2n) {
+      @apply bg-bg-200;
+    }
+
+    td,
+    th {
+      @apply px-2 py-3;
+    }
+  }
+
+  blockquote {
+    @apply text-font-300 px-5 py-[1px] my-6 border-l-4 border-lime bg-code;
+
+    >p {
+      @apply my-[10px];
+    }
+
+    &:after {
+      @apply block content-none;
+    }
+  }
+
+  ul,
+  ol {
+    @apply mt-4 mb-0 pl-5;
+
+    li {
+      @apply m-0 list-item list-disc;
+
+      .task-list-item {
+        @apply list-none;
+
+        ol,
+        ul {
+          @apply mt-0;
+
+          ol,
+          ul {
+            @apply mt-1;
+          }
+        }
+      }
+    }
+  }
+
+  ol {
+    li {
+      @apply pl-2;
+    }
+  }
+
+  .contains-task-list {
+    @apply pl-0;
+  }
+
+  .task-list-item {
+    @apply list-none;
+  }
+
+  @media (max-width:720px) {
+    h1 {
+      @apply text-2xl;
+    }
+
+    h2 {
+      @apply text-xl;
+    }
+
+    h3 {
+      @apply text-lg;
+    }
+  }
+}

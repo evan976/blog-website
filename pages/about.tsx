@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
+import ReactTooltip from "react-tooltip"
 import { NextPageWithLayout } from './_app'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
@@ -32,19 +33,48 @@ const AboutPage: NextPageWithLayout = () => {
           <h1 className="mt-2 text-lg text-font-100 font-bold">Evan</h1>
           <p className="italic">电子迷 / 代码控 / 强迫患者</p>
           <ul className="grid grid-cols-3 gap-3 mt-3">
-            <li className="px-3 py-2 bg-green flex justify-center items-center rounded">
+            <li data-tip data-for="wechat" className="px-3 py-2 bg-green flex justify-center items-center rounded cursor-pointer">
               <i className="iconfont text-white">&#xe602;</i>
             </li>
-            <li className="px-3 py-2 bg-[#29A8EB] flex justify-center items-center rounded">
-              <a href="">
-                <i className="iconfont text-white">&#xe9ac;</i>
-              </a>
+            <ReactTooltip
+              id="wechat"
+              place="top"
+              effect="solid"
+              backgroundColor="transparent"
+              offset={{ top: -12 }}
+            >
+              <div className="w-32 h-32 p-3 bg-bg-300 rounded-sm">
+                <img className="w-full h-full rounded-sm" src="/wechat.png" alt="wechat" />
+              </div>
+            </ReactTooltip>
+            <li data-tip data-for="telegram" className="px-3 py-2 bg-[#29A8EB] flex justify-center items-center rounded cursor-pointer">
+              <i className="iconfont text-white">&#xe9ac;</i>
             </li>
-            <li className="px-3 py-2 bg-[#e6162d] flex justify-center items-center rounded">
-              <a href="">
-                <i className="iconfont text-white">&#xe6c4;</i>
-              </a>
+            <ReactTooltip
+              id="telegram"
+              place="top"
+              effect="solid"
+              backgroundColor="transparent"
+              offset={{ top: -12 }}
+            >
+              <div className="w-32 h-32 p-3 bg-bg-300 rounded-sm">
+                <img className="w-full h-full rounded-sm" src="/telegram.png" alt="telegram" />
+              </div>
+            </ReactTooltip>
+            <li data-tip data-for="weibo" className="px-3 py-2 bg-[#e6162d] flex justify-center items-center rounded cursor-pointer">
+              <i className="iconfont text-white">&#xe6c4;</i>
             </li>
+            <ReactTooltip
+              id="weibo"
+              place="top"
+              effect="solid"
+              backgroundColor="transparent"
+              offset={{ top: -12 }}
+            >
+              <div className="w-32 h-32 p-3 bg-bg-300 rounded-sm">
+                <img className="w-full h-full rounded-sm" src="/weibo.png" alt="weibo" />
+              </div>
+            </ReactTooltip>
           </ul>
           <ul className="grid grid-cols-4 gap-2 sm:gap-3 mt-3">
             <li className="px-2 sm:px-3 py-2 bg-black flex justify-center items-center rounded">
@@ -68,7 +98,7 @@ const AboutPage: NextPageWithLayout = () => {
             <li className="px-2 sm:px-3 py-2 bg-red flex justify-center items-center rounded">
               <a href={CONNECT_LINKS.music_163} target="_blank" rel="noreferrer">
                 <i className="iconfont text-white">&#xe622;</i>
-                <span className="text-white ml-1">网抑云</span>
+                <span className="text-white ml-1">网抑</span>
               </a>
             </li>
           </ul>

@@ -16,4 +16,5 @@ export const CONNECT_LINKS = Object.freeze({
   juejin: 'https://juejin.cn/user/3940246036414728',
   music_163: 'https://music.163.com/#/user/home?id=1287037281',
   weibo: 'https://weibo.com/u/5697868718',
+  telegram: 'https://t.me/Evan1321',
 })

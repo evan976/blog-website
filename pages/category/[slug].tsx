@@ -1,7 +1,6 @@
-import type { GetStaticPaths, GetStaticProps } from 'next'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { fetchArticleListBySlug, fetchCategoryBySlug, fetchCategoryList } from 'api'
+import { fetchArticleListBySlug, fetchCategoryBySlug } from 'api'
 import ArticleList from 'components/article/list'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
@@ -45,32 +44,16 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
 
 CategoryPage.getLayout = (page) => <Layout>{page}</Layout>
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const result = await fetchCategoryList()
-    const paths = result.data.map(category => {
-      return {
-        params: { slug: category.slug }
-      }
-    })
-    return { paths: paths, fallback: false }
-  } catch (error) {
-    return { paths: [], fallback: false }
-  }
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { params } = context
-  const { data, total, total_page } = await fetchArticleListBySlug(params?.slug as string, 'category')
-  const category = await fetchCategoryBySlug(params?.slug as string)
+CategoryPage.getInitialProps = async ({ query }) => {
+  const { slug } = query
+  const { data, total, total_page } = await fetchArticleListBySlug(slug as string, 'category')
+  const category = await fetchCategoryBySlug(slug as string)
 
   return {
-    props: {
-      category,
-      articles: data,
-      total: total,
-      totalPage: total_page,
-    }
+    category,
+    articles: data,
+    total: total,
+    totalPage: total_page,
   }
 }
 

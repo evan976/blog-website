@@ -1,4 +1,3 @@
-import type { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -66,18 +65,15 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
 
 HomePage.getLayout = (page) => <Layout>{page}</Layout>
 
-export const getStaticProps: GetStaticProps = async () => {
+HomePage.getInitialProps = async () => {
   const result = await fetchArticleList()
-
   const weibo = await fetchWeiboList()
 
   return {
-    props: {
-      total: result.total,
-      totalPage: result.total_page,
-      articles: result.data,
-      weibo
-    },
+    total: result.total,
+    totalPage: result.total_page,
+    articles: result.data,
+    weibo
   }
 }
 

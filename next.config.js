@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const path = require('path')
 
+const ACCESS_TOKEN = process.env.NEXT_PUBLIC_WEB_ACCESS_TOKEN
+
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
@@ -16,6 +18,14 @@ const nextConfig = {
       use: ['@svgr/webpack'],
     })
     return config
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/weibo',
+        destination: `https://api.weibo.com/2/statuses/user_timeline.json?access_token=${ACCESS_TOKEN}`,
+      },
+    ]
   },
 }
 

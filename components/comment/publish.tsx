@@ -111,7 +111,7 @@ const Publish: React.FC<PublishProps> = ({
             <div className={`${isReply ? 'bg-bg-300 ' : 'bg-bg-200'} rounded-sm flex justify-between items-center px-3 h-7`}>
               <input
                 className="outline-none w-full h-full border-none bg-transparent placeholder:text-xs"
-                type="text"
+                type="email"
                 placeholder="邮箱 *"
                 required
                 value={formValue.email}
@@ -123,7 +123,7 @@ const Publish: React.FC<PublishProps> = ({
             <div className={`${isReply ? 'bg-bg-300 ' : 'bg-bg-200'} rounded-sm flex justify-between items-center px-3 h-7`}>
               <input
                 className="outline-none w-full h-full border-none bg-transparent placeholder:text-xs"
-                type="text"
+                type="url"
                 placeholder="网址"
                 value={formValue.site}
                 onChange={(e) => {

@@ -1,12 +1,20 @@
+import { GetStaticProps } from 'next'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import ReactTooltip from "react-tooltip"
 import { NextPageWithLayout } from './_app'
+import { fetchGithubContributions } from 'api/tripartite'
 import Ad from 'components/common/ad'
+import GithubContribution from 'components/github/contribution'
 import Layout from 'components/layout'
 import { CONNECT_LINKS, META } from 'config/app.config'
 
-const AboutPage: NextPageWithLayout = () => {
+type Props = {
+  contributions: any
+}
+
+const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
+
   return (
     <div className="w-full h-full">
       <Helmet>
@@ -104,6 +112,8 @@ const AboutPage: NextPageWithLayout = () => {
           </ul>
         </div>
       </div>
+      {/* TODO: github contribution calendar */}
+      {/* <GithubContribution contributions={contributions} /> */}
       <div className="bg-bg-100 rounded my-3 p-3">
         <h1 className="text-base text-blue">关于我</h1>
         <ul className="list-disc list-inside mt-2">
@@ -136,5 +146,15 @@ const AboutPage: NextPageWithLayout = () => {
 }
 
 AboutPage.getLayout = (page) => <Layout>{page}</Layout>
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { contributions } = await fetchGithubContributions()
+
+  return {
+    props: {
+      contributions
+    }
+  }
+}
 
 export default AboutPage

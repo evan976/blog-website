@@ -1,7 +1,6 @@
-import type { GetStaticPaths, GetStaticProps } from 'next'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { fetchArticleListBySlug, fetchTagBySlug, fetchTagList } from 'api'
+import { fetchArticleListBySlug, fetchTagBySlug } from 'api'
 import ArticleList from 'components/article/list'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
@@ -44,33 +43,16 @@ const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage })
 
 TagPage.getLayout = (page) => <Layout>{page}</Layout>
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const tags = await fetchTagList()
-    const paths = tags.map(tag => {
-      return {
-        params: { slug: tag.slug }
-      }
-    })
-
-    return { paths: paths, fallback: false }
-  } catch (error) {
-    return { paths: [], fallback: false }
-  }
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { params } = context
-  const { data, total, total_page } = await fetchArticleListBySlug(params?.slug as string, 'tag')
-  const tag = await fetchTagBySlug(params?.slug as string)
+TagPage.getInitialProps = async ({ query }) => {
+  const { slug } = query
+  const { data, total, total_page } = await fetchArticleListBySlug(slug as string, 'tag')
+  const tag = await fetchTagBySlug(slug as string)
 
   return {
-    props: {
-      tag,
-      articles: data,
-      total: total,
-      totalPage: total_page,
-    }
+    tag,
+    articles: data,
+    total: total,
+    totalPage: total_page,
   }
 }
 

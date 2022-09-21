@@ -1,12 +1,12 @@
 const axios = require('axios')
 const dateFormat = require('date-fns/format')
 
-const siteUrl = process.env.NEXT_PUBLIC_DOMAIN_URL
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
+const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl,
+  siteUrl: BASE_URL,
   sitemapSize: 7000,
   generateRobotsTxt: true,
   generateIndexSitemap: false,
@@ -20,9 +20,9 @@ module.exports = {
     }
   },
   additionalPaths: async (config) => {
-    const articles = await axios.get(`${apiUrl}/articles`, { params: { page_size: 200 } })
-    const categories = await axios.get(`${apiUrl}/categories`)
-    const tags = await axios.get(`${apiUrl}/tags`)
+    const articles = await axios.get(`${BASE_API_URL}/articles`, { params: { page_size: 200 } })
+    const categories = await axios.get(`${BASE_API_URL}/categories`)
+    const tags = await axios.get(`${BASE_API_URL}/tags`)
 
     const articleRoutes = articles.data.result.data.map((data) => ({
       loc: `/article/${data.article_id}`,

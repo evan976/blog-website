@@ -14,3 +14,15 @@ export const fetchWeiboList = async () => {
     throw response.data
   }
 }
+
+export const fetchGithubContributions = async () => {
+  const response = await axios.get('https://skyline.github.com/wujihua118/2022.json', {
+    timeout: 8000,
+  })
+
+  if (response.status === 200 && response.data) {
+    return response.data
+  } else {
+    throw response.data
+  }
+}

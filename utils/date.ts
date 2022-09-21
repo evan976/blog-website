@@ -89,3 +89,34 @@ export const generateCalendar = (date: Date) => {
 
   return calendarTable
 }
+
+export const getDateOfISOWeek = (week: number, year: number) => {
+  var simple = new Date(year, 0, 1 + (week - 1) * 7)
+  var dow = simple.getDay()
+  var ISOweekStart = simple
+  if (dow <= 4) ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1)
+  else ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay())
+  console.log(ISOweekStart.getFullYear())
+  console.log(ISOweekStart.getMonth() + 1)
+  console.log(ISOweekStart.getDate())
+  return ISOweekStart
+}
+
+export const getDate = (effectTime: number) => {
+  const date = new Date(effectTime * 24 * 60 * 60 * 1000)
+  const year = new Date().getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  let currentDate = year + '-'
+  if (month >= 10) {
+    currentDate = currentDate + month + '-'
+  } else {
+    currentDate = currentDate + '0' + month + '-'
+  }
+  if (day >= 10) {
+    currentDate = currentDate + day
+  } else {
+    currentDate = currentDate + '0' + day
+  }
+  return currentDate
+}

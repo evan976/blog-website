@@ -1,8 +1,7 @@
 import Color from 'color'
-import { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { fetchArticleComments, fetchArticleDetail, fetchArticleList } from 'api'
+import { fetchArticleComments, fetchArticleDetail } from 'api'
 import ArticleMeta from 'components/article/meta'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
@@ -93,30 +92,14 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
 
 ArticlePage.getLayout = (page) => <Layout>{page}</Layout>
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const result = await fetchArticleList({ page_size: 999 })
-    const paths = result.data.map(article => {
-      return {
-        params: { articleId: article.article_id }
-      }
-    })
-    return { paths: paths, fallback: false }
-  } catch (error) {
-    return { paths: [], fallback: false }
-  }
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { params } = context
-  const article = await fetchArticleDetail(params?.articleId as string)
+ArticlePage.getInitialProps = async ({ query }) => {
+  const { articleId } = query
+  const article = await fetchArticleDetail(articleId as string)
   const comments = await fetchArticleComments(article.id)
 
   return {
-    props: {
-      article,
-      comments
-    }
+    article,
+    comments
   }
 }
 

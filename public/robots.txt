@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://localhost:8080
+Host: https://evanone.site
 
 # Sitemaps
-Sitemap: https://localhost:8080/sitemap.xml
+Sitemap: https://evanone.site/sitemap.xml

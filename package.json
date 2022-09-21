@@ -10,7 +10,8 @@
     "lint": "next lint",
     "lint:fix": "eslint --ext .js,jsx,.ts,.tsx --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
-    "pm2": "pm2 start yarn --name client --interpreter bash -- start"
+    "pm2": "pm2 start yarn --name client --interpreter bash -- start",
+    "release": ". ./scripts/release.sh"
   },
   "dependencies": {
     "@vue/reactivity": "^3.2.39",

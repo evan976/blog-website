@@ -7,7 +7,6 @@ import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import DateTime from 'components/common/date'
 import Divider from 'components/common/divider'
-import Lazyload from 'components/common/lazyload'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
@@ -37,8 +36,8 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
             <span>&nbsp;&nbsp;·&nbsp;&nbsp;阅读 {article.views}</span>
           </div>
           <div className="w-full h-[154px] sm:h-[210px] p-2 my-3 rounded-sm border border-bg-200">
-            <Lazyload
-              round={2}
+            <img
+              className="rounded-sm w-full h-full"
               src={article.thumb}
               alt={article.title}
             />

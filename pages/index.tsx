@@ -4,7 +4,6 @@ import { NextPageWithLayout } from './_app'
 import { fetchArticleList } from 'api'
 import { fetchWeiboList } from 'api/tripartite'
 import ArticleList from 'components/article/list'
-import Lazyload from 'components/common/lazyload'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import Layout from 'components/layout'
 import Weibo from 'components/weibo'
@@ -42,8 +41,8 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
           <SwiperSlide key={item.id}>
             <Link href={`/article/${item.article_id}`}>
               <a>
-                <Lazyload
-                  imageClassName="duration-200 scale-100 hover:scale-105"
+                <img
+                  className="duration-200 scale-100 hover:scale-105"
                   src={item.thumb}
                   alt={item.title}
                 />

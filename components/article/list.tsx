@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import ArticleItem from './item'
 import { fetchArticleList } from 'api'
 import Empty from 'components/common/empty'

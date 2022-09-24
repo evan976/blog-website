@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import * as React from 'react'
 import Card from 'components/common/card'
 
 const Search: React.FC = () => {

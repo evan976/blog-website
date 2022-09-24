@@ -1,34 +1,8 @@
-/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
   font-family: 'iconfont';
-  /* Project id 3611336 */
-  src: url('//at.alicdn.com/t/c/font_3611336_pqf7b6sio8p.woff2?t=1663328075147') format('woff2'),
-    url('//at.alicdn.com/t/c/font_3611336_pqf7b6sio8p.woff?t=1663328075147') format('woff'),
-    url('//at.alicdn.com/t/c/font_3611336_pqf7b6sio8p.ttf?t=1663328075147') format('truetype');
-}
-
-@font-face {
-  font-family: "阿里巴巴普惠体 2.0 45 Light";
-  font-weight: 300;
-  src: url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/xm_XpizK7b7TXAPnevjMI.woff2") format("woff2"),
-    url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/ygHCu6oiK_YKrYTSo1D3d.woff") format("woff");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "阿里巴巴普惠体 2.0 55 Regular";
-  font-weight: 400;
-  src: url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/amEGRkrbovY1tlfIeePBb.woff2") format("woff2"),
-    url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/JxncVFhWCHwD786VZx_wE.woff") format("woff");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "阿里巴巴普惠体 2.0 65 Medium";
-  font-weight: 500;
-  src: url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/0DgjFMGZuZADNetJzS0EM.woff2") format("woff2"),
-    url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/n8PiQdJ4s3YX5JynRg6ol.woff") format("woff");
-  font-display: swap;
+  src: url('/iconfonts/iconfont.woff2?t=1664032483533') format('woff2'),
+    url('/iconfonts/iconfont.woff?t=1664032483533') format('woff'),
+    url('/iconfonts/iconfont.ttf?t=1664032483533') format('truetype');
 }
 
 .iconfont {

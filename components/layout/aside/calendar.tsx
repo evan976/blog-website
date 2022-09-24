@@ -1,16 +1,16 @@
-import React, { useMemo, useState } from 'react'
+import * as React from 'react'
 import Card from 'components/common/card'
 import { isAllTrue } from 'utils'
 import { CalendarItem, generateCalendar, weekMap } from 'utils/date'
 
 const Calendar = () => {
-  const [date, setDate] = useState<Date>(new Date())
+  const [date, setDate] = React.useState<Date>(new Date())
 
-  const calendarTable = useMemo(() => {
+  const calendarTable = React.useMemo(() => {
     return generateCalendar(date)
   }, [date])
 
-  const today = useMemo(() => {
+  const today = React.useMemo(() => {
     return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
   }, [date])
 

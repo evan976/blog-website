@@ -1,5 +1,5 @@
 import Color from 'color'
-import React from 'react'
+import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { fetchArticleComments, fetchArticleDetail } from 'api'
 import ArticleMeta from 'components/article/meta'
@@ -7,6 +7,7 @@ import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import DateTime from 'components/common/date'
 import Divider from 'components/common/divider'
+import Lazyload from 'components/common/lazyload'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
@@ -35,8 +36,12 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
             <DateTime date={article.created_at * 1000} from={false} />
             <span>&nbsp;&nbsp;·&nbsp;&nbsp;阅读 {article.views}</span>
           </div>
-          <div className="w-full h-[154px] sm:h-[210px] mt-3 p-2 rounded-sm border border-bg-200">
-            <img className="w-full h-full rounded-sm" src={article.thumb} alt={article.title} />
+          <div className="w-full h-[154px] sm:h-[210px] p-2 my-3 rounded-sm border border-bg-200">
+            <Lazyload
+              round={2}
+              src={article.thumb}
+              alt={article.title}
+            />
           </div>
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
           <Divider type="dashed" />
@@ -68,11 +73,18 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
             <a
               href={`https://evanone.site/article/${article.article_id}`}
               className="underline underline-offset-2 text-font-200 hover:text-blue duration-200"
-            >https://evanone.site/article/{article.article_id}</a>
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://evanone.site/article/{article.article_id}
+            </a>
           </div>
           <a
             className="mt-2 inline-block text-font-200 underline-offset-2 hover:text-blue hover:underline duration-200"
-            href="">
+            href="https://creativecommons.org/licenses/by-nc/3.0/cn/deed.zh"
+            target="_blank"
+            rel="noreferrer"
+          >
             遵循CC 4.0 BY-SA版权协议，严禁非法转载
           </a>
         </article>

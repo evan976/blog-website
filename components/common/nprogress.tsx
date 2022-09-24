@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import NP from 'nprogress'
-import React, { useEffect, useRef } from 'react'
+import * as React from 'react'
 
 const NProgress: React.FC = () => {
   const router = useRouter()
 
-  const timer = useRef<NodeJS.Timeout>()
+  const timer = React.useRef<NodeJS.Timeout>()
 
   const start = () => {
     timer.current = setTimeout(() => {
@@ -20,7 +20,7 @@ const NProgress: React.FC = () => {
     }, 300)
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     router.events.on('routeChangeStart', start)
     router.events.on('routeChangeComplete', done)
     router.events.on('routeChangeError', done)

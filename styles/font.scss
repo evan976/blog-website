@@ -1,0 +1,29 @@
+@font-face {
+  font-display: swap;
+  font-family: OpenSans;
+  src: url('/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: "webfont-light";
+  font-weight: 300;
+  src: url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/xm_XpizK7b7TXAPnevjMI.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/ygHCu6oiK_YKrYTSo1D3d.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "webfont-regular";
+  font-weight: 400;
+  src: url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/amEGRkrbovY1tlfIeePBb.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/JxncVFhWCHwD786VZx_wE.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "webfont-medium";
+  font-weight: 500;
+  src: url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/0DgjFMGZuZADNetJzS0EM.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/weAYXs4bK0BX/n8PiQdJ4s3YX5JynRg6ol.woff") format("woff");
+  font-display: swap;
+}

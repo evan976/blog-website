@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import Article from './article'
 import Calendar from './calendar'
 import Search from './search'

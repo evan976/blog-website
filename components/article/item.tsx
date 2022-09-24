@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import * as React from 'react'
 import DateTime from 'components/common/date'
+import Lazyload from 'components/common/lazyload'
 import { Article } from 'types'
 
 const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
@@ -8,11 +9,11 @@ const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
     <div className="bg-bg-100 rounded sm:p-3 flex sm:flex-row flex-col justify-start mt-3">
       <div className="rounded-t-[4px] sm:rounded sm:w-[180px] sm:h-[102px] w-full h-[120px] sm:border sm:border-border overflow-hidden">
         <Link href={`/article/${article.article_id}`}>
-          <img
-            className="duration-200
-            scale-100 hover:scale-105 cursor-pointer w-full h-full"
+          <Lazyload
             src={article.thumb}
             alt={article.title}
+            imageClassName="duration-200
+            scale-100 hover:scale-105 cursor-pointer w-full h-full"
           />
         </Link>
       </div>

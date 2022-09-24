@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Publish from './publish'
 import DateTime from 'components/common/date'
+import Lazyload from 'components/common/lazyload'
 import Slide from 'components/common/slide'
 import useMobile from 'hooks/useMobile'
 import markdownToHTML from 'plugins/markdown'
@@ -28,8 +29,8 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
       <div className={`relative ${isChildren ? 'pl-3 sm:pl-[68px] pr-0' : 'pl-3 sm:pl-20 pr-3'}`}>
         <div className={`w-full flex bg-bg-200 py-3`}>
           <div className={`hidden sm:block rounded-sm absolute w-14 h-14 translate-y-3 border-4 border-bg-100 flex-shrink-0 ${isChildren ? 'left-0' : 'left-3'}`}>
-            <img
-              className="rounded-sm w-full h-full"
+            <Lazyload
+              round={2}
               src={comment.avatar}
               alt={comment.name}
             />

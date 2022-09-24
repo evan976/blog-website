@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'font.scss';
 @import 'iconfont.scss';
 @import 'markdown.scss';
 @import 'highlight.scss';
+
+$font-family-base: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue',
+  'Hiragino Sans GB', 'Segoe UI', 'Microsoft YaHei', '微软雅黑', sans-serif;
+$font-family-monospace: Menlo, Monaco, Consolas, 'Courier New', monospace;
+$font-family-normal: 'webfont-medium', OpenSans, $font-family-base;
 
 @layer base {
   :root {
@@ -81,6 +87,7 @@ a {
 }
 
 body {
+  font-family: $font-family-normal;
   @apply overflow-x-hidden overflow-y-auto select-none font-sans text-sm text-font-200 antialiased;
 }
 

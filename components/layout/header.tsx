@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes'
-import React, { useEffect, useState } from 'react'
+import * as React from 'react'
 import MobileSearch from './mobile/search'
-import Logo from 'public/logo.svg'
+import Logo from 'public/images/logo.svg'
 
 enum Theme {
   LIGHT = 'light',
@@ -9,11 +9,11 @@ enum Theme {
 }
 
 const Header: React.FC = () => {
-  const [visible, setVisible] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [visible, setVisible] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
   const { theme, setTheme } = useTheme()
 
-  useEffect(() => {
+  React.useEffect(() => {
     setMounted(true)
   }, [])
 

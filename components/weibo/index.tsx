@@ -1,5 +1,6 @@
 import * as React from 'react'
 import DateTime from 'components/common/date'
+import Lazyload from 'components/common/lazyload'
 import SwiperClass, { Swiper, SwiperSlide } from 'components/common/swiper'
 import useReactive from 'hooks/useReactive'
 
@@ -28,8 +29,8 @@ const Weibo: React.FC<{ weibo: any[] }> = ({ weibo }) => {
     <div className="w-full hidden sm:flex justify-between h-16 mt-3">
       <div className="w-16 bg-bg-100 rounded flex justify-center items-center p-3">
         <div className="rounded-sm">
-          <img
-            className="w-full h-full rounded-sm"
+          <Lazyload
+            round={2}
             src={userInfo?.avatar_hd}
             alt="avatar"
           />

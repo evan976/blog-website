@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import * as React from 'react'
 
 const useMobile = () => {
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = React.useState(false)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const updateMedia = () => {
       setIsMobile(window.innerWidth < 640)
     }

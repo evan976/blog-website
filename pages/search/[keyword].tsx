@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { fetchArticleList } from 'api'
 import ArticleList from 'components/article/list'
 import Ad from 'components/common/ad'
+import Lazyload from 'components/common/lazyload'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
@@ -21,20 +22,20 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
       <Helmet>
         <title>{keyword + ' - ' + META.title}</title>
       </Helmet>
-      <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
-        <img
-          className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
-          src="/google-search.jpeg"
+      <div className="w-full h-[168px] sm:h-[210px] my-3 sm:mt-0 rounded overflow-hidden relative">
+        <Lazyload
+          imageClassName="duration-200 w-full h-full scale-[1.02] hover:scale-100"
+          src="/images/google-search.jpeg"
           alt="search"
         />
-        <div className="absolute top-[10%] left-1/2 translate-x-[-50%] flex flex-col">
+        <div className="absolute z-[100] top-[10%] left-1/2 translate-x-[-50%] flex flex-col">
           <i className="iconfont mx-auto text-white !text-7xl">&#xe741;</i>
           <p className="text-center text-white text-sm">
             和<span> “{keyword}” </span>有关的所有文章
           </p>
         </div>
       </div>
-      <Ad />
+      {total > 0 && <Ad />}
       <ArticleList
         articles={articles}
         total={total}

@@ -12,7 +12,7 @@ const Seo: React.FC = () => {
       <meta name="author" content={META.author} />
       <meta name="copyright" content={META.author} />
       <meta name="theme-color" content={META.primary} />
-      <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+      <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
     </Helmet>
   )
 }

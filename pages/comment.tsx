@@ -5,7 +5,6 @@ import { fetchCommentList } from 'api'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import Divider from 'components/common/divider'
-import Lazyload from 'components/common/lazyload'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import { IComment } from 'types'
@@ -24,8 +23,8 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
         <title>{'广开言路' + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
-        <Lazyload
-          imageClassName="duration-200 w-full h-full scale-[1.02] hover:scale-100"
+        <img
+          className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
           src="/images/comment.jpeg"
           alt="comment"
         />

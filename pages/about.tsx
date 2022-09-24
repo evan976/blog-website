@@ -5,7 +5,6 @@ import ReactTooltip from "react-tooltip"
 import { NextPageWithLayout } from './_app'
 import { fetchGithubContributions } from 'api/tripartite'
 import Ad from 'components/common/ad'
-import Lazyload from 'components/common/lazyload'
 import GithubContribution from 'components/github/contribution'
 import Layout from 'components/layout'
 import { CONNECT_LINKS, META } from 'config/app.config'
@@ -22,12 +21,12 @@ const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
         <title>{'关于' + ' - ' + META.title}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
-        <Lazyload
-          imageClassName="duration-200 w-full h-full scale-[1.02] hover:scale-100"
+        <img
+          className="duration-200 w-full h-full scale-[1.02] hover:scale-100"
           src="/images/about.jpeg"
           alt="about"
         />
-        <div className="absolute z-[100] top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col">
+        <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col">
           <i className="iconfont mx-auto text-white !text-7xl">&#xe61d;</i>
           <p className="text-center text-white text-sm mt-4">
             寄蜉蝣于天地，渺沧海之一粟
@@ -37,8 +36,8 @@ const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
       <div className="bg-bg-100 rounded my-3 p-3">
         <div className="flex flex-col items-center ">
           <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-border">
-            <Lazyload
-              imageClassName="hover:rotate-[360deg] duration-500"
+            <img
+              className="hover:rotate-[360deg] duration-500"
               src="/images/avatar.jpeg"
               alt="avatar"
             />
@@ -57,7 +56,7 @@ const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
               offset={{ top: -12 }}
             >
               <div className="w-32 h-32 p-3 bg-bg-300 rounded-sm">
-                <Lazyload round={2} src="/images/wechat.png" alt="wechat" />
+                <img className="rounded-sm" src="/images/wechat.png" alt="wechat" />
               </div>
             </ReactTooltip>
             <li data-tip data-for="telegram" className="px-3 py-2 bg-[#29A8EB] flex justify-center items-center rounded cursor-pointer">
@@ -71,7 +70,7 @@ const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
               offset={{ top: -12 }}
             >
               <div className="w-32 h-32 p-3 bg-bg-300 rounded-sm">
-                <Lazyload round={2} src="/images/telegram.png" alt="telegram" />
+                <img className="rounded-sm" src="/images/telegram.png" alt="telegram" />
               </div>
             </ReactTooltip>
             <li data-tip data-for="weibo" className="px-3 py-2 bg-[#e6162d] flex justify-center items-center rounded cursor-pointer">
@@ -85,7 +84,7 @@ const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
               offset={{ top: -12 }}
             >
               <div className="w-32 h-32 p-3 bg-bg-300 rounded-sm">
-                <Lazyload round={2} src="/images/weibo.png" alt="weibo" />
+                <img className="rounded-sm" src="/images/weibo.png" alt="weibo" />
               </div>
             </ReactTooltip>
           </ul>

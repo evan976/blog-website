@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { addComment } from 'api'
-import Lazyload from 'components/common/lazyload'
 import useReactive from 'hooks/useReactive'
 import { IComment } from 'types'
 
@@ -81,8 +80,8 @@ const Publish: React.FC<PublishProps> = ({
       {!innerVisible ? (
         <div className="w-full h-14 flex justify-start items-center">
           <div className={`hidden sm:block rounded-sm w-14 h-14 border-4 border-bg-200 flex-shrink-0`}>
-            <Lazyload
-              round={2}
+            <img
+              className="rounded-sm"
               src="/images/garavatar.png"
               alt="avatar"
             />

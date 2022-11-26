@@ -10,7 +10,7 @@ My personal blog website, powered by [Next.js](https://nextjs.org/)
 ## Getting Started
 
 ```bash
-git@github.com:wujihua118/blog-website.git
+git clone git@github.com:wujihua118/blog-website.git
 
 pnpm install
 

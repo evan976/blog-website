@@ -21,7 +21,7 @@
     "date-fns": "^2.29.2",
     "highlight.js": "^11.6.0",
     "marked": "^4.0.19",
-    "next": "12.2.5",
+    "next": "12.3.4",
     "next-sitemap": "^3.1.22",
     "next-themes": "^0.2.0",
     "nprogress": "^0.2.0",

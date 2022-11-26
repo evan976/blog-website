@@ -9,7 +9,6 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "pm2": "pm2 start yarn --name client --interpreter bash -- start",
     "release": ". ./scripts/release.sh"
   },

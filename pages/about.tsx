@@ -1,13 +1,12 @@
+import { fetchGithubContributions } from 'api/tripartite'
+import Ad from 'components/common/ad'
+import Layout from 'components/layout'
+import { CONNECT_LINKS, META } from 'config/app.config'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import ReactTooltip from "react-tooltip"
 import { NextPageWithLayout } from './_app'
-import { fetchGithubContributions } from 'api/tripartite'
-import Ad from 'components/common/ad'
-import GithubContribution from 'components/github/contribution'
-import Layout from 'components/layout'
-import { CONNECT_LINKS, META } from 'config/app.config'
 
 type Props = {
   contributions: any

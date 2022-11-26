@@ -1,11 +1,11 @@
-import * as React from 'react'
-import Publish from './publish'
 import DateTime from 'components/common/date'
 import Slide from 'components/common/slide'
 import useMobile from 'hooks/useMobile'
 import markdownToHTML from 'plugins/markdown'
+import * as React from 'react'
 import { IComment } from 'types'
 import { filterAddress, filterBrowser, filterOS } from 'utils/filter'
+import Publish from './publish'
 
 interface CommentItemProps {
   comment: IComment

@@ -1,10 +1,10 @@
+import Seo from 'components/common/seo'
+import ScrollToTop from 'components/common/top'
 import * as React from 'react'
 import Footer from './footer'
 import Header from './header'
 import Main from './main'
 import BottomBar from './mobile/nav'
-import Seo from 'components/common/seo'
-import ScrollToTop from 'components/common/top'
 
 type LayoutProps = {
   children: React.ReactNode

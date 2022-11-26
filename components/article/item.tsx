@@ -1,6 +1,6 @@
+import DateTime from 'components/common/date'
 import Link from 'next/link'
 import * as React from 'react'
-import DateTime from 'components/common/date'
 import { Article } from 'types'
 
 const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {

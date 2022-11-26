@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { toast, ToastContainer } from 'react-toastify'
 import { addComment } from 'api'
 import useReactive from 'hooks/useReactive'
+import * as React from 'react'
+import { toast, ToastContainer } from 'react-toastify'
 import { IComment } from 'types'
 
 interface PublishProps {

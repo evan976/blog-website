@@ -1,8 +1,8 @@
-import * as React from 'react'
-import CommentItem from './item'
 import { fetchCommentList } from 'api'
 import Empty from 'components/common/empty'
+import * as React from 'react'
 import { IComment } from 'types'
+import CommentItem from './item'
 
 interface CommentListProps {
   comments: Array<IComment>

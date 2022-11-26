@@ -1,4 +1,3 @@
-import fetch from './fetch'
 import {
   Article,
   ArticleResponse,
@@ -8,6 +7,7 @@ import {
   IComment,
   Tag,
 } from 'types'
+import fetch from './fetch'
 
 export const ARTICLE_API_PATH = 'articles'
 export const COMMENT_API_PATH = 'comments'

@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes'
+import Logo from 'public/images/logo.svg'
 import * as React from 'react'
 import MobileSearch from './mobile/search'
-import Logo from 'public/images/logo.svg'
 
 enum Theme {
   LIGHT = 'light',

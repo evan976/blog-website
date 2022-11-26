@@ -1,6 +1,6 @@
+import { META } from 'config/app.config'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { META } from 'config/app.config'
 
 const Seo: React.FC = () => {
   return (

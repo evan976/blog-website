@@ -1,6 +1,6 @@
-import * as React from 'react'
 import BaseSkeleton from 'components/common/skeleton/base'
 import LineSkeleton from 'components/common/skeleton/line'
+import * as React from 'react'
 
 const ArticleSkeleton: React.FC = () => {
   return (

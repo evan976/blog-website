@@ -1,13 +1,14 @@
-import Link from 'next/link'
-import React from 'react'
-import { NextPageWithLayout } from './_app'
 import { fetchArticleList } from 'api'
 import { fetchWeiboList } from 'api/tripartite'
 import ArticleList from 'components/article/list'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import Layout from 'components/layout'
 import Weibo from 'components/weibo'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 import { Article } from 'types'
+import { NextPageWithLayout } from './_app'
 
 type Props = {
   total: number
@@ -40,11 +41,12 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
         {banners?.map((item) => (
           <SwiperSlide key={item.id}>
             <Link href={`/article/${item.article_id}`}>
-              <a>
-                <img
+              <a className="w-full h-full block">
+                <Image
                   className="duration-200 scale-100 hover:scale-105"
                   src={item.thumb}
                   alt={item.title}
+                  layout="fill"
                 />
               </a>
             </Link>
@@ -64,7 +66,7 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
 HomePage.getLayout = (page) => <Layout>{page}</Layout>
 
 HomePage.getInitialProps = async () => {
-  const result = await fetchArticleList()
+  const result = await fetchArticleList({ status: 1 })
   const weibo = await fetchWeiboList()
 
   return {

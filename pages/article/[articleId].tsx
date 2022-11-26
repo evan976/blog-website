@@ -1,7 +1,5 @@
-import Color from 'color'
-import * as React from 'react'
-import { Helmet } from 'react-helmet-async'
 import { fetchArticleComments, fetchArticleDetail } from 'api'
+import Color from 'color'
 import ArticleMeta from 'components/article/meta'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
@@ -11,6 +9,8 @@ import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
 import markdownToHTML from 'plugins/markdown'
+import * as React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Article, CommentReponse } from 'types'
 
 type Props = {

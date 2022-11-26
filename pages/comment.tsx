@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { Helmet } from 'react-helmet-async'
-import type { NextPageWithLayout } from './_app'
 import { fetchCommentList } from 'api'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import Divider from 'components/common/divider'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
+import * as React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { IComment } from 'types'
+import type { NextPageWithLayout } from './_app'
 
 
 type Props = {

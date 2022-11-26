@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { Helmet } from 'react-helmet-async'
 import { fetchArticleListBySlug, fetchCategoryBySlug } from 'api'
 import ArticleList from 'components/article/list'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import { NextPageWithLayout } from 'pages/_app'
+import * as React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Article, Category, } from 'types'
 
 type Props = {

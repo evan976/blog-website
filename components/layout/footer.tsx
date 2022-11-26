@@ -1,9 +1,7 @@
-import * as React from 'react'
 import Divider from 'components/common/divider'
+import * as React from 'react'
 
-interface FooterProps { }
-
-const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="hidden sm:block h-16 w-full bg-bg-100 mt-3">
       <div className="w-full px-4 sm:w-[1050px] sm:px-0 h-full mx-auto flex justify-center items-center">

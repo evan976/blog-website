@@ -66,7 +66,7 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
 HomePage.getLayout = (page) => <Layout>{page}</Layout>
 
 HomePage.getInitialProps = async () => {
-  const result = await fetchArticleList()
+  const result = await fetchArticleList({ status: 1 })
   const weibo = await fetchWeiboList()
 
   return {

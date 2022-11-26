@@ -3,13 +3,13 @@ import * as React from 'react'
 import Card from 'components/common/card'
 
 const Search: React.FC = () => {
-
   const router = useRouter()
   const [keyword, setKeyword] = React.useState('')
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
-    if (!keyword) return
+    if (!keyword)
+      return
     router.push(`/search/${keyword}`)
   }
 
@@ -23,7 +23,7 @@ const Search: React.FC = () => {
           maxLength={16}
           value={keyword}
           placeholder="探索与寻知"
-          onChange={(e) => setKeyword(e.target.value)}
+          onChange={e => setKeyword(e.target.value)}
         />
         <button type="submit" className="flex justify-center items-center h-8 w-12 font-medium rounded-r-sm bg-blue">
           <i className="text-white !text-lg iconfont">&#xe741;</i>

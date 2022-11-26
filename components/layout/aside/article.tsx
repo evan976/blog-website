@@ -3,22 +3,22 @@ import * as React from 'react'
 import Card from 'components/common/card'
 import DateTime from 'components/common/date'
 import LineSkeleton from 'components/common/skeleton/line'
-import { Article as IArticle } from 'types'
+import type { Article as IArticle } from 'types'
 
-
-const Article: React.FC<{ articles: Array<IArticle>, loading: boolean }> = ({ loading, articles }) => {
-
+const Article: React.FC<{ articles: Array<IArticle>; loading: boolean }> = ({ loading, articles }) => {
   return (
     <Card title="热门文章" icon="&#xe753;" className="mt-3">
       <ul className="w-full h-full">
-        {loading ? (
-          Array.from({ length: 5 }).map((_, index) => (
+        {loading
+          ? (
+              Array.from({ length: 5 }).map((_, index) => (
             <li className="h-5 w-full mb-3 last:mb-0" key={index}>
               <LineSkeleton />
             </li>
-          ))
-        ) : (
-          articles?.map((article, index) => (
+              ))
+            )
+          : (
+              articles?.map((article, index) => (
             <li key={article.id} className="flex w-full justify-start items-start mb-2 last:mb-0">
               <span
                 className={`leading-5 h-4 w-4 mr-2 mt-[2px] text-[12px] rounded-[1px] flex justify-center items-center bg-bg-400 shrink-0 ${index + 1 === 1 ? 'text-white !bg-blue' : undefined
@@ -42,8 +42,8 @@ const Article: React.FC<{ articles: Array<IArticle>, loading: boolean }> = ({ lo
                 </div>
               </div>
             </li>
-          ))
-        )}
+              ))
+            )}
       </ul>
     </Card>
   )

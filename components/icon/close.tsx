@@ -1,10 +1,10 @@
 import classNames from 'classnames'
 import * as React from 'react'
 
-export const IconClose = React.memo<JSX.IntrinsicElements['svg']>(function IconClose({
+export const IconClose = React.memo<JSX.IntrinsicElements['svg']>(({
   className,
   ...rest
-}) {
+}) => {
   return (
     <svg
       width="1em"

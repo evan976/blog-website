@@ -1,10 +1,10 @@
 import * as React from 'react'
+import { fetchHotArticleList, fetchTagList } from 'api'
+import type { Article as IArticle, Tag as ITag } from 'types'
 import Article from './article'
 import Calendar from './calendar'
 import Search from './search'
 import Tag from './tag'
-import { fetchHotArticleList, fetchTagList } from 'api'
-import { Article as IArticle, Tag as ITag } from 'types'
 
 const Aside: React.FC = () => {
   const [loading, setLoading] = React.useState(false)

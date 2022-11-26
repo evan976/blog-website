@@ -1,4 +1,4 @@
-import { reactive, effect } from '@vue/reactivity'
+import { effect, reactive } from '@vue/reactivity'
 import * as React from 'react'
 import useForceUpdate from './useForceUpdate'
 
@@ -13,11 +13,13 @@ const useReactive = <S extends Record<string, any>>(initState: S): S => {
   React.useEffect(() => {
     let isdep = false
     effect(() => {
-      for (let i in state) {
+      for (const i in state)
+        // eslint-disable-next-line no-unused-expressions
         state[i]
-      }
+
       isdep && update()
-      if (!isdep) isdep = true
+      if (!isdep)
+        isdep = true
     })
   }, [state, update])
 

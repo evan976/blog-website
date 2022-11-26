@@ -31,6 +31,6 @@ const languages: Record<string, LanguageFn> = {
   stylus,
 }
 
-Object.keys(languages).forEach((name) => hljs.registerLanguage(name, languages[name]))
+Object.keys(languages).forEach(name => hljs.registerLanguage(name, languages[name]))
 
 export default hljs

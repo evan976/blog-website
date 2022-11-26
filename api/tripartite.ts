@@ -5,11 +5,10 @@ const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
 export const fetchWeiboList = async () => {
   const response = await axios.get(`${BASE_URL}/weibo`, { timeout: 8000 })
 
-  if (response.status === 200 && response.data.statuses) {
+  if (response.status === 200 && response.data.statuses)
     return response.data.statuses
-  } else {
+  else
     throw response.data
-  }
 }
 
 export const fetchGithubContributions = async () => {
@@ -17,9 +16,8 @@ export const fetchGithubContributions = async () => {
     timeout: 8000,
   })
 
-  if (response.status === 200 && response.data) {
+  if (response.status === 200 && response.data)
     return response.data
-  } else {
+  else
     throw response.data
-  }
 }

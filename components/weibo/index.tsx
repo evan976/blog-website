@@ -1,10 +1,10 @@
 import DateTime from 'components/common/date'
-import SwiperClass, { Swiper, SwiperSlide } from 'components/common/swiper'
+import type SwiperClass from 'components/common/swiper'
+import { Swiper, SwiperSlide } from 'components/common/swiper'
 import useReactive from 'hooks/useReactive'
 import * as React from 'react'
 
 const Weibo: React.FC<{ weibo: any[] }> = ({ weibo }) => {
-
   const swiper = React.useRef<SwiperClass>()
 
   const listSwiperState = useReactive({ canPrev: false, canNext: true })
@@ -51,12 +51,12 @@ const Weibo: React.FC<{ weibo: any[] }> = ({ weibo }) => {
           autoplay={{
             delay: 3500,
             pauseOnMouseEnter: true,
-            disableOnInteraction: false
+            disableOnInteraction: false,
           }}
           onSwiper={handleListSwiperReady}
           onSlideChange={handleListSlideChange}
         >
-          {weibo?.map((item) => (
+          {weibo?.map(item => (
             <SwiperSlide
               key={item.id}
               className="flex flex-col w-full justify-between"

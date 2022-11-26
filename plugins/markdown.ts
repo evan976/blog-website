@@ -1,4 +1,4 @@
-import { marked, Renderer } from 'marked'
+import { Renderer, marked } from 'marked'
 import hljs from './highlight'
 
 marked.setOptions({
@@ -32,9 +32,9 @@ const renderer = {
 marked.use({ renderer })
 
 const markdownToHTML = (content: string) => {
-  if (typeof content !== 'string') {
+  if (typeof content !== 'string')
     return ''
-  }
+
   return marked(content)
 }
 

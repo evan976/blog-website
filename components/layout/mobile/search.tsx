@@ -7,13 +7,13 @@ interface MobileSearchProps {
 }
 
 const MobileSearch: React.FC<MobileSearchProps> = ({ visible, setVisible }) => {
-
   const router = useRouter()
   const [keyword, setKeyword] = React.useState('')
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
-    if (!keyword) return
+    if (!keyword)
+      return
     router.push(`/search/${keyword}`)
     setVisible(false)
   }
@@ -28,7 +28,7 @@ const MobileSearch: React.FC<MobileSearchProps> = ({ visible, setVisible }) => {
           maxLength={16}
           value={keyword}
           placeholder="探索与寻知"
-          onChange={(e) => setKeyword(e.target.value)}
+          onChange={e => setKeyword(e.target.value)}
         />
         <button className="ml-3" type="reset" onClick={() => setVisible(false)}>
           <i className="!text-lg iconfont">&#xe685;</i>

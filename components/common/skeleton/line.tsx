@@ -11,12 +11,11 @@ const LineSkeleton: React.FC<LineSkeletonProps> = ({
   width,
   height,
   style,
-  className
+  className,
 }) => {
-
   const styles = React.useMemo<React.CSSProperties>(() => ({
-    ...(width && { width: width + 'px' }),
-    ...(height && { height: height + 'px' }),
+    ...(width && { width: `${width}px` }),
+    ...(height && { height: `${height}px` }),
   }), [width, height])
 
   return (

@@ -15,12 +15,12 @@ const BaseSkeleton: React.FC<BaseSkeletonProps> = ({
   circle = false,
   radius = 2,
   className,
-  style
+  style,
 }) => {
   const styles = React.useMemo<React.CSSProperties>(() => ({
     borderRadius: circle ? '100%' : `${radius}px`,
-    ...(width && { width: width + 'px' }),
-    ...(height && { height: height + 'px' }),
+    ...(width && { width: `${width}px` }),
+    ...(height && { height: `${height}px` }),
   }), [width, height, circle, radius])
 
   return (

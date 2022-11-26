@@ -14,21 +14,21 @@ interface LocaleTimeProps {
 let callbacks: (() => void)[] = []
 
 setInterval(() => {
-  callbacks.forEach((cb) => cb())
+  callbacks.forEach(cb => cb())
 }, 1000 * 60)
 
 const eachMinute = (fn: () => void) => {
   callbacks.push(fn)
 
   return () => {
-    callbacks = callbacks.filter((cb) => cb !== fn)
+    callbacks = callbacks.filter(cb => cb !== fn)
   }
 }
 
 const getTimeago = (date: string | number | Date) => {
   let content = distanceInWords(new Date(date), new Date(), {
     addSuffix: true,
-    locale: zh
+    locale: zh,
   })
 
   content = content
@@ -45,19 +45,18 @@ const DateTime: React.FC<LocaleTimeProps> = ({
   format = 'yyyy年MM月dd日 HH:mm',
   ...rest
 }) => {
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setMinutesMounted] = React.useState<number>(0)
   const callback = React.useRef<() => void>()
 
   React.useEffect(() => {
     callback.current = eachMinute(() => {
-      setMinutesMounted((state) => ++state)
+      setMinutesMounted(state => ++state)
     })
 
     return () => {
-      if (callback.current) {
+      if (callback.current)
         callback.current()
-      }
     }
   }, [])
 

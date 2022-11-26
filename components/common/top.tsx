@@ -7,13 +7,14 @@ interface ScrollToTopProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: number
 }
 
-const scrollToTop = (smooth: boolean = true) => {
+const scrollToTop = (smooth = true) => {
   if (smooth) {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     })
-  } else {
+  }
+  else {
     document.documentElement.scrollTop = 0
   }
 }
@@ -24,10 +25,8 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({
   width = 32,
   height = 32,
   className,
-  onClick,
   ...props
 }) => {
-
   const [visible, setVisible] = React.useState(false)
 
   const onScroll = () => {
@@ -39,7 +38,6 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({
     return () => {
       document.removeEventListener('scroll', onScroll)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

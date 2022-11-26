@@ -3,7 +3,8 @@ import type { NextPage } from 'next'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import { ReactElement, ReactNode, useEffect } from 'react'
+import type { ReactElement, ReactNode } from 'react'
+import { useEffect } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { GA_TRACKING_ID, pageview } from 'utils/gtag'
 import 'react-toastify/dist/ReactToastify.css'
@@ -20,14 +21,14 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter()
 
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const getLayout = Component.getLayout ?? (page => page)
 
   useEffect(() => {
-    if (!GA_TRACKING_ID) return
+    if (!GA_TRACKING_ID)
+      return
     const handleRouteChange = (url: string) => {
       pageview(url)
     }

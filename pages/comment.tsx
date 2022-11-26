@@ -6,11 +6,10 @@ import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { IComment } from 'types'
+import type { IComment } from 'types'
 import type { NextPageWithLayout } from './_app'
 
-
-type Props = {
+interface Props {
   total: number
   totalPage: number
   comments: Array<IComment>
@@ -20,7 +19,7 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
   return (
     <div className="w-full h-full mb-3 sm:mb-0">
       <Helmet>
-        <title>{'广开言路' + ' - ' + META.title}</title>
+        <title>{'广开言路' + ` - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img
@@ -48,16 +47,15 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
   )
 }
 
-CommentPage.getLayout = (page) => <Layout>{page}</Layout>
+CommentPage.getLayout = page => <Layout>{page}</Layout>
 
 CommentPage.getInitialProps = async () => {
   const result = await fetchCommentList({ status: 1 })
   return {
     total: result.total,
     totalPage: result.total_page,
-    comments: result.data
+    comments: result.data,
   }
 }
-
 
 export default CommentPage

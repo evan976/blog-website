@@ -1,7 +1,7 @@
 import { META } from 'config/app.config'
 import dateFormat from 'date-fns/format'
 import * as React from 'react'
-import { Article } from 'types'
+import type { Article } from 'types'
 
 const ArticleMeta: React.FC<{ article: Article }> = ({ article }) => {
   return (

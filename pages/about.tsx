@@ -2,22 +2,21 @@ import { fetchGithubContributions } from 'api/tripartite'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
 import { CONNECT_LINKS, META } from 'config/app.config'
-import { GetStaticProps } from 'next'
+import type { GetStaticProps } from 'next'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import ReactTooltip from "react-tooltip"
-import { NextPageWithLayout } from './_app'
+import ReactTooltip from 'react-tooltip'
+import type { NextPageWithLayout } from './_app'
 
-type Props = {
+interface Props {
   contributions: any
 }
 
-const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
-
+const AboutPage: NextPageWithLayout<Props> = () => {
   return (
     <div className="w-full h-full">
       <Helmet>
-        <title>{'关于' + ' - ' + META.title}</title>
+        <title>{'关于' + ` - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img
@@ -148,15 +147,15 @@ const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
   )
 }
 
-AboutPage.getLayout = (page) => <Layout>{page}</Layout>
+AboutPage.getLayout = page => <Layout>{page}</Layout>
 
 export const getStaticProps: GetStaticProps = async () => {
   const { contributions } = await fetchGithubContributions()
 
   return {
     props: {
-      contributions
-    }
+      contributions,
+    },
   }
 }
 

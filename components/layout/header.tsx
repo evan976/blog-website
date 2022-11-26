@@ -17,9 +17,8 @@ const Header: React.FC = () => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
+  if (!mounted)
     return null
-  }
 
   return (
     <header className="h-16 w-full bg-bg-100 fixed top-0 left-0 z-[99] backdrop-blur-[5px]">

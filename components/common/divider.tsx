@@ -9,15 +9,13 @@ interface DividerProps {
 const Divider: React.FC<DividerProps> = ({
   type = 'solid',
   direction = 'horizontal',
-  className
+  className,
 }) => {
-
   const classNames = React.useMemo(() => {
-    if (direction === 'vertical') {
+    if (direction === 'vertical')
       return 'inline-block min-w-[1px] max-w-[1px] h-[1em] mx-3 align-middle border-l'
-    } else {
+    else
       return 'w-full min-w-full max-w-full relative my-3 clear-both border-t'
-    }
   }, [direction])
 
   return (

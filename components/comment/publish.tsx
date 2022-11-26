@@ -1,8 +1,8 @@
 import { addComment } from 'api'
 import useReactive from 'hooks/useReactive'
 import * as React from 'react'
-import { toast, ToastContainer } from 'react-toastify'
-import { IComment } from 'types'
+import { ToastContainer, toast } from 'react-toastify'
+import type { IComment } from 'types'
 
 interface PublishProps {
   visible?: boolean
@@ -13,7 +13,7 @@ interface PublishProps {
   articleId?: number
 }
 
-type FormValue = {
+interface FormValue {
   name: string
   email: string
   site: string
@@ -25,16 +25,15 @@ const Publish: React.FC<PublishProps> = ({
   isReply = false,
   comment,
   reply,
-  articleId
+  articleId,
 }) => {
-
   const [innerVisible, setInnerVisible] = React.useState(visible)
 
   const formValue = useReactive<FormValue>({
     name: '',
     email: '',
     site: '',
-    content: ''
+    content: '',
   })
 
   const handleAddComment: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -43,26 +42,23 @@ const Publish: React.FC<PublishProps> = ({
       name: formValue.name,
       email: formValue.email,
       site: formValue.site,
-      content: formValue.content
+      content: formValue.content,
     }
 
-    if (articleId) {
+    if (articleId)
       Object.assign(data, { article_id: articleId })
-    }
 
-    if (comment && (comment.parent_id || comment.id)) {
+    if (comment && (comment.parent_id || comment.id))
       Object.assign(data, { parent_id: comment.parent_id ?? comment.id })
-    }
 
-    if (comment && comment.article_id) {
+    if (comment && comment.article_id)
       Object.assign(data, { article_id: comment.article_id })
-    }
 
     if (reply) {
       Object.assign(data, {
         reply_user_name: reply.name,
         reply_user_email: reply.email,
-        reply_user_site: reply.site
+        reply_user_site: reply.site,
       })
     }
 
@@ -77,9 +73,10 @@ const Publish: React.FC<PublishProps> = ({
 
   return (
     <div>
-      {!innerVisible ? (
+      {!innerVisible
+        ? (
         <div className="w-full h-14 flex justify-start items-center">
-          <div className={`hidden sm:block rounded-sm w-14 h-14 border-4 border-bg-200 flex-shrink-0`}>
+          <div className={'hidden sm:block rounded-sm w-14 h-14 border-4 border-bg-200 flex-shrink-0'}>
             <img
               className="rounded-sm"
               src="/images/garavatar.png"
@@ -87,13 +84,14 @@ const Publish: React.FC<PublishProps> = ({
             />
           </div>
           <div
-            className={`w-full sm:ml-3 h-14 bg-bg-200 rounded-sm flex justify-start items-center cursor-text px-6 hover:bg-bg-300 duration-150`}
+            className={'w-full sm:ml-3 h-14 bg-bg-200 rounded-sm flex justify-start items-center cursor-text px-6 hover:bg-bg-300 duration-150'}
             onClick={() => setInnerVisible(true)}
           >
             畅所欲言
           </div>
         </div>
-      ) : (
+          )
+        : (
         <form className="w-full" onSubmit={handleAddComment}>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className={`${isReply ? 'bg-bg-300 ' : 'bg-bg-200'} rounded-sm flex justify-between items-center px-3 h-7`}>
@@ -170,7 +168,7 @@ const Publish: React.FC<PublishProps> = ({
             </div>
           </div>
         </form>
-      )}
+          )}
       <ToastContainer
         autoClose={3000}
         hideProgressBar={true}

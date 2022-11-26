@@ -17,18 +17,17 @@ const ParagraphSkeleton: React.FC<ParagraphSkeletonProps> = ({
   align = false,
   lineHeight = '1rem',
   style,
-  className
+  className,
 }) => {
-
   const styles = React.useMemo<React.CSSProperties>(() => ({
-    ...(width && { width: width + 'px' }),
-    ...(height && { height: height + 'px' })
+    ...(width && { width: `${width}px` }),
+    ...(height && { height: `${height}px` }),
   }), [width, height])
 
   const getLineStyle = (index: number) => {
     const style: React.CSSProperties = {
       height: lineHeight,
-      marginBottom: index === lines - 1 ? '0' : `calc(${lineHeight} * 0.75)`
+      marginBottom: index === lines - 1 ? '0' : `calc(${lineHeight} * 0.75)`,
     }
     const position = index % 5
     if (position) {

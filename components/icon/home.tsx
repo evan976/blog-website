@@ -1,10 +1,10 @@
 import classNames from 'classnames'
 import * as React from 'react'
 
-export const IconHome = React.memo<JSX.IntrinsicElements['svg']>(function IconHome({
+export const IconHome = React.memo<JSX.IntrinsicElements['svg']>(({
   className,
   ...rest
-}) {
+}) => {
   return (
     <svg
       width="1.2em"

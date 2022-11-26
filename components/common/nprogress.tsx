@@ -14,7 +14,8 @@ const NProgress: React.FC = () => {
   }
 
   const done = () => {
-    if (timer.current) clearTimeout(timer.current)
+    if (timer.current)
+      clearTimeout(timer.current)
     timer.current = setTimeout(() => {
       NP.done(true)
     }, 300)

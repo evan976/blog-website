@@ -11,21 +11,20 @@ import type { NextPageWithLayout } from 'pages/_app'
 import markdownToHTML from 'plugins/markdown'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Article, CommentReponse } from 'types'
+import type { Article, CommentReponse } from 'types'
 
-type Props = {
+interface Props {
   article: Article
   comments: CommentReponse
 }
 
 const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
-
   const html = markdownToHTML(article.content)
 
   return (
     <>
       <Helmet>
-        <title>{article?.title + ' - ' + META.title}</title>
+        <title>{`${article?.title} - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-full mt-3 sm:mt-0 bg-bg-100 rounded p-3">
         <article>
@@ -62,7 +61,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
                 key={tag.id}
                 style={{
                   color: tag.color,
-                  background: Color(tag.color).alpha(0.2).lighten(0.2).hsl().string()
+                  background: Color(tag.color).alpha(0.2).lighten(0.2).hsl().string(),
                 }}
               >{tag.name}</a>
             ))}
@@ -101,7 +100,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
   )
 }
 
-ArticlePage.getLayout = (page) => <Layout>{page}</Layout>
+ArticlePage.getLayout = page => <Layout>{page}</Layout>
 
 ArticlePage.getInitialProps = async ({ query }) => {
   const { articleId } = query
@@ -110,7 +109,7 @@ ArticlePage.getInitialProps = async ({ query }) => {
 
   return {
     article,
-    comments
+    comments,
   }
 }
 

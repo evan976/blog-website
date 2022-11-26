@@ -3,12 +3,12 @@ import ArticleList from 'components/article/list'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
-import { NextPageWithLayout } from 'pages/_app'
+import type { NextPageWithLayout } from 'pages/_app'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Article, Category, } from 'types'
+import type { Article, Category } from 'types'
 
-type Props = {
+interface Props {
   articles: Array<Article>
   category: Category
   total: number
@@ -19,7 +19,7 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
   return (
     <>
       <Helmet>
-        <title>{category.name + ' - ' + META.title}</title>
+        <title>{`${category.name} - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img
@@ -42,7 +42,7 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
   )
 }
 
-CategoryPage.getLayout = (page) => <Layout>{page}</Layout>
+CategoryPage.getLayout = page => <Layout>{page}</Layout>
 
 CategoryPage.getInitialProps = async ({ query }) => {
   const { slug } = query
@@ -52,7 +52,7 @@ CategoryPage.getInitialProps = async ({ query }) => {
   return {
     category,
     articles: data,
-    total: total,
+    total,
     totalPage: total_page,
   }
 }

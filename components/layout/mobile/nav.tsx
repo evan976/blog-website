@@ -4,7 +4,6 @@ import * as React from 'react'
 import { menus } from '../menu'
 
 const BottomBar: React.FC = () => {
-
   const router = useRouter()
 
   return (

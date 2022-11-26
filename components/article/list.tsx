@@ -1,17 +1,16 @@
 import { fetchArticleList } from 'api'
 import Empty from 'components/common/empty'
 import * as React from 'react'
-import { Article } from 'types'
+import type { Article } from 'types'
 import ArticleItem from './item'
 
-type Props = {
+interface Props {
   articles: Array<Article>
   total: number
   totalPage: number
 }
 
 const ArticleList: React.FC<Props> = ({ articles, total, totalPage }) => {
-
   const [page, setPage] = React.useState(1)
   const [articleList, setArticleList] = React.useState<Array<Article>>(articles)
 
@@ -24,11 +23,12 @@ const ArticleList: React.FC<Props> = ({ articles, total, totalPage }) => {
   }, [total])
 
   const loadMoreArticle = React.useCallback(() => {
-    if (!hasMore) return
+    if (!hasMore)
+      return
     fetchArticleList({ page: page + 1 })
-      .then(result => {
+      .then((result) => {
         setPage(page => page + 1)
-        setArticleList((articles) => [...articles, ...result.data])
+        setArticleList(articles => [...articles, ...result.data])
       })
   }, [hasMore, page])
 
@@ -38,7 +38,9 @@ const ArticleList: React.FC<Props> = ({ articles, total, totalPage }) => {
 
   return (
     <>
-      {!articleList.length ? (<Empty />) : (
+      {!articleList.length
+        ? (<Empty />)
+        : (
         <>
           {articleList?.map(article => (
             <ArticleItem key={article.id} article={article} />
@@ -54,7 +56,7 @@ const ArticleList: React.FC<Props> = ({ articles, total, totalPage }) => {
             </button>
           </div>
         </>
-      )}
+          )}
     </>
   )
 }

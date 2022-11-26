@@ -2,7 +2,7 @@ import * as React from 'react'
 import Aside from './aside'
 import Nav from './nav'
 
-type MainProps = {
+interface MainProps {
   children: React.ReactNode
 }
 

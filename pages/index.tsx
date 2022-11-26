@@ -7,10 +7,10 @@ import Weibo from 'components/weibo'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { Article } from 'types'
-import { NextPageWithLayout } from './_app'
+import type { Article } from 'types'
+import type { NextPageWithLayout } from './_app'
 
-type Props = {
+interface Props {
   total: number
   totalPage: number
   articles: Article[]
@@ -18,7 +18,6 @@ type Props = {
 }
 
 const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo }) => {
-
   const banners = React.useMemo(() => articles.slice(0, 6), [articles])
 
   return (
@@ -35,10 +34,10 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
         autoplay={{
           delay: 3500,
           pauseOnMouseEnter: true,
-          disableOnInteraction: false
+          disableOnInteraction: false,
         }}
       >
-        {banners?.map((item) => (
+        {banners?.map(item => (
           <SwiperSlide key={item.id}>
             <Link href={`/article/${item.article_id}`}>
               <a className="w-full h-full block">
@@ -63,7 +62,7 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
   )
 }
 
-HomePage.getLayout = (page) => <Layout>{page}</Layout>
+HomePage.getLayout = page => <Layout>{page}</Layout>
 
 HomePage.getInitialProps = async () => {
   const result = await fetchArticleList({ status: 1 })
@@ -73,7 +72,7 @@ HomePage.getInitialProps = async () => {
     total: result.total,
     totalPage: result.total_page,
     articles: result.data,
-    weibo
+    weibo,
   }
 }
 

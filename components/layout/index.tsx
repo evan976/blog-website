@@ -6,7 +6,7 @@ import Header from './header'
 import Main from './main'
 import BottomBar from './mobile/nav'
 
-type LayoutProps = {
+interface LayoutProps {
   children: React.ReactNode
 }
 

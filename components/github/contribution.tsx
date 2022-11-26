@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { getDate, getDateOfISOWeek } from 'utils/date'
+import { getDate } from 'utils/date'
 
-type Day = {
+interface Day {
   count: number
 }
 
-type Contribution = {
+interface Contribution {
   week: number
   days: Array<Day>
 }
@@ -19,7 +19,6 @@ interface GithubContributionProps {
 }
 
 const GithubContribution: React.FC<GithubContributionProps> = ({ contributions }) => {
-
   return (
     <div className="bg-bg-100 rounded p-3">
       <ul className="flex w-full overflow-hidden">

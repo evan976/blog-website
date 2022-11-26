@@ -27,8 +27,8 @@ jobs:
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
-          ARGS: '-avz --delete'
-          SOURCE: '/'
+          ARGS: -avz --delete
+          SOURCE: /
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
           TARGET: /usr/local/src/website

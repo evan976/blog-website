@@ -6,9 +6,9 @@ import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Article, Tag } from 'types'
+import type { Article, Tag } from 'types'
 
-type Props = {
+interface Props {
   articles: Array<Article>
   tag: Tag
   total: number
@@ -19,7 +19,7 @@ const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage })
   return (
     <>
       <Helmet>
-        <title>{tag.name + ' - ' + META.title}</title>
+        <title>{`${tag.name} - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
         <img
@@ -41,7 +41,7 @@ const TagPage: NextPageWithLayout<Props> = ({ articles, tag, total, totalPage })
   )
 }
 
-TagPage.getLayout = (page) => <Layout>{page}</Layout>
+TagPage.getLayout = page => <Layout>{page}</Layout>
 
 TagPage.getInitialProps = async ({ query }) => {
   const { slug } = query
@@ -51,7 +51,7 @@ TagPage.getInitialProps = async ({ query }) => {
   return {
     tag,
     articles: data,
-    total: total,
+    total,
     totalPage: total_page,
   }
 }

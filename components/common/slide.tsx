@@ -15,7 +15,7 @@ const Slide: React.FC<SlideProps> = ({ visible, options, children }) => {
   return (
     <>
       {transitions(
-        (style, item) => item && <animated.div style={{ ...style, overflow: 'hidden' }}>{children}</animated.div>
+        (style, item) => item && <animated.div style={{ ...style, overflow: 'hidden' }}>{children}</animated.div>,
       )}
     </>
   )

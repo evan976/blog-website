@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-type CardProps = {
+interface CardProps {
   title: string
   icon: string
   className: string

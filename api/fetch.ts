@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, Method as AxiosMethod } from 'axios'
+import type { AxiosInstance, Method as AxiosMethod } from 'axios'
+import axios from 'axios'
 
 const fetch = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -8,9 +9,8 @@ const fetch = axios.create({
 fetch.interceptors.response.use(
   (response) => {
     if (response.headers['content-type'].includes('json')) {
-      if (response.data.code !== 0) {
+      if (response.data.code !== 0)
         return Promise.reject(response.data)
-      }
     }
 
     return response.data.result
@@ -32,6 +32,7 @@ fetch.interceptors.response.use(
       data: errorJSON.config.data,
     }
 
+    // eslint-disable-next-line no-console
     console.debug('Error', serverErrorInfo)
 
     return Promise.reject(errorInfo)

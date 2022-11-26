@@ -1,7 +1,8 @@
 import * as React from 'react'
 import Card from 'components/common/card'
 import { isAllTrue } from 'utils'
-import { CalendarItem, generateCalendar, weekMap } from 'utils/date'
+import type { CalendarItem } from 'utils/date'
+import { generateCalendar, weekMap } from 'utils/date'
 
 const Calendar = () => {
   const [date, setDate] = React.useState<Date>(new Date())
@@ -29,7 +30,8 @@ const Calendar = () => {
     if (type === 'prev') {
       month = date.getMonth() === 0 ? 11 : date.getMonth() - 1
       year = month === 11 ? date.getFullYear() - 1 : date.getFullYear()
-    } else {
+    }
+    else {
       month = date.getMonth() === 11 ? 0 : date.getMonth() + 1
       year = month === 0 ? date.getFullYear() + 1 : date.getFullYear()
     }

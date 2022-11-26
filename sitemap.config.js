@@ -19,24 +19,24 @@ module.exports = {
       alternateRefs: config.alternateRefs ?? [],
     }
   },
-  additionalPaths: async (config) => {
+  additionalPaths: async () => {
     const articles = await axios.get(`${BASE_API_URL}/articles`, { params: { page_size: 200 } })
     const categories = await axios.get(`${BASE_API_URL}/categories`)
     const tags = await axios.get(`${BASE_API_URL}/tags`)
 
-    const articleRoutes = articles.data.result.data.map((data) => ({
+    const articleRoutes = articles.data.result.data.map(data => ({
       loc: `/article/${data.article_id}`,
       changefreq: 'daily',
       priority: 0.9,
       lastmod: dateFormat(data.created_at * 1000, 'yyyy-MM-dd'),
     }))
-    const categoryRoutes = categories.data.result.data.map((data) => ({
+    const categoryRoutes = categories.data.result.data.map(data => ({
       loc: `/category/${data.slug}`,
       changefreq: 'monthly',
       priority: 0.8,
       lastmod: dateFormat(data.created_at * 1000, 'yyyy-MM-dd'),
     }))
-    const tagRoutes = tags.data.result.map((data) => ({
+    const tagRoutes = tags.data.result.map(data => ({
       loc: `/tag/${data.slug}`,
       changefreq: 'weekly',
       priority: 0.7,

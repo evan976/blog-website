@@ -1,7 +1,7 @@
 import { fetchCommentList } from 'api'
 import Empty from 'components/common/empty'
 import * as React from 'react'
-import { IComment } from 'types'
+import type { IComment } from 'types'
 import CommentItem from './item'
 
 interface CommentListProps {
@@ -11,7 +11,6 @@ interface CommentListProps {
 }
 
 const CommentList: React.FC<CommentListProps> = ({ comments, totalPage, total }) => {
-
   const [page, setPage] = React.useState(1)
   const [list, setList] = React.useState<Array<IComment>>(comments)
 
@@ -25,9 +24,9 @@ const CommentList: React.FC<CommentListProps> = ({ comments, totalPage, total })
 
   const fetchMoreComments = React.useCallback(() => {
     fetchCommentList({ page: page + 1, status: 1 })
-      .then(result => {
+      .then((result) => {
         setPage(page => page + 1)
-        setList((comment) => [...comment, ...result.data])
+        setList(comment => [...comment, ...result.data])
       })
   }, [page])
 
@@ -35,19 +34,20 @@ const CommentList: React.FC<CommentListProps> = ({ comments, totalPage, total })
     setList(comments)
   }, [comments])
 
-
   return (
     <div className="w-full h-full flex flex-col">
-      {list.length ? (
-        list?.map((comment) => (
+      {list.length
+        ? (
+            list?.map(comment => (
           <CommentItem
             key={comment.id}
             comment={comment}
           />
-        ))
-      ) : (
+            ))
+          )
+        : (
         <Empty description="期待你的捷足先登 😎" />
-      )}
+          )}
       {hasMore && (
         <button
           className="px-8 py-2 bg-bg-200 rounded-sm self-start mx-auto hover:bg-bg-300 duration-150"

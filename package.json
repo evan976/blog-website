@@ -7,8 +7,8 @@
     "build": "next build",
     "postbuild": "next-sitemap --config sitemap.config.js",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "eslint --ext .js,jsx,.ts,.tsx --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "pm2": "pm2 start yarn --name client --interpreter bash -- start",
     "release": ". ./scripts/release.sh"
@@ -36,6 +36,7 @@
     "swiper": "^8.3.2"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.31.0",
     "@svgr/webpack": "^6.3.1",
     "@types/color": "^3.0.3",
     "@types/gtag.js": "^0.0.11",
@@ -47,8 +48,6 @@
     "@types/react-transition-group": "^4.4.5",
     "autoprefixer": "^10.4.8",
     "eslint": "8.23.0",
-    "eslint-config-next": "12.2.5",
-    "eslint-config-prettier": "^8.5.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "sass": "^1.54.5",

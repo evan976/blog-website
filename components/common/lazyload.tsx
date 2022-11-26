@@ -15,9 +15,8 @@ const Lazyload: React.FC<LazyloadProps> = ({
   className,
   imageClassName,
   lazy = true,
-  round = 4
+  round = 4,
 }) => {
-
   const [imageSrc, setImageSrc] = React.useState(src)
   const [loading, setLoading] = React.useState(true)
   const observer = React.useRef<IntersectionObserver>()
@@ -29,7 +28,7 @@ const Lazyload: React.FC<LazyloadProps> = ({
 
   React.useEffect(() => {
     if (lazy) {
-      observer.current = new IntersectionObserver(entries => {
+      observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           setImageSrc(src)
           observer.current?.disconnect()

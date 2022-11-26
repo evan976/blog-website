@@ -6,9 +6,9 @@ import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Article } from 'types'
+import type { Article } from 'types'
 
-type Props = {
+interface Props {
   articles: Array<Article>
   keyword: string
   total: number
@@ -19,7 +19,7 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
   return (
     <>
       <Helmet>
-        <title>{keyword + ' - ' + META.title}</title>
+        <title>{`${keyword} - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] my-3 sm:mt-0 rounded overflow-hidden relative">
         <img
@@ -44,7 +44,7 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
   )
 }
 
-SearchPage.getLayout = (page) => <Layout>{page}</Layout>
+SearchPage.getLayout = page => <Layout>{page}</Layout>
 
 SearchPage.getInitialProps = async ({ query }) => {
   const { keyword } = query
@@ -52,9 +52,9 @@ SearchPage.getInitialProps = async ({ query }) => {
 
   return {
     articles: data,
-    total: total,
+    total,
     totalPage: total_page,
-    keyword: keyword as string
+    keyword: keyword as string,
   }
 }
 

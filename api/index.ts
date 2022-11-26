@@ -1,4 +1,4 @@
-import {
+import type {
   Article,
   ArticleResponse,
   Category,
@@ -14,7 +14,7 @@ export const COMMENT_API_PATH = 'comments'
 export const CATEGORY_API_PATH = 'categories'
 export const TAG_API_PATH = 'tags'
 
-export type QueryParams = {
+export interface QueryParams {
   page?: number
   page_size?: number
   status?: number

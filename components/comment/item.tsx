@@ -3,7 +3,7 @@ import Slide from 'components/common/slide'
 import useMobile from 'hooks/useMobile'
 import markdownToHTML from 'plugins/markdown'
 import * as React from 'react'
-import { IComment } from 'types'
+import type { IComment } from 'types'
 import { filterAddress, filterBrowser, filterOS } from 'utils/filter'
 import Publish from './publish'
 
@@ -13,8 +13,7 @@ interface CommentItemProps {
   isChildren?: boolean
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply }) => {
-
+const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren }) => {
   const isMobile = useMobile()
 
   const [visible, setVisible] = React.useState(false)
@@ -26,7 +25,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
   return (
     <div className={`bg-bg-200 rounded-sm ${isChildren ? 'mb-0 border-t border-dashed border-border' : 'mb-3 last:mb-0'}`}>
       <div className={`relative ${isChildren ? 'pl-3 sm:pl-[68px] pr-0' : 'pl-3 sm:pl-20 pr-3'}`}>
-        <div className={`w-full flex bg-bg-200 py-3`}>
+        <div className={'w-full flex bg-bg-200 py-3'}>
           <div className={`hidden sm:block rounded-sm absolute w-14 h-14 translate-y-3 border-4 border-bg-100 flex-shrink-0 ${isChildren ? 'left-0' : 'left-3'}`}>
             <img
               className="rounded-sm w-full h-full"
@@ -95,7 +94,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
             leave: { opacity: 0, height: 0 },
           }}
         >
-          <div className={`bg-bg-200 pb-2`}>
+          <div className={'bg-bg-200 pb-2'}>
             <Publish
               visible={visible}
               isReply
@@ -104,9 +103,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isChildren, reply })
             />
           </div>
         </Slide>
-        {comment.replys &&
-          comment.replys.length > 0 &&
-          comment.replys.map((item) => (
+        {comment.replys
+          && comment.replys.length > 0
+          && comment.replys.map(item => (
             <CommentItem
               key={item.id}
               comment={item}

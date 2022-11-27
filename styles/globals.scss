@@ -70,18 +70,6 @@ $font-family-normal: 'webfont-medium', OpenSans, $font-family-base;
   }
 }
 
-::-webkit-scrollbar {
-  @apply w-[5px];
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-blue;
-}
-
-::-webkit-scrollbar-thumb:window-inactive {
-  @apply bg-red;
-}
-
 a {
   @apply text-[#666];
 }
@@ -108,5 +96,23 @@ body {
 
   &-active {
     @apply w-6 bg-bg-400 opacity-50;
+  }
+}
+
+.loading-dots {
+  i {
+    @apply inline-block w-[6px] h-[6px] rounded-full bg-font-300 opacity-50;
+
+    &:first-child {
+      @apply animate-loading-dots1;
+    }
+
+    &:nth-of-type(2) {
+      @apply animate-loading-dots2 mx-[6px];
+    }
+
+    &:last-child {
+      @apply animate-loading-dots3;
+    }
   }
 }

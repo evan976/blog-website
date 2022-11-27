@@ -1,8 +1,10 @@
+import * as React from 'react'
 import { useRouter } from 'next/router'
 import NP from 'nprogress'
-import * as React from 'react'
 
-const NProgress: React.FC = () => {
+NP.configure({ showSpinner: false })
+
+const useProgress = () => {
   const router = useRouter()
 
   const timer = React.useRef<NodeJS.Timeout>()
@@ -32,8 +34,6 @@ const NProgress: React.FC = () => {
       router.events.off('routeChangeError', done)
     }
   }, [router.events])
-
-  return null
 }
 
-export default NProgress
+export default useProgress

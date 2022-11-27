@@ -4,6 +4,25 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      keyframes: {
+        'loading-dots1': {
+          '0%': { opacity: 1 },
+          '100%': { opacity: 0.5 },
+        },
+        'loading-dots2': {
+          '33%': { opacity: 1 },
+          '100%': { opacity: 0.5 },
+        },
+        'loading-dots3': {
+          '66%': { opacity: 1 },
+          '100%': { opacity: 0.5 },
+        },
+      },
+      animation: {
+        'loading-dots1': 'loading-dots1 1.5s ease-in-out infinite',
+        'loading-dots2': 'loading-dots2 1.5s ease-in-out infinite',
+        'loading-dots3': 'loading-dots3 1.5s ease-in-out infinite',
+      },
       colors: {
         blue: 'rgb(var(--color-blue))',
         green: 'rgb(var(--color-green))',

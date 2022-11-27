@@ -3,7 +3,6 @@ import { fetchHotArticleList, fetchTagList } from 'api'
 import type { Article as IArticle, Tag as ITag } from 'types'
 import Article from './article'
 import Calendar from './calendar'
-import Search from './search'
 import Tag from './tag'
 
 const Aside: React.FC = () => {
@@ -30,7 +29,6 @@ const Aside: React.FC = () => {
 
   return (
     <div className="order-3 flex-shrink-0 w-[256px] ml-3 hidden sm:block">
-      <Search />
       <Article articles={articleList} loading={loading} />
       <Calendar />
       <Tag tags={tagList} loading={loading} />

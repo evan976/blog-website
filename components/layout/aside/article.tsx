@@ -7,7 +7,7 @@ import type { Article as IArticle } from 'types'
 
 const Article: React.FC<{ articles: Array<IArticle>; loading: boolean }> = ({ loading, articles }) => {
   return (
-    <Card title="热门文章" icon="&#xe753;" className="mt-3">
+    <Card title="热门文章" icon="&#xe753;">
       <ul className="w-full h-full">
         {loading
           ? (
@@ -21,9 +21,7 @@ const Article: React.FC<{ articles: Array<IArticle>; loading: boolean }> = ({ lo
               articles?.map((article, index) => (
             <li key={article.id} className="flex w-full justify-start items-start mb-2 last:mb-0">
               <span
-                className={`leading-5 h-4 w-4 mr-2 mt-[2px] text-[12px] rounded-[1px] flex justify-center items-center bg-bg-400 shrink-0 ${index + 1 === 1 ? 'text-white !bg-blue' : undefined
-                  } ${index + 1 === 2 ? 'text-white !bg-green' : undefined} ${index + 1 === 3 ? 'text-white !bg-red' : undefined
-                  }`}
+                className={`leading-5 h-4 w-4 mr-2 mt-[2px] text-[12px] rounded-[1px] flex justify-center items-center bg-bg-400 shrink-0 ${index + 1 === 1 ? 'text-white !bg-blue' : undefined} ${index + 1 === 2 ? 'text-white !bg-green' : undefined} ${index + 1 === 3 ? 'text-white !bg-red' : undefined}`}
               >
                 {index + 1}
               </span>

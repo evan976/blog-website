@@ -1,4 +1,3 @@
-import NProgress from 'components/common/nprogress'
 import type { NextPage } from 'next'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
@@ -6,6 +5,7 @@ import { useRouter } from 'next/router'
 import type { ReactElement, ReactNode } from 'react'
 import { useEffect } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
+import useProgress from 'hooks/useProgress'
 import { GA_TRACKING_ID, pageview } from 'utils/gtag'
 import 'react-toastify/dist/ReactToastify.css'
 import 'nprogress/nprogress.css'
@@ -22,6 +22,7 @@ type AppPropsWithLayout = AppProps & {
 }
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  useProgress()
   const router = useRouter()
 
   const getLayout = Component.getLayout ?? (page => page)
@@ -41,7 +42,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <HelmetProvider>
       <ThemeProvider attribute="class">
-        <NProgress />
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>
     </HelmetProvider>

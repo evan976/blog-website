@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { animated, useTransition } from 'react-spring'
+import { animated, useTransition } from '@react-spring/web'
 
 interface SlideProps {
   visible: boolean

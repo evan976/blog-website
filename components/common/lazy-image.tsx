@@ -43,7 +43,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
       src={src}
       alt={alt}
       loadEagerly={loadEagerly}
-      actual={({ imageProps }) => (
+      actual={({ imageProps }: { imageProps: ImageProps }) => (
         <Image
           imageProps={imageProps}
           className={className}
@@ -51,7 +51,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
           {children}
         </Image>
       )}
-      placeholder={({ ref }) => (
+      placeholder={({ ref }: { ref?: React.RefObject<any> }) => (
         <div className='w-full h-full bg-bg-100 flex items-center justify-center' ref={ref}>
           <LoadingDots />
         </div>

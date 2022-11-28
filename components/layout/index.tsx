@@ -1,5 +1,5 @@
 import Seo from 'components/common/seo'
-import ScrollToTop from 'components/common/top'
+import ScrollToTop from 'components/common/scroll-to-top'
 import * as React from 'react'
 import Footer from './footer'
 import Header from './header'

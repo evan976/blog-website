@@ -1,10 +1,9 @@
 import * as React from 'react'
+import { off, on } from 'utils'
 
 interface ScrollToTopProps extends React.HTMLAttributes<HTMLDivElement> {
   top?: number
   smooth?: boolean
-  width?: number
-  height?: number
 }
 
 const scrollToTop = (smooth = true) => {
@@ -22,8 +21,6 @@ const scrollToTop = (smooth = true) => {
 const ScrollToTop: React.FC<ScrollToTopProps> = ({
   top = 20,
   smooth = true,
-  width = 32,
-  height = 32,
   className,
   ...props
 }) => {
@@ -34,21 +31,14 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({
   }
 
   React.useEffect(() => {
-    document.addEventListener('scroll', onScroll)
-    return () => {
-      document.removeEventListener('scroll', onScroll)
-    }
+    on(window, 'scroll', onScroll)
+    return () => off(window, 'scroll', onScroll)
   }, [])
 
   return (
     <div
-      className={`bg-blue hidden rounded-sm fixed bottom-10 right-10 cursor-pointer transition-opacity duration-300 sm:flex justify-center items-center text-white z-[999] ${className}`}
+      className={`bg-blue w-8 h-8 hidden rounded-sm fixed bottom-10 right-10 cursor-pointer transition-opacity duration-300 sm:flex justify-center items-center text-white z-[999] ${className} ${visible ? 'opacity-100' : 'opacity-0'}`}
       onClick={() => scrollToTop(smooth)}
-      style={{
-        width,
-        height,
-        opacity: visible ? 1 : 0,
-      }}
       {...props}
     >
       <i className="iconfont">&#xe696;</i>

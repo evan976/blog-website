@@ -79,6 +79,10 @@ body {
   @apply overflow-x-hidden overflow-y-auto select-none font-sans text-sm text-font-200 antialiased;
 }
 
+::-webkit-scrollbar {
+  @apply hidden;
+}
+
 #nprogress {
   @apply pointer-events-none;
 

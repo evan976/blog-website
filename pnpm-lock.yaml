@@ -5,6 +5,7 @@ specifiers:
   '@headlessui/react': ^1.7.4
   '@react-spring/web': ^9.5.5
   '@svgr/webpack': ^6.5.1
+  '@tailwindcss/aspect-ratio': ^0.4.2
   '@types/color': ^3.0.3
   '@types/gtag.js': ^0.0.11
   '@types/marked': ^4.0.7
@@ -69,6 +70,7 @@ dependencies:
 devDependencies:
   '@antfu/eslint-config': 0.31.0_yqf6kl63nyoq5megxukfnom5rm
   '@svgr/webpack': 6.5.1
+  '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.4
   '@types/color': 3.0.3
   '@types/gtag.js': 0.0.11
   '@types/marked': 4.0.7
@@ -1890,6 +1892,14 @@ packages:
     dependencies:
       tslib: 2.4.1
     dev: false
+
+  /@tailwindcss/aspect-ratio/0.4.2_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.2.4_postcss@8.4.19
+    dev: true
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}

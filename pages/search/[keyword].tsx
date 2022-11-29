@@ -1,7 +1,7 @@
 import { fetchArticleList } from 'api'
 import ArticleList from 'components/article/list'
+import BlurImage from 'components/blur-image'
 import Ad from 'components/common/ad'
-import LazyImage from 'components/common/lazy-image'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
@@ -23,8 +23,7 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
         <title>{`${keyword} - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] my-3 sm:mt-0 rounded overflow-hidden relative">
-        <LazyImage
-          loadEagerly
+        <BlurImage
           src="/images/google-search.jpeg"
           alt="search"
           className="duration-200 scale-[1.02] hover:scale-100 rounded"
@@ -35,7 +34,7 @@ const SearchPage: NextPageWithLayout<Props> = ({ articles, total, totalPage, key
               和<span> “{keyword}” </span>有关的所有文章
             </p>
           </div>
-        </LazyImage>
+        </BlurImage>
       </div>
       {total > 0 && <Ad />}
       <ArticleList

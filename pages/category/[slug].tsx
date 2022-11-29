@@ -1,7 +1,7 @@
 import { fetchArticleListBySlug, fetchCategoryBySlug } from 'api'
 import ArticleList from 'components/article/list'
+import BlurImage from 'components/blur-image'
 import Ad from 'components/common/ad'
-import LazyImage from 'components/common/lazy-image'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import type { NextPageWithLayout } from 'pages/_app'
@@ -23,7 +23,7 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
         <title>{`${category.name} - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
-        <LazyImage
+        <BlurImage
           src={category?.background}
           alt={category?.name}
           className="duration-200 scale-[1.02] hover:scale-100 rounded"
@@ -32,7 +32,7 @@ const CategoryPage: NextPageWithLayout<Props> = ({ articles, category, total, to
             <h1 className="text-center text-white text-lg">{category?.name}</h1>
             <p className="text-center text-white text-sm mt-2">{category?.description}</p>
           </div>
-        </LazyImage>
+        </BlurImage>
       </div>
       <Ad />
       <ArticleList

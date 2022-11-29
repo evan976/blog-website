@@ -1,11 +1,10 @@
 import { fetchArticleList } from 'api'
 import { fetchWeiboList } from 'api/tripartite'
 import ArticleList from 'components/article/list'
-import LazyImage from 'components/common/lazy-image'
+import BlurImage from 'components/blur-image'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import Layout from 'components/layout'
 import Weibo from 'components/weibo'
-import Link from 'next/link'
 import React from 'react'
 import type { Article } from 'types'
 import type { NextPageWithLayout } from './_app'
@@ -39,16 +38,12 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
       >
         {banners?.map(item => (
           <SwiperSlide key={item.id}>
-            <Link href={`/article/${item.article_id}`}>
-              <a className="w-full h-full block">
-                <LazyImage
-                  loadEagerly
-                  src={item.thumb}
-                  alt={item.title}
-                  className="duration-200 scale-100 hover:scale-105"
-                />
-              </a>
-            </Link>
+            <BlurImage
+              src={item.thumb}
+              alt={item.title}
+              href={`/article/${item.article_id}`}
+              className="duration-200 scale-100 hover:scale-105"
+            />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -1,5 +1,5 @@
+import BlurImage from 'components/blur-image'
 import DateTime from 'components/common/date'
-import LazyImage from 'components/common/lazy-image'
 import type SwiperClass from 'components/common/swiper'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import useReactive from 'hooks/useReactive'
@@ -28,8 +28,8 @@ const Weibo: React.FC<{ weibo: any[] }> = ({ weibo }) => {
   return (
     <div className="w-full hidden sm:flex justify-between h-16 mt-3">
       <div className="w-16 bg-bg-100 rounded flex justify-center items-center p-3">
-        <div className="rounded-sm">
-          <LazyImage
+        <div className="rounded-sm w-full h-full">
+          <BlurImage
             src={userInfo?.avatar_hd}
             alt="avatar"
             className="rounded-sm"
@@ -39,6 +39,7 @@ const Weibo: React.FC<{ weibo: any[] }> = ({ weibo }) => {
       <div className="rounded-sm flex-1 bg-bg-100 mx-3 p-3">
         <Swiper
           className="w-full h-full hidden sm:block"
+          loop={true}
           setWrapperSize={true}
           mousewheel={true}
           allowTouchMove={false}

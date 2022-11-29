@@ -1,6 +1,6 @@
 import { fetchGithubContributions } from 'api/tripartite'
+import BlurImage from 'components/blur-image'
 import Ad from 'components/common/ad'
-import LazyImage from 'components/common/lazy-image'
 import Layout from 'components/layout'
 import { CONNECT_LINKS, META } from 'config/app.config'
 import type { GetStaticProps } from 'next'
@@ -20,26 +20,20 @@ const AboutPage: NextPageWithLayout<Props> = () => {
         <title>{'关于' + ` - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
-        <LazyImage
-          src="/images/about.jpeg"
-          alt="about"
-          className="duration-200 scale-[1.02] hover:scale-100"
-        >
+        <BlurImage src="/images/about.jpeg" alt="about">
           <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col">
             <i className="iconfont mx-auto text-white !text-7xl">&#xe61d;</i>
-            <p className="text-center text-white text-sm mt-4">
-              寄蜉蝣于天地，渺沧海之一粟
-            </p>
+            <p className="text-center text-white text-sm mt-4">寄蜉蝣于天地，渺沧海之一粟</p>
           </div>
-        </LazyImage>
+        </BlurImage>
       </div>
       <div className="bg-bg-100 rounded my-3 p-3">
         <div className="flex flex-col items-center ">
           <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-border">
-            <LazyImage
+            <BlurImage
               src="/images/avatar.jpeg"
               alt="avatar"
-              className="hover:rotate-[360deg] duration-500"
+              className="sm:hover:rotate-[360deg] duration-500"
             />
           </div>
           <h1 className="mt-2 text-lg text-font-100 font-bold">Evan</h1>

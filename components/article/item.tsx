@@ -1,5 +1,5 @@
+import BlurImage from 'components/blur-image'
 import DateTime from 'components/common/date'
-import LazyImage from 'components/common/lazy-image'
 import Link from 'next/link'
 import * as React from 'react'
 import type { Article } from 'types'
@@ -7,14 +7,13 @@ import type { Article } from 'types'
 const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
   return (
     <div className="bg-bg-100 rounded sm:p-3 flex sm:flex-row flex-col justify-start mt-3">
-      <div className="rounded-t-[4px] sm:rounded sm:w-[180px] sm:h-[102px] w-full h-[120px] sm:border sm:border-border overflow-hidden">
-        <Link href={`/article/${article.article_id}`}>
-          <LazyImage
-            src={article.thumb}
-            alt={article.title}
-            className="duration-200 scale-100 hover:scale-105 cursor-pointer rounded-t-[4px] sm:rounded"
-          />
-        </Link>
+      <div className="rounded-t-[4px] w-full h-[120px] sm:rounded sm:w-[180px] sm:h-[102px] sm:border sm:border-border overflow-hidden">
+        <BlurImage
+          src={article.thumb}
+          alt={article.title}
+          href={`/article/${article.article_id}`}
+          className="scale-100 hover:scale-105 cursor-pointer rounded-t-[4px] sm:rounded"
+        />
       </div>
       <div className="p-2 sm:ml-3 sm:p-0 flex-1 flex flex-col justify-between">
         <Link href={`/article/${article.article_id}`}>

@@ -1,4 +1,5 @@
 import { addComment } from 'api'
+import BlurImage from 'components/blur-image'
 import useReactive from 'hooks/useReactive'
 import * as React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
@@ -77,7 +78,7 @@ const Publish: React.FC<PublishProps> = ({
         ? (
         <div className="w-full h-14 flex justify-start items-center">
           <div className={'hidden sm:block rounded-sm w-14 h-14 border-4 border-bg-200 flex-shrink-0'}>
-            <img
+            <BlurImage
               className="rounded-sm"
               src="/images/garavatar.png"
               alt="avatar"

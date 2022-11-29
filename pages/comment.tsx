@@ -1,8 +1,8 @@
 import { fetchCommentList } from 'api'
+import BlurImage from 'components/blur-image'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import Divider from 'components/common/divider'
-import LazyImage from 'components/common/lazy-image'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'
 import * as React from 'react'
@@ -23,18 +23,12 @@ const CommentPage: NextPageWithLayout<Props> = ({ comments, total, totalPage }) 
         <title>{'广开言路' + ` - ${META.title}`}</title>
       </Helmet>
       <div className="w-full h-[168px] sm:h-[210px] mt-3 sm:mt-0 rounded overflow-hidden relative">
-        <LazyImage
-          src="/images/comment.jpeg"
-          alt="comment"
-          className="duration-200 scale-[1.02] hover:scale-100"
-        >
+        <BlurImage src="/images/comment.jpeg" alt="comment">
           <div className="absolute z-[100] top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col">
-          <i className="iconfont mx-auto text-white !text-7xl">&#xe6aa;</i>
-          <p className="text-center text-white text-sm mt-4">
-            有朋自远方来，不亦乐乎
-          </p>
-        </div>
-        </LazyImage>
+            <i className="iconfont mx-auto text-white !text-7xl">&#xe6aa;</i>
+            <p className="text-center text-white text-sm mt-4">有朋自远方来，不亦乐乎</p>
+          </div>
+        </BlurImage>
       </div>
       <div className="w-full h-full mt-3 rounded bg-bg-100 p-3">
         <Publish />

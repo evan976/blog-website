@@ -1,4 +1,4 @@
-import BlurImage from 'components/blur-image'
+import BlurImage from 'components/common/blur-image'
 import DateTime from 'components/common/date'
 import type SwiperClass from 'components/common/swiper'
 import { Swiper, SwiperSlide } from 'components/common/swiper'

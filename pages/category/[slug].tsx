@@ -1,6 +1,6 @@
 import { fetchArticleListBySlug, fetchCategoryBySlug } from 'api'
 import ArticleList from 'components/article/list'
-import BlurImage from 'components/blur-image'
+import BlurImage from 'components/common/blur-image'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
 import { META } from 'config/app.config'

@@ -1,7 +1,7 @@
 import { fetchArticleList } from 'api'
 import { fetchWeiboList } from 'api/tripartite'
 import ArticleList from 'components/article/list'
-import BlurImage from 'components/blur-image'
+import BlurImage from 'components/common/blur-image'
 import { Swiper, SwiperSlide } from 'components/common/swiper'
 import Layout from 'components/layout'
 import Weibo from 'components/weibo'

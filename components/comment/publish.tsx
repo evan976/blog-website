@@ -1,5 +1,5 @@
 import { addComment } from 'api'
-import BlurImage from 'components/blur-image'
+import BlurImage from 'components/common/blur-image'
 import useReactive from 'hooks/useReactive'
 import * as React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
@@ -28,6 +28,7 @@ const Publish: React.FC<PublishProps> = ({
   reply,
   articleId,
 }) => {
+  const [loading, setLoading] = React.useState(false)
   const [innerVisible, setInnerVisible] = React.useState(visible)
 
   const formValue = useReactive<FormValue>({
@@ -39,6 +40,7 @@ const Publish: React.FC<PublishProps> = ({
 
   const handleAddComment: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
+    setLoading(true)
     const data = {
       name: formValue.name,
       email: formValue.email,
@@ -63,13 +65,18 @@ const Publish: React.FC<PublishProps> = ({
       })
     }
 
-    addComment(data).then(() => {
-      toast.success(`${isReply ? '回复' : '评论'}成功, 等待管理员审核`, { type: 'success' })
-      formValue.name = ''
-      formValue.email = ''
-      formValue.site = ''
-      formValue.content = ''
-    })
+    addComment(data)
+      .then(() => {
+        setLoading(false)
+        toast.success(`${isReply ? '回复' : '评论'}成功, 等待管理员审核`, { type: 'success' })
+        formValue.name = ''
+        formValue.email = ''
+        formValue.site = ''
+        formValue.content = ''
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   return (
@@ -162,6 +169,7 @@ const Publish: React.FC<PublishProps> = ({
               <button
                 className="min-w-[80px] px-3 h-full bg-bg-400 rounded-br-sm"
                 type="submit"
+                disabled={loading}
               >
                 发布
                 <i className="iconfont">&#xe705;</i>

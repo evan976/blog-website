@@ -1,7 +1,7 @@
 import { fetchArticleComments, fetchArticleDetail } from 'api'
 import Color from 'color'
 import ArticleMeta from 'components/article/meta'
-import BlurImage from 'components/blur-image'
+import BlurImage from 'components/common/blur-image'
 import CommentList from 'components/comment/list'
 import Publish from 'components/comment/publish'
 import DateTime from 'components/common/date'

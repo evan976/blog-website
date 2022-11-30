@@ -1,5 +1,5 @@
 import { fetchGithubContributions } from 'api/tripartite'
-import BlurImage from 'components/blur-image'
+import BlurImage from 'components/common/blur-image'
 import Ad from 'components/common/ad'
 import Layout from 'components/layout'
 import { CONNECT_LINKS, META } from 'config/app.config'

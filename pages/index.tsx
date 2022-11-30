@@ -28,6 +28,7 @@ const HomePage: NextPageWithLayout<Props> = ({ total, totalPage, articles, weibo
         grabCursor={false}
         simulateTouch={false}
         preloadImages={true}
+        loop={true}
         lazy={true}
         pagination={{ clickable: true }}
         autoplay={{

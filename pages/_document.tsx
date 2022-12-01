@@ -4,7 +4,7 @@ import { GA_TRACKING_ID } from 'utils/gtag'
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="zh">
+      <Html lang="zh" className="grayscale">
         <Head>
           {GA_TRACKING_ID && (
             <>

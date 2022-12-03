@@ -19,3 +19,8 @@ export const CONNECT_LINKS = Object.freeze({
   weibo: 'https://weibo.com/u/5697868718',
   telegram: 'https://t.me/Evan1321',
 })
+
+export const TRIPARTITE_LINK = Object.freeze({
+  weibo: 'https://api.weibo.com/2/statuses/user_timeline.json',
+  github_contributions: `https://skyline.github.com/wujihua118/${new Date().getFullYear()}.json`,
+})

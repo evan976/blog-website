@@ -1,5 +1,8 @@
 const path = require('path')
-const withPWA = require('next-pwa')
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+})
 
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_WEB_ACCESS_TOKEN
 
@@ -31,6 +34,5 @@ const nextConfig = {
 }
 
 module.exports = withPWA({
-  dest: 'public',
   ...nextConfig,
 })

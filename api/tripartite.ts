@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { TRIPARTITE_LINK } from 'config/app.config'
 
 const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
 
@@ -12,7 +13,7 @@ export const fetchWeiboList = async () => {
 }
 
 export const fetchGithubContributions = async () => {
-  const response = await axios.get('https://skyline.github.com/wujihua118/2022.json', {
+  const response = await axios.get(TRIPARTITE_LINK.github_contributions, {
     timeout: 8000,
   })
 

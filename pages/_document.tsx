@@ -5,7 +5,7 @@ import Seo from 'components/common/seo'
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="zh" className="grayscale">
+      <Html lang="zh">
         <Head>
           <Seo />
           {GA_TRACKING_ID && (

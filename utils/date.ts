@@ -1,3 +1,5 @@
+import format from 'date-fns/format'
+
 export const weekMap = ['日', ' 一', '二', '三', '四', '五', '六']
 const calendarGrid = 42
 export interface CalendarItem {
@@ -91,31 +93,12 @@ export const generateCalendar = (date: Date) => {
   return calendarTable
 }
 
-export const getDateOfISOWeek = (week: number, year: number) => {
-  const simple = new Date(year, 0, 1 + (week - 1) * 7)
-  const dow = simple.getDay()
-  const ISOweekStart = simple
-  if (dow <= 4)
-    ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1)
-  else ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay())
-  return ISOweekStart
-}
-
-export const getDate = (effectTime: number) => {
-  const date = new Date(effectTime * 24 * 60 * 60 * 1000)
-  const year = new Date().getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  let currentDate = `${year}-`
-  if (month >= 10)
-    currentDate = `${currentDate + month}-`
-  else
-    currentDate = `${currentDate}0${month}-`
-
-  if (day >= 10)
-    currentDate = currentDate + day
-  else
-    currentDate = `${currentDate}0${day}`
-
-  return currentDate
+export const getDateOfWeek = (year: number, week: number, day: number) => {
+  const date = new Date(year, 0, 1)
+  const dayMS = 24 * 60 * 60 * 1000
+  const firstDay = (7 - date.getDay()) * dayMS
+  const weekMS = (week - 2) * 7 * dayMS
+  const result = date.getTime() + firstDay + weekMS + day * dayMS
+  date.setTime(result)
+  return format(date, 'yyyy年MM月dd日')
 }

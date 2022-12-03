@@ -66,6 +66,26 @@ export interface IComment extends Base {
   reply_user_site: string
 }
 
+interface Day {
+  count: number
+}
+
+interface Contribution {
+  week: number
+  days: Array<Day>
+}
+
+export interface Contributions {
+  username: string
+  year: string
+  min: number
+  max: number
+  median: number
+  p80: number
+  p90: number
+  contributions: Array<Contribution>
+}
+
 export type ArticleResponse = Paginate<Article>
 
 export type CategoryResponse = Paginate<Category>

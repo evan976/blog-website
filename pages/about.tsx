@@ -7,13 +7,15 @@ import type { GetStaticProps } from 'next'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import ReactTooltip from 'react-tooltip'
+import GithubContribution from 'components/github/contribution'
+import type { Contributions } from 'types'
 import type { NextPageWithLayout } from './_app'
 
 interface Props {
-  contributions: any
+  contributions: Contributions
 }
 
-const AboutPage: NextPageWithLayout<Props> = () => {
+const AboutPage: NextPageWithLayout<Props> = ({ contributions }) => {
   return (
     <div className="w-full h-full">
       <Helmet>
@@ -110,8 +112,10 @@ const AboutPage: NextPageWithLayout<Props> = () => {
           </ul>
         </div>
       </div>
-      {/* TODO: github contribution calendar */}
-      {/* <GithubContribution contributions={contributions} /> */}
+      <GithubContribution
+        year={contributions.year}
+        contributions={contributions.contributions}
+      />
       <div className="bg-bg-100 rounded my-3 p-3">
         <h1 className="text-base text-blue">关于我</h1>
         <ul className="list-disc list-inside mt-2">
@@ -146,7 +150,7 @@ const AboutPage: NextPageWithLayout<Props> = () => {
 AboutPage.getLayout = page => <Layout>{page}</Layout>
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { contributions } = await fetchGithubContributions()
+  const contributions = await fetchGithubContributions()
 
   return {
     props: {

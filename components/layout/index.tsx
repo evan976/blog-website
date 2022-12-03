@@ -1,4 +1,3 @@
-import Seo from 'components/common/seo'
 import ScrollToTop from 'components/common/scroll-to-top'
 import * as React from 'react'
 import Footer from './footer'
@@ -13,7 +12,6 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="layout">
-      <Seo />
       <Header />
       <Main>{children}</Main>
       <ScrollToTop />

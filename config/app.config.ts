@@ -1,4 +1,5 @@
 export const META = Object.freeze({
+  app_name: 'evanone.site',
   title: 'evanone.site',
   sub_title: '星海横流，岁月成碑',
   keywords: '博客，个人网站，前端开发，react，react ssr，nodejs，nextjs',

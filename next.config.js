@@ -2,6 +2,10 @@ const path = require('path')
 
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_WEB_ACCESS_TOKEN
 
+const withPWA = require('next-pwa')({
+  dest: 'public',
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -29,4 +33,6 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = withPWA({
+  ...nextConfig,
+})

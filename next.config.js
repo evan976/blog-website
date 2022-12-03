@@ -1,6 +1,5 @@
 const path = require('path')
 const withPWA = require('next-pwa')
-const { TRIPARTITE_LINK } = require('./config/app.config')
 
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_WEB_ACCESS_TOKEN
 
@@ -25,7 +24,7 @@ const nextConfig = {
     return [
       {
         source: '/weibo',
-        destination: `${TRIPARTITE_LINK.weibo}?access_token=${ACCESS_TOKEN}`,
+        destination: `https://api.weibo.com/2/statuses/user_timeline.json?access_token=${ACCESS_TOKEN}`,
       },
     ]
   },

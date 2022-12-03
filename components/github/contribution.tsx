@@ -5,7 +5,7 @@ import { getDateOfWeek } from 'utils/date'
 
 const GithubContribution: React.FC<Partial<Contributions>> = ({ contributions, year }) => {
   return (
-    <div className="bg-bg-100 rounded p-3">
+    <div className="bg-bg-100 rounded p-3 hidden sm:block">
       <ul className="flex w-full overflow-hidden">
         {contributions?.map((contribution, week) => (
             <li key={contribution.week} className="flex flex-col">

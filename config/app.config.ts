@@ -1,11 +1,11 @@
 export const META = Object.freeze({
-  app_name: 'evanone.site',
-  title: 'evanone.site',
+  app_name: 'evanone.me',
+  title: 'evanone.me',
   sub_title: '星海横流，岁月成碑',
   keywords: '博客，个人网站，前端开发，react，react ssr，nodejs，nextjs',
   description: '开源博客，Evan的个人博客网站，基于next ssr服务端渲染，用于分享、交流、记录和学习',
-  url: 'https://evanone.site',
-  domain: 'evanone.site',
+  url: 'https://evanone.me',
+  domain: 'evanone.me',
   author: 'Evan',
   primary: '#0088f5',
 })

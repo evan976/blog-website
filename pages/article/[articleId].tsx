@@ -70,12 +70,12 @@ const ArticlePage: NextPageWithLayout<Props> = ({ article, comments }) => {
           <div className="mt-2 truncate">
             <span>永久链接：</span>
             <a
-              href={`https://evanone.site/article/${article.article_id}`}
+              href={`https://evanone.me/article/${article.article_id}`}
               className="underline underline-offset-2 text-font-200 hover:text-blue duration-200"
               target="_blank"
               rel="noreferrer"
             >
-              https://evanone.site/article/{article.article_id}
+              https://evanone.me/article/{article.article_id}
             </a>
           </div>
           <a

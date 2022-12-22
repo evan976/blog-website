@@ -11,7 +11,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ['static.evanone.site', 'tvax2.sinaimg.cn'],
+    domains: ['static.evanone.site', 'tvax2.sinaimg.cn', 'cdn.evanone.me'],
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
